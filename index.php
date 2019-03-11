@@ -123,7 +123,7 @@ if(isset($_POST['login'])){
     $result2=mysqli_fetch_array($result);
     $_SESSION['userid'] = $result2['id'];
     $_SESSION['emailid']=$result2['email'];
-    header("Location:header.php");
+    header("Location:dashboard.php");
   } else{
   
 echo "<script>alert('Email and password does not match');location.href='index.php'</script>";
