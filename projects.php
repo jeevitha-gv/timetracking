@@ -8,7 +8,7 @@ ob_start();
 ?>
 <html>
 <head>
-  <title>PROJECTS</title>
+  <title>Projects</title>
 </head>
 <style>
 .hr
@@ -30,15 +30,14 @@ if($_POST)
 ?>
 
 <form action="" method="post">
-  <div class="container" style="width:1500px;margin-left:10px;">
+  <div class="container-fluid">
   <h4 style="color: gray;">Dashboard : Projects</h4>
   <div class="panel panel-default" style="width:100%;">
     <div class="panel-body" style="color:#4C8EBA "><h5 style="margin-top: 3px;"><strong>PROJECTS</strong></h5>
       <div style="margin-top: -40px;margin-left: 1039px;">
 
 
-<button type="button" class="btn btn-danger" disabled="">Delete Selected</button>
-<button style="background-color: lightgray;" type="button" class="btn btn-default btn-sm">
+        <button style="background-color: lightgray;" type="button" class="btn btn-default btn-sm">
           <span  data-toggle="modal" data-target="#Modal" class="glyphicon glyphicon-search"></span> Search
         </button>
 
@@ -250,7 +249,7 @@ if (mysqli_num_rows($result) > 0) {
   <label style="color: black;margin-top: 5px;" for="ex2"><h6>Timesheet Approval Type</h6>
       <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="timesheet_approval">
       <option value="Approval Not Required">Approval Not Required</option>
-      <option value="Team Lead-->Project Manager">Team Lead-->Project Manager</option>
+      <!-- <option value="Team Lead-->Project Manager">Team Lead-->Project Manager</option> -->
        <option value="Team Lead">Team Lead</option>
         <option value="Project Manager">Project Manager</option>
         <option value="Employee Manager">Employee Manager</option>
@@ -260,8 +259,8 @@ if (mysqli_num_rows($result) > 0) {
     <div class="col-xs-4">
   <label style="color: black;margin-top: 5px;" for="ex2"><h6>Expense Approval Type</h6></label><br />
       <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="expense_approval">
-      <!-- <option value="Approval Not Required">Approval Not Required</option> -->
-      <option value="Team Lead-->Project Manager">Team Lead-->Project Manager</option>
+      <option value="Approval Not Required">Approval Not Required</option>
+      <!-- <option value="Team Lead-->Project Manager">Team Lead-->Project Manager</option> -->
         <option value="Team Lead">Team Lead</option>
         <option value="Project Manager">Project Manager</option>
         <option value="Employee Manager">Employee Manager</option>

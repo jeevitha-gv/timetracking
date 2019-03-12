@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <?php 
 include "header.php";
@@ -175,7 +174,7 @@ if (mysqli_num_rows($result) > 0) {
     <hr class="hr">
     <div style="margin-left: 10px;" class="container">
   <button data-toggle="modal" data-target="#Modal" type="button" class="btn"><i class="fa fa-plus">Add Time Item Row</i></button>
-  <button data-toggle="modal" data-target="#Timeoff" type="button" class="btn"><i class="fa fa-plus">Add Time Off Row</i></button>
+  <!-- <button data-toggle="modal" data-target="#Timeoff" type="button" class="btn"><i class="fa fa-plus">Add Time Off Row</i></button> -->
   </div>
  <?php
   if($_POST)
@@ -269,53 +268,6 @@ if (mysqli_num_rows($result) > 0) {
 </div>
 </form>
 
-  <?php
-  if($_POST)
-    {
-      addoff();
-    }
-    ?>
-  <form action="" method="POST">
-          <div class="modal fade" id="Timeoff" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div style="width: 115%;" class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title" id="myModalLabel" style="color: gray;">Add Time Off</h4>
-      </div>
-      <div class="modal-body">
-    
-    <div class="container">
-  
-  <div class="tab-content">
-    
-      <div class="form-group row">
-      <div class="col-lg-4">
-        <label for="ex1" style="color: black;"><h6>Time Off Type</h6></label>
-        <br>
-        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="type">
-      <option>Select</option>
-      <option value="Holiday">Holiday</option>
-      <option value="Sick Leave">Sick leave</option>
-
-    </select>
-
-      </div>
-  </div>
-</div>
-      </div>
-      <div class="modal-footer" style="margin-top: 25px;">
-        <button name="submit" type="submit" class="btn btn-success">Add Time Off</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-        
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</form>
-
        <div>
       <table class="table table-bordered">
     <thead>
@@ -374,7 +326,7 @@ function timeSummation() {
 
 <div class="panel-default"> 
 <div class="container" style="width:1500px;margin-left:-21px;margin-top: 180px;">
-  <div class="panel panel-default" style="height:330px;width:100%;">
+  <div class="panel panel-default" style="width:100%;">
 
     <div style="margin-left: 15px;margin-top: 10px; ;width: 98%" class="form-group">
   <label for="comment">Description:</label>
@@ -387,7 +339,7 @@ function timeSummation() {
 </div>
 <div style="margin-top: -35px;margin-left: 840px;" class="container">
 <button style="width: 90px;height: 40px;" type="button" class="btn"  onclick="printDiv('printableArea')" /><i class="fa fa-print">Print</i></button>
-  <button type="button" class="btn green-jungle" onclick="exportTableToCSV('members.csv')"><i class="icon-pencil"></i> <span class="glyphicon glyphicon-save" > EportOfflineTimesheet</span></button>
+  <button type="button" class="btn green-jungle" onclick="exportTableToCSV('members.csv')"><i class="icon-pencil"></i> <span class="glyphicon glyphicon-save" > Export Offline Timesheet</span></button>
 
 
 
@@ -417,9 +369,9 @@ function timeSummation() {
     downloadLink.click();
 }
 </script>
-  <button style="width: 250px;height: 40px;" type="button" class="btn"><i class="fa fa-upload">Import Offline Timesheet</i></button>
+  <!--<button style="width: 250px;height: 40px;" type="button" class="btn"><i class="fa fa-upload">Import Offline Timesheet</i></button>
 
-  <!-- <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" name="attachment"> -->
+   <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" name="attachment">
 </div>
 
 </div>
@@ -438,14 +390,14 @@ function timeSummation() {
   <button style="width: 150px;height: 40px;margin-left: 10px;" type="button" class="btn"><i class="fa fa-newspaper-o">Copy Activities</i></button>
 </div>
 
-<div class="container" style="margin-top: 20px;margin-left: 10px;">
+ <div class="container" style="margin-top: 20px;margin-left: 10px;">
   <button type="button" class="btn">Status Legend</button>
   <button type="button" class="btn btn-warning">Not Submitted</button>
   <button type="button" class="btn btn-primary">Submitted</button>
   <button type="button" class="btn btn-success">Approved</button>
   <button type="button" class="btn btn-danger">Rejected</button>
   
-</div>
+</div> -->
 
 
 </div>

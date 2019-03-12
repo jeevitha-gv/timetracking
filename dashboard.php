@@ -35,7 +35,7 @@ ob_start();
 </div>
 <div class="container">
   
-  <div class="panel panel-default" style="margin-left:-10px;width:600px;height:250px;">
+  <div class="panel panel-default" style="margin-left:-10px;width:600px;">
    
     <div class="panel-body" style="color: #4C8EBA"><h3>MY TASK LIST</h3></div>
     <hr>
@@ -47,19 +47,25 @@ ob_start();
        
         <th>Name</th>
         <th>Status</th>
-        <th>Priority</th>
-        
-      
+        <th>Priority</th>  
       </tr>
     </thead>
+    <?php
+      $sql = "SELECT * from task order by id desc limit 10";
+$result = mysqli_query($con, $sql);
+if (mysqli_num_rows($result) > 0) {
+  while($row = mysqli_fetch_array($result))
+{
+  ?>
     <tbody>
       <tr>
-         <td></td>
-        <td></td>
-        <td></td>
+         <td><?php echo $row['taskname'];?></td>
+        <td><?php echo $row['taskstatus'];?></td>
+        <td><?php echo $row['priority'];?></td>
       </tr>
       
     </tbody>
+    <?php } } else { echo "0 results"; } ?>
   </table>
 </div>
   </div>
@@ -67,7 +73,7 @@ ob_start();
 
 <div class="container">
   
-  <div class="panel panel-default" style="margin-left:650px;width:610px;height:250px;margin-top:-270px;">
+  <div class="panel panel-default" style="margin-left:650px;width:610px;margin-top: -330px;">
    
     <div class="panel-body" style="color: #4C8EBA"><h3>MY PROJECTS LIST</h3></div>
     <hr>
@@ -78,25 +84,29 @@ ob_start();
        
         <th>Name</th>
         <th>Status</th>
-        
-      
       </tr>
     </thead>
+    <?php
+      $sql = "SELECT * from project order by p_id desc limit 10";
+$result = mysqli_query($con, $sql);
+if (mysqli_num_rows($result) > 0) {
+  while($row = mysqli_fetch_array($result))
+{
+  ?>
     <tbody>
       <tr>
-        
-        <td></td>
-        <td></td>
+        <td><?php echo $row['projectname'];?></td>
+        <td><?php echo $row['project_status'];?></td>
       </tr>
-      
     </tbody>
+    <?php } } else { echo "0 results"; } ?>
   </table>
 </div>
   </div>
 </div>
 <div class="container">
   
-  <div class="panel panel-default" style="margin-left:-10px;width:600px;height:250px;margin-top:-10px;">
+  <div class="panel panel-default" style="margin-left:-10px;width:600px;margin-top:-10px;">
    
     <div class="panel-body" style="color: #4C8EBA"><h3>MY OPEN TIMESHEET PERIODS</h3></div>
     <hr>
@@ -104,25 +114,28 @@ ob_start();
       <table class="table table-bordered">
     <thead>
       <tr>
-       
         <th>Timesheet Period</th>
         <th>Duration</th>
         <th>Hours</th>
         <th>Status</th>
-        
-      
       </tr>
     </thead>
+    <?php
+      $sql = "SELECT * from project order by p_id desc limit 10";
+$result = mysqli_query($con, $sql);
+if (mysqli_num_rows($result) > 0) {
+  while($row = mysqli_fetch_array($result))
+{
+  ?>
     <tbody>
       <tr>
-        
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><?php echo $row['project_status'];?></td>
+        <td><?php echo $row['project_status'];?></td>
+        <td><?php echo $row['project_status'];?></td>
+        <td><?php echo $row['project_status'];?></td>
       </tr>
-      
     </tbody>
+    <?php } } else { echo "0 results"; } ?>
   </table>
 </div>
   </div>

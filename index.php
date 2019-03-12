@@ -68,7 +68,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 </head>
 <body  style="background-color: #C9C7C6;">
 
-  <img src="001.png" style="width: 250px; height: 75px; margin-left: 625px;"><br>
+  <img src="001.png" style="width: 250px; margin-left: 600px;"><br><br>
 <form action ="" method="post">
 <div class="container" style="width: 20%; margin-left: 575px;">
   

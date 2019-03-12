@@ -37,15 +37,15 @@ body {
        <h5><b>Approvals</b></h5></div><br><br>
        <div style="text-align: center;margin-left: -1350px;"">
         
-       <a href="timesheetapproval.php" data-toggle="tooltip" title="TimeSheet Approval" ><img src="man.png" class="btn btn-default" style="width: 70px;height: 70px;color: #7F98AF;border-radius: 45%;"> <br>Time Sheet<br>Approval</a></div>
+       <a href="timesheetapproval.php" data-toggle="tooltip" title="TimeSheet Approval" ><img src="man.png" class="btn btn-default"style="width: 70px;height: 70px;color: #7F98AF;border-radius: 45%;"> <br>Time Sheet<br>Approval</a></div>
        <div style="text-align: center;margin-left: -1100px;margin-top: -120px;">
-         <a href="expanseapproval.php" type="button" type="button" data-toggle="tooltip" title="Expanse Approval" ><img src="dollar.jpeg" class="btn btn-default" style="width: 70px;height: 70px;color: #7F98AF;border-radius: 45%"><br>Expanse<br> Approval</a>
+         <a href="expanseapproval.php" type="button" type="button" data-toggle="tooltip" title="Expanse Approval" ><img src="dollar.jpeg" class="btn btn-default" style="width: 70px;height: 70px;color: #7F98AF;border-radius: 45%"><br>Expense<br> Approval</a>
          </ul>
        </div>
-       <div style="text-align: center;margin-left: -800px;margin-top: -120px;">
+       <!-- <div style="text-align: center;margin-left: -800px;margin-top: -120px;">
          <a href="timeoffapproval.php" type="button" type="button" data-toggle="tooltip" title="TimeOff Approval" ><img src="clock.png" class="btn btn-default" style="width: 70px;height: 70px;color: #7F98AF;border-radius: 45%"><br>TimeOff<br>Approval</a>
          </ul>
-       </div>
+       </div> -->
        
        </div>
      </div>

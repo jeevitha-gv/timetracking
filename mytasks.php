@@ -8,7 +8,7 @@ ob_start();
 ?>
 <html>
 <head>
-  <title>PROJECTS</title>
+  <title>Task</title>
 </head>
 <style>
 
@@ -220,7 +220,7 @@ if($_POST)
     <div style="width: 115%;" class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel" style="color: gray;">Add Project</h4>
+        <h4 class="modal-title" id="myModalLabel" style="color: gray;">Add Task</h4>
       </div>
       <div class="modal-body">
         <div class="form-group">
@@ -255,12 +255,12 @@ if (mysqli_num_rows($result) > 0) {
     <div class="container">
   <ul style="width: 57%;" class="nav nav-tabs" style="width: 100px;">
     <li class="active"><a data-toggle="tab" href="#basic">Basic</a></li>
-    <li><a data-toggle="tab" href="#team">Team</a></li>
-    <li><a data-toggle="tab" href="#dates">Dates</a></li>
-    <li><a data-toggle="tab" href="#billing">Billing</a></li>
-    <li><a data-toggle="tab" href="#advanced">Advanced</a></li>
-    <li><a data-toggle="tab" href="#others">Others</a></li>
-    <li><a data-toggle="tab" href="#attachment">Attachment</a></li>
+      <li><a data-toggle="tab" href="#team">Team</a></li> 
+      <li><a data-toggle="tab" href="#dates">Dates</a></li> 
+     <li><a data-toggle="tab" href="#billing">Billing</a></li>
+    <!-- <li><a data-toggle="tab" href="#advanced">Advanced</a></li> -->
+    <!-- <li><a data-toggle="tab" href="#others">Others</a></li> -->
+    <!-- <li><a data-toggle="tab" href="#attachment">Attachment</a></li> -->
 </ul>
   <div class="tab-content">
     <div id="basic" class="tab-pane fade in active">
@@ -327,12 +327,9 @@ if (mysqli_num_rows($result) > 0) {
     </div>
       <div class="col-xs-5">
       
-      <select  class="selectpicker form-control" data-show-subtext="true" data-live-search="true" name="totalmembers">
+      <select  class="selectpicker form-control" data-show-subtext="true" data-live-search="true" multiple="" name="totalmembers">
         <option></option>
                 <?php
-
-    
-
     $sql = "SELECT * from employee";
 $result = mysqli_query($con, $sql);
 
@@ -632,7 +629,6 @@ if (mysqli_num_rows($result) > 0) {
         <th>Name</th>
         <th>Task Status</th>
         <th>Priority</th>
-        <th>Team</th>
         <th>Action</th>
        
       </tr>
@@ -660,10 +656,8 @@ if (mysqli_num_rows($result) > 0) {
         </td>
         <td><?php echo $row['taskcode']; ?></td>
         <td><?php echo $row['taskname']; ?></td>
-      
         <td><?php echo $row['taskstatus']; ?></td>
         <td><?php echo $row['priority']; ?></td>
-        <td><?php echo $row['totalmembers']; ?></td>
         <td style="width: 130px;">
           <i data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="bottom" title="Edit Client" data-toggle="modal" data-target="#Modal" style="color: #00436f;margin-left: 15px;" class="fa fa-edit fa-2x"></i>
           <!-- <i data-toggle="modal" data-target="#trash" data-toggle="tooltip" data-placement="bottom" title="Delete" data-toggle="trash" data-target="#trash" style="color: red;margin-left: 15px;" class="fa fa-trash fa-2x"></i> -->
