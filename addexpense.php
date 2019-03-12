@@ -96,11 +96,7 @@ input:checked + .slider:before {
   <div class="panel panel-default" style="height:220px;width:100%;">
     <form method="get" action="timesheet_period.php">
     <div style="margin-top: 10px;margin-left: 10px;" class="container">
-  <!-- <button type="button" class="btn"><i class="fa fa-list">Day View</i></button>
- <button type="submit" class="btn"><i class="fa fa-calendar">Timesheet Periods</i></button>
-  <button type="button" class="btn btn-success"><i class="fa fa-pencil">Save</i></button>
-  <button type="button" class="btn btn-info"><i class="fa fa-edit">Submit</i></button>
-  <button type="button" data-toggle="modal" data-target="#search" class="btn"><i class="fa fa-clock-o"> --><!-- Start Timer</i></button> -->
+
 </div>
 </form>
 <div class="modal fade" id="entry" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
