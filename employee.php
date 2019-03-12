@@ -214,14 +214,14 @@ body {
     <label style="color: black;margin-top: 5px;" for="ex2"><h6>WorkType</h6></label>
         <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="worktype">
         <option value="Standard">Standard </option>
-       <option value="OverTime">OverTime</option>
-        <option value="Travel">Travel</option>
+        <option value="Premium">Premium</option>
       </select>
     </div>
       <div class="col-xs-4">
     <label style="color: black;margin-top: 5px;" for="ex2"><h6>BillingType</h6></label>
         <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="billingtype">
         <option value="Hourly">Hourly </option>
+        <option value="Premium">Premium </option>
              </select>
     </div>
  <div class="col-xs-4">

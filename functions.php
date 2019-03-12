@@ -81,15 +81,6 @@ function client(){
     $email = $_POST['email'];
     $website = $_POST['website'];
     $billingrate = $_POST['billingrate'];
-    $address1 = $_POST['address1'];
-    $address2 = $_POST['address2'];
-    $country = $_POST['country'];
-    $city = $_POST['city'];
-    $state = $_POST['state'];
-    $zipcode = $_POST['zipcode'];
-    $phone1 = $_POST['phone1'];
-    $phone2 = $_POST['phone2'];
-    $fax = $_POST['fax'];
     $notes = $_POST['notes'];
     $billingmode = $_POST['billingmode'];
     $fixedbillcost = $_POST['fixedbillcost'];
@@ -97,7 +88,7 @@ function client(){
     
 
     // $date = date('Y-m-d H:i:s');
-    $sql="INSERT INTO `client`(`clientname`,`clientnick`,`email`,`website`,`billingrate`,`address1`,`address2`,`country`,`city`,`state`,`zipcode`,`phone1`,`phone2`,`fax`,`notes`,`billingmode`) VALUES ('$clientname','$clientnick','$email','$website','$billingrate','$address1','$address2','$country','$city','$state','$zipcode','$phone1','$phone2','$fax','$notes','$billingmode')";
+    $sql="INSERT INTO `client`(`clientname`,`clientnick`,`email`,`website`,`billingrate`,`notes`,`billingmode`,`fixedbillcost`) VALUES ('$clientname','$clientnick','$email','$website','$billingrate','$notes','$billingmode','$fixedbillcost')";
     if(mysqli_query($con,$sql)){
         header("Location: client.php");
     }
@@ -171,19 +162,11 @@ function task(){
     $billingenddate = $_POST['billingenddate'];
     $developersrate = $_POST['developersrate'];
     $billingrate = $_POST['billingrate'];
-    $parenttask = $_POST['parenttask'];
-    $estimatedcurrency = $_POST['estimatedcurrency'];
-    $estimatedtime = $_POST['estimatedtime'];
-    $estimatedcost = $_POST['estimatedcost'];
-    $durationhour = $_POST['durationhour'];
-    $completed = $_POST['completed'];
-    $attachment = $_POST['attachment'];
-    $comment = $_POST['comment'];
 
     // $date = date('Y-m-d H:i:s');
-    $sql="INSERT INTO `task`(`taskname`, `projectname`, `tasktype`, `priority`, `taskcode`, `taskstatus`, `developerstask`, `allprojecttask`, `totalmembers`, `startdate`, `duedate`, `worktype`, `billingdate`, `developerscurrency`, `billingratecurrency`, `billable`, `billingenddate`, `developersrate`, `billingrate`, `parenttask`, `estimatedcurrency`, `estimatedtime`, `estimatedcost`, `durationhour`, `completed`, `attachment`, `comment`) VALUES ('$taskname', '$projectname', '$tasktype', '$priority', '$taskcode', '$taskstatus', '$developerstask', '$allprojecttask', '$totalmembers', '$startdate', '$duedate', '$worktype', '$billingdate', '$developerscurrency', '$billingratecurrency', '$billable', '$billingenddate', '$developersrate', '$billingrate', '$parenttask', '$estimatedcurrency', '$estimatedtime', '$estimatedcost', '$durationhour', '$completed', '$attachment', '$comment')";
+    $sql="INSERT INTO `task`(`taskname`, `projectname`, `tasktype`, `priority`, `taskcode`, `taskstatus`, `developerstask`, `allprojecttask`, `totalmembers`, `startdate`, `duedate`, `worktype`, `billingdate`, `developerscurrency`, `billingratecurrency`, `billable`, `billingenddate`, `developersrate`, `billingrate`) VALUES ('$taskname', '$projectname', '$tasktype', '$priority', '$taskcode', '$taskstatus', '$developerstask', '$allprojecttask', '$totalmembers', '$startdate', '$duedate', '$worktype', '$billingdate', '$developerscurrency', '$billingratecurrency', '$billable', '$billingenddate', '$developersrate', '$billingrate')";
     if(mysqli_query($con,$sql)){
-        header("Location: projects.php");
+        header("Location: mytasks.php");
     }
     else{
         echo "Error:".$sql."<br>" . mysqli_error($con);
@@ -277,46 +260,6 @@ else
 }
 }
 
-function addoff()
-{
-    GLOBAL $con;
-    if(isset($_POST['submit'])){
-        // print_r($_POST);
-    $type = $_POST['type'];
-$sql="INSERT INTO `addoff`(`type`) VALUES ('$type')";
-
-if(mysqli_query($con,$sql))
-{
-    header("Location: timesheets.php");
-}
-else
-{
-    echo "Error:".$sql."<br>" . mysqli_error($con);
-}
-  
-}
-}
-
-function mytimeoff(){
-    GLOBAL $con;
-    if(isset($_POST['submit'])){
-        $timeofftype = $_POST['timeofftype'];
-        $begindate = $_POST['begindate'];
-        $enddate = $_POST['enddate'];
-        $daysoff = $_POST['daysoff'];
-        $hoursoff = $_POST['hoursoff'];
-        $description = $_POST['description'];
-
-         $sql="INSERT INTO `timeoff`(`timeofftype`, `begindate`, `enddate`, `daysoff`, `hoursoff`,`description`) VALUES ('$timeofftype','$begindate','$enddate','$daysoff','$hoursoff','$description')";
-    if(mysqli_query($con,$sql)){
-        header("Location: mytimeoff.php");
-    }
-    else{
-        echo "Error:".$sql."<br>" . mysqli_error($con);
-    }
-    }
-       
-    }
 
 function timesheet(){
     GLOBAL $con;

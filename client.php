@@ -1,4 +1,3 @@
-
 <?php
 require_once "header.php";
 require_once "dbconnect.php";
@@ -34,9 +33,9 @@ ob_start();
 
   <form action="" method="POST">
 <div class="panel-default">	
-<div class="container" style="width:1500px;margin-left:10px;">
+<div class="container-fluid" style="margin-left:10px;">
   <h4 style="color: gray;">Dashboard:Clients</h4>
-  <div class="panel panel-default" style="overflow:auto;width:100%;">
+  <div class="panel panel-default">
     <div class="panel-body" style="color:#4C8EBA "><h5>CLIENTS</h5>
     	<div style="margin-top: -40px;margin-left: 1155px;">
 
@@ -60,7 +59,7 @@ ob_start();
     <div class="container">
   <ul style="width: 50%;" class="nav nav-tabs" style="width: 100px;">
     <li class="active"><a data-toggle="tab" href="#basic">Basic</a></li>
-    <li><a data-toggle="tab" href="#details">Details</a></li>
+    <!-- <li><a data-toggle="tab" href="#details">Details</a></li> -->
 
     <li><a data-toggle="tab" href="#billing">Billing</a></li>
         <li><a data-toggle="tab" href="#notes">Notes</a></li>
@@ -90,7 +89,7 @@ ob_start();
 </div>
 
 
-<div id="details" class="tab-pane fade">
+<!-- <div id="details" class="tab-pane fade">
     	<div class="form-group row">
       <div class="col-xs-3">
         <label for="ex1" style="color: black;"><h6>Address1</h6></label>
@@ -137,7 +136,7 @@ ob_start();
         <input class="form-control" id="ex1" type="text" name="fax">
       </div>
   </div>
-</div>
+</div> -->
 <div id="notes" class="tab-pane fade">
 	<div class="form-group">
       <label style="color: gray;" for="comment">Notes</label>
@@ -203,9 +202,8 @@ ob_start();
         <th>Client_Nick</th>
         <th>Client_Name</th>
         <th>Email_Address</th>
-        <th>Country</th>
-        <th>Telephone</th>
-        <th>Action</th>
+        <th>Website</th>
+        <th style="width: 100px;">Action</th>
       </tr>
     </thead>
                            <?php
@@ -227,10 +225,9 @@ if (mysqli_num_rows($result) > 0) {
         <td><?php echo $row['clientnick'];?></td>
         <td><?php echo $row['clientname'];?></td>
         <td><?php echo $row['email'];?></td>
-        <td><?php echo $row['country'];?></td>
-        <td><?php echo $row['phone1'];?></td>
+        <td><?php echo $row['website'];?></td>
         <td> <a href="client.php?c_id=<?php echo $row['c_id']; ?>" title="delete"><span class="glyphicon glyphicon-trash"></span></a></td>
-        <td><a href="projects.php?eno=<?php echo $row['eno']; ?>"><insert type="submit" class="btn btn-default">Create Project</button></a></td>  
+        <!-- <td><a href="projects.php?eno=<?php echo $row['eno']; ?>"><insert type="submit" class="btn btn-default">Create Project</button></a></td>  --> 
       </tr>
       
     </tbody>

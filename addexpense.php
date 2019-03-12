@@ -91,7 +91,7 @@ input:checked + .slider:before {
   ?>
   <form action="" method="post">
 <div class="panel-default"> 
-<div class="container" style="width:1500px;margin-left:10px;margin-top: -20px;">
+<div class="container-fluid">
   <a style="color: #878787" href="">Dashboard:</a> <a style="color: #878787" href=""> My Expense Sheets: </a>My Expense Entries
   <div class="panel panel-default" style="height:220px;width:100%;">
     <form method="get" action="timesheet_period.php">
@@ -335,7 +335,7 @@ if (mysqli_num_rows($result) > 0) {
 
   <div>
     <div class="panel-default"> 
-<div class="container" style="width:1500px;margin-left:10px;">
+<div class="container-fluid" >
   <div class="panel panel-default" style="height:260px;width:100%;">
     <h5 style="color: #81AFE7;margin-left: 20px;"><strong>EXPENSE ENTRY LIST</strong></h5>
     <hr class="hr">
@@ -411,15 +411,19 @@ if (mysqli_num_rows($result) > 0) {
 ?>
   </table>
 </div>
-<div class="panel-default"> 
-<div class="container" style="width:1500px;margin-left:-21px;margin-top: 80px;">
-  <div class="panel panel-default" style="height:235px;width:100%;">
+</div>
+</div>
+</div>
+<div class="container-fluid">
+  <div class="panel panel-default" style="width:100%;">
 
     <div style="margin-left: 15px;margin-top: 10px; ;width: 98%" class="form-group">
   <label for="comment">Description:</label>
-  <textarea class="form-control" rows="3" id="comment"></textarea>
+  <textarea class="form-control" rows="3" id="comment"></textarea><br>
+  <button type="submit" class="btn btn-success">Save</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </div>
-<div class="container" style="margin-top: 45px;margin-left: 0px;">
+<!-- <div class="container" style="margin-top: 45px;margin-left: 0px;">
   <button type="button" class="btn">Status Legend</button>
   <button type="button" class="btn btn-warning">Not Submitted</button>
   <button type="button" class="btn btn-primary">Submitted</button>
@@ -427,7 +431,7 @@ if (mysqli_num_rows($result) > 0) {
   <button type="button" class="btn btn-danger">Rejected</button>
   
 </div>
-
+ -->
 
 </div>
 </div>

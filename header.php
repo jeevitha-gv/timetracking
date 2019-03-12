@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
@@ -70,7 +69,7 @@ body, html {
         }
 
 #sidebar-wrapper {
-    background: #1a1a1a;
+    background: #FF5733;
     height: 100%;
     left: 220px;
     margin-left: -220px;
@@ -113,7 +112,7 @@ body, html {
     }
 
         .sidebar-nav li:before {
-            background-color: #1c1c1c;
+            background-color: #FF5733;
             content: '';
             height: 100%;
             left: 0;
@@ -129,7 +128,7 @@ body, html {
         }
 
         .sidebar-nav li:before {
-            background-color: #6bb4e7;
+            background-color: #FF5733;
         }
 
         .sidebar-nav li:hover:before {
@@ -158,7 +157,7 @@ body, html {
         }
 
     .sidebar-nav .dropdown-menu {
-        background-color: #222222;
+        background-color: #FF5733;
         -ms-border-radius: 0;
         border-radius: 0;
         border: none;
@@ -373,7 +372,7 @@ body, html {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #000000;
+    background-color: #FF5733;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 1;
 }
@@ -415,9 +414,6 @@ body, html {
                   <a href="myexpense.php"><i class="glyphicon glyphicon-usd"></i> My Expenses</a>
                </li>
                <li>
-                  <a href="mytimeoff.php"><i class="glyphicon glyphicon-calendar"></i> My TimeOff</a>
-               </li>
-               <li>
                   <a href="myreports.php"><i class="fa fa-bar-chart"></i> My Reports</a>
                </li>
                <li>
@@ -436,11 +432,10 @@ body, html {
     <div class="navbar-header">
     </div>
     <ul class="nav navbar-nav" style="margin-top: 0px;margin-left: 20px;  ">
-      
-      <li><a href="employee.php">Employees</a></li>
       <li><a href="client.php">Client</a></li>
       <li><a href="projects.php">Projects</a></li>
-        <li><a href="billing.php">Billing</a></li>
+      <li><a href="employee.php">Employees</a></li>
+      <li><a href="billing.php">Billing</a></li>
     </ul>
  </div>
 </nav>
