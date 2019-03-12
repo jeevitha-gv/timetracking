@@ -10,6 +10,79 @@ ob_start();
 
 <html lang="en"> 
 <head> 
+
+      <script>
+        function mul() 
+        {
+            var x = document.getElementById('t1').value;
+            var y = document.getElementById('t2').value;
+            var result = parseFloat(x)* parseFloat(y);
+            var gst = result * 0.05;
+            var pst = result * 0.07;
+            var hoteltax = result * 0.06;
+            var state = result * 0.065;
+            var vat = result * 0.15;
+           
+            if (!isNaN(result) && !isNaN(gst)) 
+            {
+                document.getElementById('t3').value = result;
+                document.getElementById('1').value = gst;
+                document.getElementById('2').value = pst;
+                document.getElementById('3').value = hoteltax;
+                document.getElementById('4').value = state;
+                document.getElementById('5').value = vat;
+
+
+
+
+            }
+
+            var my=document.getElementById("tam");
+            document.getElementById("gst").value = my.options[tam.selectedIndex].value;
+            document.getElementById("pst").value = my.options[tam.selectedIndex].value;
+            document.getElementById("hoteltax").value = my.options[tam.selectedIndex].value;
+            document.getElementById("state").value = my.options[tam.selectedIndex].value;
+            document.getElementById("vat").value = my.options[tam.selectedIndex].value;
+        }
+
+         function mu() 
+        {
+            var x = document.getElementById('t1').value;
+            var y = document.getElementById('t2').value;
+            var result = parseFloat(x)* parseFloat(y);
+            var gs = result * 0.05;
+            var ps = result * 0.07;
+            var oteltax = result * 0.06;
+            var stat = result * 0.065;
+            var va = result * 0.15;
+           
+            if (!isNaN(result) && !isNaN(gs)) 
+            {
+                document.getElementById('t3').value = result;
+                document.getElementById('a').value = gs;
+                document.getElementById('b').value = ps;
+                document.getElementById('c').value = oteltax;
+                document.getElementById('d').value = stat;
+                document.getElementById('e').value = va;
+            }
+
+            var ta=document.getElementById("tax");
+            document.getElementById("gs").value = ta.options[tax.selectedIndex].value;
+            document.getElementById("ps").value = ta.options[tax.selectedIndex].value;
+            document.getElementById("oteltax").value = ta.options[tax.selectedIndex].value;
+            document.getElementById("stat").value = ta.options[tax.selectedIndex].value;
+            document.getElementById("va").value = ta.options[tax.selectedIndex].value;
+
+        }
+
+
+
+
+
+  </script>
+
+
+
 <meta charset="utf-8">
 
     <title>Rate History</title>
@@ -49,39 +122,6 @@ th
   padding:5px ;
 }
 </style>
-<script>
-function mul() {
-            var x = document.getElementById('t1').value;
-            var y = document.getElementById('t2').value;
-               
-            var result = parseFloat(x)* parseFloat(y);
-            var gst = result * 0.05;
-            var pst = result * 0.07;
-            var hoteltax = result * 0.06;
-            var state = result * 0.065;
-            var vat = result * 0.15;
-           
-            if (!isNaN(result) && !isNaN(gst)) {
-                document.getElementById('t3').value = result;
-                document.getElementById('1').value = gst;
-                document.getElementById('2').value = pst;
-                document.getElementById('3').value = hoteltax;
-                document.getElementById('4').value = state;
-                document.getElementById('5').value = vat;
-               
-               
-               
-                }
-
-                var my=document.getElementById("tam");
-               document.getElementById("gst").value = my.options[tam.selectedIndex].value;
-               document.getElementById("pst").value = my.options[tam.selectedIndex].value;
-               document.getElementById("hoteltax").value = my.options[tam.selectedIndex].value;
-               document.getElementById("state").value = my.options[tam.selectedIndex].value;
-                 document.getElementById("vat").value = my.options[tam.selectedIndex].value;
-
-            }
-  </script>
 </head>
 <body style="">
   <?php if($_POST)
@@ -89,10 +129,9 @@ function mul() {
     invoice();
   }
   ?>
-         
   <form action="" method="post">
     <div class="col-md-12">
-
+   
 <div class="container" style="width:1500px;margin-left:10px;">
   <h4 style="color:#a3a19b;">Dashboard : Billing : Account Invoice Form</h4>
   <div class="panel panel-default" style="height:150px;width:100%;">
@@ -103,9 +142,7 @@ function mul() {
    <div class="form-group row">
  <div class="col-xs-2">
         <label for="ex2" style="color:black;margin-top: 65px;margin-left: 40px;" ><h4> <span class="glyphicon glyphicon-user"></span> Sub Total</h4>
-<input type="float" id="t5" value="0.00">
-
-   </label>
+         <p>0.00</p></label>
       </div>
     <div class="col-xs-2">
         <label for="ex2" style="color:black;margin-top: 65px;margin-left: 40px;" ><h4><i class="fa fa-google-wallet"></i> Discount</h4>
@@ -120,15 +157,16 @@ function mul() {
       </div>
       <div class="col-xs-2">
         <label for="ex2" style="color:black;margin-top: 65px;margin-left: 40px;" ><h4><i class="fa fa-calendar"></i> Tax 1</h4>
-         <p>0.00</p></label>
+         <p>    <input type="text" id="gst">
+</p></label>
       </div>
       <div class="col-xs-2">
         <label for="ex2" style="color:black;margin-top: 65px;margin-left: 40px;" ><h4> <span class="glyphicon glyphicon-plus"></span> Tax2</h4>
-         <p>0.00</p></label>
+         <p>     <input type="text" id="gs"></p></label>
       </div>
       <div class="col-xs-2">
         <label for="ex2" style="color:black;margin-top: 20px;margin-left: 40px;" ><h4> <i class="fa fa-th-large"></i> Grand Total</h4>
-         <input type="float" id="t4" value="0.00">
+         <p>0.00</p></label>
          </div>
          </div>
       </div>
@@ -172,8 +210,7 @@ $result = mysqli_query($con, $sql);
 if (mysqli_num_rows($result) > 0) {
   while($row = mysqli_fetch_array($result))
 {
- ?>      
- <option></option>
+ ?>
         <option value="<?php echo $row['clientname']; ?>"><?php echo $row['clientname']; ?></option>
         <?php
 
@@ -215,7 +252,7 @@ if (mysqli_num_rows($result) > 0) {
  </div>
        <div class="col-xs-4">
     <label style="color: black;margin-top: 5px;" for="ex2"><h6>Parent Task</h6></label>
-        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="parenttask">
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type">
                       <?php
     $sql = "SELECT * from task";
 $result = mysqli_query($con, $sql);
@@ -225,7 +262,7 @@ if (mysqli_num_rows($result) > 0) {
   while($row = mysqli_fetch_array($result))
 {
  ?>
-      <option></option>
+      
         <option value="<?php echo $row['parenttask']; ?>"><?php echo $row['parenttask']; ?></option>
        
        <?php
@@ -239,7 +276,7 @@ if (mysqli_num_rows($result) > 0) {
    
                  </select></div></div>
                   <div class="form-group row">
-               <div  class='col-sm-4'>
+               <div " class='col-sm-4'>
             <label for="ex2" style="color: black;"><h6>Invoice Date</h6></label>
                     <input type='date' class="form-control" name="invoicedate">
                     
@@ -315,27 +352,24 @@ if (mysqli_num_rows($result) > 0) {
        
        <div class="form-group row">
         <div class="col-xs-4">
-        <label for="ex2" style="color:black;margin-top: 5px;margin-left: 10px;" ><h6>Group Timesheet Billing List By</h6></label>
+        <label for="ex2" style="color:black;margin-top: 5px;" ><h6>Group Timesheet Billing List By</h6></label>
          <select class="selectpicker" data-show-subtext="true" name="group_timesheet" data-live-search="true" id="type">
-          <option></option>
-        <option value="task">Task </option>
-       <option value="Time Entry">Time Entry</option>
-       <option value="Parent Task">Parent Task</option>
+        <option value="">Task </option>
+       <option>Time Entry</option>
+       <option>Parent Task</option>
        
                  </select></div>
       <div class="col-xs-4">
         <label for="ex2" style="color:black;margin-top: 5px;" ><h6>Group Expense Billing List By</h6></label>
          <select class="selectpicker" data-show-subtext="true" name="group_expense" data-live-search="true" id="type">
-          <option></option>
-        <option value="Expense Name">Expense Name </option>
-       <option value="Expense Entry">Expense Entry</option>
+        <option value="">Expense Name </option>
+       <option>Expense Entry</option>
        
        
                  </select></div>
        <div class="col-xs-4">
     <label style="color: black;margin-top: 5px;" for="ex2"><h6>Discount Calculation By</h6></label>
         <select class="selectpicker" data-show-subtext="true" name="discount_calculation" data-live-search="true" id="type">
-          <option></option>
         <option value="percentage">Percentage </option>
        <option value="fixed_amount">Fixed Amount</option>
        
@@ -357,14 +391,14 @@ if (mysqli_num_rows($result) > 0) {
      </div>
 
   <div class="panel panel-default" style="height:250px;width:100%;">
-  <div class="panel panel-default"> 
+   
     <div class="panel-body" style="color:#4C8EBA "><h5><b>TIME SHEET BILLING LIST</b></h5>
      <div style="float: right;margin-top:-40px;">
    
    
-    <!-- <INPUT type="button" class="btn btn-success" style="background-color:#00C084"value="Add Row" onclick="addRow('dataTable')" /
+    <INPUT type="button" class="btn btn-success" style="background-color:#00C084"value="Add Row" onclick="addRow('dataTable')" />
 
-  <INPUT type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" /> -->
+  <INPUT type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
     </div>
     </div>
      <div style="margin-top: 40px;">
@@ -442,7 +476,7 @@ if (mysqli_num_rows($result) > 0) {
 
   
    
-  <table  width="350px" border="1" style="margin-left: 20PX;">
+  <table width="350px" border="1">
  <thead>
 <tr>
          <th> </th>
@@ -466,85 +500,47 @@ if (mysqli_num_rows($result) > 0) {
       <td><INPUT type="checkbox" name="chk"/></td>
        <td><i class="fa fa-trash" style="color:#4C8EBA "></i></td>
         <td> <select   class="selectpicker" data-show-subtext="true" data-live-search="true" id="type">
-          <option></option>
-       <?php
-    $sql = "SELECT * from project";
-$result = mysqli_query($con, $sql);
-
-
-if (mysqli_num_rows($result) > 0) {
-  while($row = mysqli_fetch_array($result))
-{
- ?>
-         
-        <option value="<?php echo $row['projectname']; ?>"><?php echo $row['projectname']; ?></option>
-      
-<?php
-
-}
-  }else {
-    echo "0 results";
-}
-
-?>
+        <option value="">Select </option>
+       <option>Risk</option>
        
                  </select></td>
         <td><select   class="selectpicker" data-show-subtext="true" data-live-search="true" id="type">
-          <option></option>
-       <?php
-    $sql = "SELECT * from task";
-$result = mysqli_query($con, $sql);
-
-
-if (mysqli_num_rows($result) > 0) {
-  while($row = mysqli_fetch_array($result))
-{
- ?>
-         
-        <option value="<?php echo $row['taskname']; ?>"><?php echo $row['taskname']; ?></option>
-      
-<?php
-
-}
-  }else {
-    echo "0 results";
-}
-
-?>
+        <option value="">Select </option>
+       <option>Create UI</option>
        
                  </select></td>
         <td><textarea name="txtDescription" class="form-control input-sm" rows="1" style="width: 100%;"></textarea></td>
         <td>0.00</td>
-        <td><input name="txtBillinghours" class="form-control input-sm" value="0.00" type="float" id="t1" onkeyup="mul();" style="width: 70px;"></td>
+        <td><input name="txtBillinghours" class="form-control input-sm" value="0.00" type="float" id="t2"  onkeyup="mul();"  style="width: 70px;"></td>
         <td>0</td>
-        <td><input name="txtBillingRate" class="form-control input-sm" value="0.00" type="float" id="t2"  onkeyup="mul();" style="width: 70px;"></td>
-        <td> <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type">
-        <option></option>
-       <option value="Airport Tax">Airport Tax</option>
-       <option value="GST">GST</option>
-       <option value="Hotel Tax">Hotel Tax</option>
-       <option value="PST">PST</option>
-       <option value="State Sales Tax"> State Sales Tax</option>
-       <option value="VAT">VAT</option>
-                 </select></td>
-                 <td> <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type">
+        <td><input name="txtBillingRate" class="form-control input-sm" value="0.00" type="float" id="t1" onkeyup="mul();" style="width: 70px;"></td>
+        <td> <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="tam"  onchange="mul();">
         <option value="">Select </option>
        <option>Airport Tax</option>
-       <option>GST</option>
-       <option>Hotel Tax</option>
-       <option>PST</option>
-       <option> State Sales Tax</option>
-       <option>VAT</option>
+       <option id="1">GST</option>
+       <option id="2">Hotel Tax</option>
+       <option id="3">PST</option>
+       <option id="4"> State Sales Tax</option>
+       <option id="5">VAT</option>
+                 </select></td>
+                 <td> <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="tax"  onchange="mu();">
+        <option value="">Select </option>
+       <option>Airport Tax</option>
+       <option id="a">GST</option>
+       <option id="b">Hotel Tax</option>
+       <option id="c">PST</option>
+       <option id="d"> State Sales Tax</option>
+       <option id="e">VAT</option>
                  </select></td>
 <td><input name="txtBillingRate" class="form-control input-sm" value="0.00" type="float" id="t3" style="width: 70px;"></td>
     </TR>
     
 
 </tbody>
-</table>
+</TABLE>
 </div>
 
- <div class="panel panel-default" style="height:250px;width:100%;">
+ 
   <div class="panel panel-default"> 
     <div class="panel-body" style="color:#4C8EBA "><h5><b>EXPENSE BILLING LIST</b></h5>
      <div style="float: right;margin-top:-40px;">
@@ -657,27 +653,8 @@ if (mysqli_num_rows($result) > 0) {
       <td><INPUT type="checkbox" name="chk"/></td>
        <td><i class="fa fa-trash" style="color:#4C8EBA "></i></td>
         <td> <select   class="selectpicker" data-show-subtext="true" data-live-search="true" id="type">
-      
-           <?php
-    $sql = "SELECT * from project";
-$result = mysqli_query($con, $sql);
-
-
-if (mysqli_num_rows($result) > 0) {
-  while($row = mysqli_fetch_array($result))
-{
- ?>
-         <option></option>
-        <option value="<?php echo $row['projectname']; ?>"><?php echo $row['projectname']; ?></option>
-      
-<?php
-
-}
-  }else {
-    echo "0 results";
-}
-
-?>
+        <option value="">Select </option>
+       <option>Risk</option>
        
                  </select></td>
         <td><select   class="selectpicker" data-show-subtext="true" data-live-search="true" id="type">
@@ -698,7 +675,7 @@ if (mysqli_num_rows($result) > 0) {
        <option>Food</option>
        <option>Gas</option>
                  </select></td>
-        <td><textarea name="txtDescription" class="form-control input-sm" rows="1" style="width: 100%;"></textarea></td>
+        <td><textarea name="txtDescription" class="form-control input-sm" rows="1"></textarea></td>
         <td>0</td>
         <td> <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type">
         <option value="">Select </option>
@@ -727,15 +704,15 @@ if (mysqli_num_rows($result) > 0) {
 </div>
 </div>
 
- <div class="panel panel-default" style="height:250px;width:100%;">
+ 
   <div class="panel panel-default"> 
   <div style="float: right;margin-top:20px;">
   <a href="invoicemanagement.php" type="button" class="btn btn-success"  style="  background-color:#00C084" > Update</a>
   <a href="invoicemanagement.php" disabled type="button" class="btn btn-success"  style=" background-color:#00C084" > Update Time Entry and Expense Entry Records As Billed</a>
   </div>
-  <div style="margin-top: 100px;margin-left: 20px;width: 95%">
+  <div style="margin-top: 100px;margin-left: 20px;width: 97%">
     <h4>Description</h4>
-<textarea name="txtDescription" class="form-control input-sm" rows="4" style="width: 100%;"></textarea>
+<textarea name="txtDescription" class="form-control input-sm" rows="4" style="width: 100%;"></textarea><br>
   </div>
   
   </div>
@@ -743,24 +720,9 @@ if (mysqli_num_rows($result) > 0) {
 
 
 </div>
-     
 </div>
 
 </form>
 
 </body>
 </html>
-<script>
-    function mul() {
-            var x = document.getElementById('t1').value;
-            var y = document.getElementById('t2').value;
-            var result = parseFloat(x)* parseFloat(y);
-            if (!isNaN(result)) {
-                document.getElementById('t3').value = result;
-                 document.getElementById('t4').value = result;
-                  document.getElementById('t5').value = result;
-            }
-        }
-  </script>
-
-
