@@ -31,8 +31,18 @@ ob_start();
  <div >
 <div class="panel-default"> 
 <div class="container" style="width:1500px;margin-left:10px;">
- 
-  <div class="panel panel-default" style="width:100%;">
+ <div class="panel panel-default" style="width:100%;">
+    <form method="get" action="timesheet_period.php">
+    <div style="margin-top: 10px;margin-left: 10px;" class="container">
+   <h4 style="color: #81AFE7;">Time Entry Period View </h4>
+   <button style="background-color: #04176C;float: right;margin-right: -50px; " title="Print" type="button" class="btn"  onclick="printDiv('printableArea')" /><i class="fa fa-print" style="color: white;"></i></button>
+
+  <button type="button" class="btn green-jungle" style="float: right;margin-right: -100px;background-color: #DF365F;" title="Export offline timesheet" onclick="exportTableToCSV('members.csv')"><i class="icon-pencil"></i> <span class="glyphicon glyphicon-save" ></span></button>
+
+   <button type="button" class="btn green-jungle" title="Import offline timesheet" style="background-color: #3DBE99;float: right;margin-right: -150px;" type="button" onclick="window.open('import_time_entry_week.php','popUpWindow','height=400,width=600,left=10,top=10,,scrollbars=yes');"><i class="fa fa-upload"></i></button>
+
+</div>
+</form>
 <div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div style="width: 115%;" class="modal-content">
@@ -174,8 +184,7 @@ if (mysqli_num_rows($result) > 0) {
     <hr class="hr">
     <div style="margin-left: 10px;" class="container">
   <button data-toggle="modal" data-target="#Modal" type="button" class="btn"><i class="fa fa-plus">Add Time Item Row</i></button>
-  <!-- <button data-toggle="modal" data-target="#Timeoff" type="button" class="btn"><i class="fa fa-plus">Add Time Off Row</i></button> -->
-  </div>
+  </div><br>
  <?php
   if($_POST)
     {
@@ -336,13 +345,7 @@ function timeSummation() {
 <div style="margin-top: 10px;margin-left: 10px;" class="container">
 <button type="button" class="btn btn-success"><i class="fa fa-pencil">Save</i></button>
   <button type="button" class="btn btn-info" name="submit" onclick="timesheet();">Submit</button>
-</div>
-<div style="margin-top: -35px;margin-left: 840px;" class="container">
-<button style="width: 90px;height: 40px;" type="button" class="btn"  onclick="printDiv('printableArea')" /><i class="fa fa-print">Print</i></button>
-  <button type="button" class="btn green-jungle" onclick="exportTableToCSV('members.csv')"><i class="icon-pencil"></i> <span class="glyphicon glyphicon-save" > Export Offline Timesheet</span></button>
-
-
-
+</div><br>
     <script type="text/javascript">
     function exportTableToCSV(filename) {
     var csv = [];
