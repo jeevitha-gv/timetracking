@@ -97,7 +97,7 @@ if($_POST)
 ?>
 <form action="" method="post">
   <div class="container" style="width:1500px;margin-left:-15px;">
-  <h4 style="color: gray;">Dashboard : Projects</h4>
+  <h4 style="color: gray;"><a href="dashboard.php">Dashboard</a> : MyTask</h4>
   <div class="panel panel-default" style="width:100%;">
     <div class="panel-body" style="color:#4C8EBA "><h5 style="margin-top: 3px;"><strong>MY TASK LIST</strong></h5>
       <div style="margin-top: -40px;margin-left: 1200px;">

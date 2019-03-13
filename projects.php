@@ -31,7 +31,7 @@ if($_POST)
 
 <form action="" method="post">
   <div class="container-fluid">
-  <h4 style="color: gray;">Dashboard : Projects</h4>
+  <h4 style="color: gray;"><a href="dashboard.php">Dashboard</a> : Projects</h4>
   <div class="panel panel-default" style="width:100%;">
     <div class="panel-body" style="color:#4C8EBA "><h5 style="margin-top: 3px;"><strong>PROJECTS</strong></h5>
       <div style="margin-top: -40px;margin-left: 1039px;">
@@ -450,24 +450,118 @@ if (mysqli_num_rows($result) > 0) {
         <td><?php echo $row['clientname'];?></td>
         <td><?php echo $row['project_status'];?></td>
         <td><?php echo $row['teamlead'];?></td>
-        <td> <a href="projects.php?p_id=<?php echo $row['p_id']; ?>" title="delete"><span class="glyphicon glyphicon-trash"></span></a></td>
+        <td><div class="btn-group" role="group" area-label="...">
+        <a href="#view<?php echo $row['p_id'];?>" data-toggle="modal"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open" area-hidden="true"></span></button></a>
+        <a href="#edit<?php echo $row['p_id'];?>" data-toggle="modal"><button type="button" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-edit" area-hidden="true"></span></button></a>
+        <a href="#delete<?php echo $row['p_id'];?>" data-toggle="modal"><button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" area-hidden="true"></span></button></a>
+      </div></td>
        
-      </tr>
-      
-    </tbody>
-          <?php
+<!-- View -->
 
-}
-  }else {
-    echo "0 results";
-}
+      <div id="view<?php echo $row['p_id'];?>" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">View</h4>
+            </div>
+            <div class="modal-body">
+             Project Code : <input type="text" value="<?php echo $row['projectcode'];?>" class="form-control" disabled>
+              Project Name : <input type="text" value="<?php echo $row['projectname'];?>" class="form-control" disabled>
+              Client Name : <input type="text" value="<?php echo $row['clientname'];?>" class="form-control" disabled>
+              Project Status : <input type="text" value="<?php echo $row['project_status'];?>" class="form-control" disabled>
+              Team Leader : <input type="text" value="<?php echo $row['teamlead'];?>" class="form-control" disabled>
+              Project Manager : <input type="text" value="<?php echo $row['projectmanager'];?>" class="form-control" disabled>
+              Project Type : <input type="text" value="<?php echo $row['projecttype'];?>" class="form-control" disabled>
+              Start-End Date : <input type="text" value="<?php echo $row['startdate'];?>  -  <?php echo $row['enddate'];?>" class="form-control" disabled>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
+<!-- Edit -->
+<?php
+if($_POST['edit']){
+  $id = $_POST['p_id'];
+  $code  = $_POST['code'];
+  $projectname = $_POST['projectname'];
+  $clientname = $_POST['clientname'];
+  $projectstatus = $_POST['projectstatus'];
+  $teamlead = $_POST['teamlead'];
+  $projectmanager = $_POST['projectmanager'];
+  $projecttype = $_POST['projecttype'];
+  $startdate = $_POST['startdate'];
+  $enddate = $_POST['enddate'];
+
+$sql = "UPDATE project SET projectcode = '$code',projectname = '$projectname',clientname='$clientname',project_status = '$projectstatus',teamlead = '$teamlead',projectmanager = '$projectmanager',projecttype = '$projecttype', startdate = '$startdate', enddate ='$enddate' WHERE p_id = ".$id;
+   
+   if (mysqli_query($con, $sql)) {
+      header("Location: project.php");
+   } else {
+      // echo "Error deleting record: " . mysqli_error($con);
+   }
+}
 ?>
+      <div id="edit<?php echo $row['p_id'];?>" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Edit</h4>
+            </div>
+            <div class="modal-body">
+              <form action="" method="post">
+                <input type="hidden" name="p_id" class="form-control" value="<?php echo $row['p_id'];?>">
+                Project Code : <input type="text" name="code" class="form-control" value="<?php echo $row['projectcode'];?>" placeholder="Project Code" required>
+                Project Name : <input type="text" name="projectname" class="form-control" value="<?php echo $row['projectname'];?>" placeholder="Project Name" required>
+                Client Name : <input type="text" name="clientname" class="form-control" value="<?php echo $row['clientname'];?>" placeholder="Client Name" required>
+                Project Status : <input type="text" name="projectstatus" class="form-control" value="<?php echo $row['project_status'];?>" placeholder="Project Status" required>
+                Team Leader : <input type="text" name="teamlead" class="form-control" value="<?php echo $row['teamlead'];?>" placeholder="Team Leader" required>
+                Project Manager : <input type="text" name="projectmanager" class="form-control" value="<?php echo $row['projectmanager'];?>" placeholder="Project Manager" required>
+                Project Type : <input type="text" name="projecttype" class="form-control" value="<?php echo $row['projecttype'];?>" placeholder="Project Type" required>
+                Start Date : <input type="text" name="startdate" class="form-control" value="<?php echo $row['startdate'];?>" placeholder="Start Date" required>
+                End Date : <input type="text" name="enddate" class="form-control" value="<?php echo $row['enddate'];?>" placeholder="End Date" required>
+                <input type="submit" name="edit" class="btn btn-primary" value="Edit">
+              </form>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- Delete -->
+
+      <div id="delete<?php echo $row['p_id'];?>" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Delete</h4>
+            </div>
+            <div class="modal-body">
+              <form action="" method="post">
+                <input type="hidden" name="p_id" value="<?php echo $row['p_id'];?>">
+               Are You Sure You Want to Delete this Project <b><?php echo $row['projectname'];?></b><br><br>
+                <input type="submit" name="delete" class="btn btn-primary" value="Delete">
+              </form>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </tr>  
+<?php } } else { echo "0 results"; } ?>
+    </tbody>
   </table>
-
 </div>
-
-    </div>
+</div>
 </div>
 </div>
 </div>
@@ -478,7 +572,7 @@ if (mysqli_num_rows($result) > 0) {
 </html>
 
 <?php
-$p_id=$_GET['p_id'];
+$p_id=$_POST['p_id'];
 $sql = "DELETE FROM project WHERE p_id=". $p_id;
 if(mysqli_query($con,$sql))
 {

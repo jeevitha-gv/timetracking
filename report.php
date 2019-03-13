@@ -20,7 +20,7 @@ require "header.php";
   
 <div class="panel-default"> 
 <div class="container" style="width:1500px;margin-left:10px;">
-  <h4 style="color: gray;">Dashboard:My Reports : Report Design</h4>
+  <h4 style="color: gray;"><a href="dashboard.php">Dashboard</a> : <a href="myreports.php">My Reports</a> : Report Design</h4>
    <div class="panel panel-default" style="width:100%;height: 900px;">
     <div class="panel-body" style="color:#4C8EBA "><h5><b>REPORT DEFINITION INFORMATION</b> </h5></div>
 <div style="background-color:#d3d3d3;height:40px;width: 100%;">Report Definition</div>

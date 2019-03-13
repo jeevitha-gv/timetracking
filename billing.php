@@ -39,14 +39,14 @@ body {
        <div style="text-align: center;margin-left: -1350px;"">
         
        <a href="invoicemanagement.php" type="button" data-toggle="tooltip" title="Invoice Management" ><img src="man.png" class="btn btn-default" style="width: 70px;height: 70px;color: #7F98AF;border-radius: 50%"> <br>Invoice<br> Management</a></div>
-       <div style="text-align: center;margin-left: -1100px;margin-top: -110px;">
+       <!-- <div style="text-align: center;margin-left: -1100px;margin-top: -110px;">
          <a href="tbw.php" type="button" type="button" data-toggle="tooltip" title="Time Billing Worksheet" ><img src="gears.jpg" class="btn btn-default" style="width: 70px;height: 70px;color: #7F98AF;border-radius: 50%"><br>Time Billing<br> Worksheet</a>
          </ul>
        </div>
        <div style="text-align: center;margin-left: -800px;margin-top: -110px;">
          <a href="ebw.php" type="button" type="button" data-toggle="tooltip" title="Expense Billing Worksheet" ><img src="key.png" class="btn btn-default" style="width: 70px;height: 70px;color: #7F98AF;border-radius: 50%"><br>Expense Billing<br> Worksheet</a>
          </ul>
-       </div>
+       </div> -->
        
        </div>
      </div>

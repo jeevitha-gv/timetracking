@@ -5,8 +5,7 @@ require "header.php";
 <html lang="en"> 
 <head> 
 <meta charset="utf-8">
-
-    <title>Billing</title>
+    <title>Approval</title>
 <style>
     
 body {
@@ -14,40 +13,21 @@ body {
     background:#ECF0F1;
 }
 
-/* Tab Navigation */
-.nav-tabs {
-    margin: 0;
-    padding: 0;
-    border: 0;
-
-}
 </style>
 </head>
 <body>
-       <div class="col-md-12">
-    <div>
-<div class="container" style="width:1500px;margin-left:10px;">
-  <h4 style="color:#a3a19b;">Dashboard :Manage Approval</h4>
-  <div class="panel panel-default" style="height:300px;width:100%;">
-  <div class="panel panel-default"> 
-    <div class="panel-body" style="color:#4C8EBA "><h5><b>MANAGE APPROVALS
-    </b></h5></div>
-     </div>
-     <div style="margin-left:15px;color: #7F98AF;">
-       <h5><b>Approvals</b></h5></div><br><br>
-       <div style="text-align: center;margin-left: -1350px;"">
-        
-       <a href="timesheetapproval.php" data-toggle="tooltip" title="TimeSheet Approval" ><img src="man.png" class="btn btn-default"style="width: 70px;height: 70px;color: #7F98AF;border-radius: 45%;"> <br>Time Sheet<br>Approval</a></div>
-       <div style="text-align: center;margin-left: -1100px;margin-top: -120px;">
-         <a href="expanseapproval.php" type="button" type="button" data-toggle="tooltip" title="Expanse Approval" ><img src="dollar.jpeg" class="btn btn-default" style="width: 70px;height: 70px;color: #7F98AF;border-radius: 45%"><br>Expense<br> Approval</a>
-         </ul>
-       </div>
-       <!-- <div style="text-align: center;margin-left: -800px;margin-top: -120px;">
-         <a href="timeoffapproval.php" type="button" type="button" data-toggle="tooltip" title="TimeOff Approval" ><img src="clock.png" class="btn btn-default" style="width: 70px;height: 70px;color: #7F98AF;border-radius: 45%"><br>TimeOff<br>Approval</a>
-         </ul>
-       </div> -->
-       
-       </div>
-     </div>
+
+<div class="col-md-12">
+  <div class="container-fluid">
+    <h4 style="color: #a3a19b;"><a href="dashboard.php">Dashboard</a> : Manage Approval</h4>
+    <div class="panel panel-default">
+      <div class="panel-body" style="color: #4C8EBA"><h4><b>Manage Approval</b></h4></div><hr>
+      <div style="color: #7F98AF; margin-left: 10px;"><h5><b>Approval</b></h5></div><br><br>
+    <div style="margin-left: 20px;"><a href="timesheetapproval.php"><img src="man.png" class="img-circle" alt="Timesheet" width="70" height="70"><br>TimeSheet Approval</a></div>
+    <div style="margin-left: 170px;margin-top: -90px;margin-bottom: 50px;"><a href="expanseapproval.php"><img src="dollar.jpeg" class="img-circle" alt="Expense" width="70" height="70"><br>Expense Approval</a></div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

@@ -13,7 +13,7 @@ ob_start();
 <body> 
 
 <div class="container" style="margin-left:-15px;margin-top:-37px;width:110%;">
-  <div class="well">Dashboard</div>
+  <div class="well"><a href="dashboard.php"><h4>Dashboard</h4></a></div>
 </div>
 <div class="container">
   
@@ -129,10 +129,10 @@ if (mysqli_num_rows($result) > 0) {
   ?>
     <tbody>
       <tr>
+       <!--  <td><?php echo $row['project_status'];?></td>
         <td><?php echo $row['project_status'];?></td>
         <td><?php echo $row['project_status'];?></td>
-        <td><?php echo $row['project_status'];?></td>
-        <td><?php echo $row['project_status'];?></td>
+        <td><?php echo $row['project_status'];?></td> -->
       </tr>
     </tbody>
     <?php } } else { echo "0 results"; } ?>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,7 +68,7 @@ body, html {
         }
 
 #sidebar-wrapper {
-    background: #FF5733;
+    background: #1a1a1a;
     height: 100%;
     left: 220px;
     margin-left: -220px;
@@ -112,7 +111,7 @@ body, html {
     }
 
         .sidebar-nav li:before {
-            background-color: #FF5733;
+            background-color: #1c1c1c;
             content: '';
             height: 100%;
             left: 0;
@@ -128,7 +127,7 @@ body, html {
         }
 
         .sidebar-nav li:before {
-            background-color: #FF5733;
+            background-color: #6bb4e7;
         }
 
         .sidebar-nav li:hover:before {
@@ -157,7 +156,7 @@ body, html {
         }
 
     .sidebar-nav .dropdown-menu {
-        background-color: #FF5733;
+        background-color: #222222;
         -ms-border-radius: 0;
         border-radius: 0;
         border: none;
@@ -361,8 +360,6 @@ body, html {
         -ms-opacity: 1;
         opacity: 1;
     }
-
-
 .overlay {
     position: fixed;
     display: none;
@@ -372,22 +369,22 @@ body, html {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #FF5733;
+    background-color: #000000;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 1;
 }
-
 .hamb-bottom, .hamb-middle, .hamb-top {
     background-color: black;
 }
-  
-
 .iconbar 
 {
   width: 25px;
   height: 2px;
   background-color: grey;
   margin: 9px 0;
+}
+a{
+    text-decoration: none !important;
 }
 </style>
 <body>

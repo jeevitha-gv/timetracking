@@ -86,7 +86,7 @@ input:checked + .slider:before {
   
 
   <div class="container" style="width:1500px;margin-left:10px;">
-  <h4 style="color: gray;">Dashboard : Projects</h4>
+  <h4 style="color: gray;"><a href="dashboard.php">Dashboard</a> : MyExpense</h4>
   <div class="panel panel-default" style="width:100%;">
     <div class="panel-body" style="color:#4C8EBA "><h5 style="margin-top: 3px;"><strong>EXPENSE SHEET LIST</strong></h5>
       <div style="margin-top: -40px;margin-left: 1039px;">

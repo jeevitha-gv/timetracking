@@ -32,7 +32,7 @@ body {
        <div class="col-md-12">
    
 <div class="container" style="width:1500px;margin-left:10px;">
-  <h4 style="color:#a3a19b;">Dashbord : Manage Approvals : Expense Approval</h4>
+  <h4 style="color:#a3a19b;"><a href="dashboard.php">Dashbord</a> : <a href="approval.php">Manage Approvals</a> : Expense Approval</h4>
   <div class="panel panel-default" style="width:100%;">
   <div class="panel panel-default"> 
     <div class="panel-body" style="color:#4C8EBA "><h5><b>EXPENSE APPROVAL

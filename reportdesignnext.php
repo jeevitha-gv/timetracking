@@ -55,7 +55,7 @@ div.ex1 {
   
 <div class="panel-default"> 
 <div class="container" style="width:1500px;margin-left:10px;">
-  <h4 style="color: gray;">Dashboard:My Reports : Report Design</h4>
+  <h4 style="color: gray;"><a href="dashboard.php">Dashboard</a> : <a href="myreports.php">My Reports</a> : Report Design</h4>
   <div>
      <button class="collapsible" style="width: 70%;">Report Information<i style="float: right;" class="fa fa-chevron-down" aria-hidden="true"></i></button>
 <div class="content" style="width: 70%;">
