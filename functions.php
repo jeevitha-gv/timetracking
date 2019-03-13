@@ -1,6 +1,9 @@
 <?php
 
 function signup(){
+require("PHPMailerAutoload.php");
+
+
 GLOBAL $con;
 if(isset($_POST['submit']))
 {
@@ -19,7 +22,8 @@ if ($_POST["password"]==$_POST["cnfpass"])
 
 $sql="INSERT INTO `signup`(`fname`,`lname`,`C_name`,`number`,`email`,`password`) VALUES ('$fname','$lname','$C_name',$number,'$email','$mdpassword')";
 if(mysqli_query($con,$sql)){
-
+        $str="Welcome to TimeLive";
+        sendwelcomemail($email, $lname, $str);
         header("Location: index.php");
     
     }
@@ -36,6 +40,40 @@ else
 }
 }
 
+function sendwelcomemail($email, $username, $str){
+
+$mail = new PHPMailer();
+$mail->IsSMTP();
+$mail->Mailer = "smtp";
+// $mail->Host = "mail.smtp2go.com";
+$mail->Host = "smtp.sendgrid.net";
+$mail->Port = "2525"; // 8025, 587 and 25 can also be used. Use Port 465 for SSL.
+$mail->SMTPAuth = true;
+$mail->SMTPSecure = 'tls';
+// $mail->Username = "manish@fixnix.co";
+$mail->Username = "apikey";
+// $mail->Password = "SSmON8dCf8Yq";
+$mail->Password = "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";
+$mail->isHTML(true);
+$mail->From = "shan@fixnix.co";
+$mail->FromName = "Chief Nixer";
+$mail->AddAddress($email, $username);
+$mail->AddReplyTo("sales@fixnix.co", "Sales Fixnix");
+
+$mail->Subject = "Email from FixNix";
+$mail->Body = $str;
+$mail->WordWrap = 50; 
+
+if(!$mail->Send()) {
+echo 'Message was not sent.';
+echo 'Mailer error: ' . $mail->ErrorInfo;
+exit;
+} 
+// else 
+// {
+// echo 'Message has been sent.';
+// }
+}
 
 function employee(){
 GLOBAL $con;
