@@ -91,8 +91,8 @@ input:checked + .slider:before {
   ?>
   <form action="" method="post">
 <div class="panel-default"> 
+    <h4><a href="dashboard.php">Dashboard:</a> <a href="myexpense.php"> My Expense Sheets: </a>My Expense Entries</h4>
 <div class="container-fluid">
-  <a style="color: #878787" href="">Dashboard:</a> <a style="color: #878787" href=""> My Expense Sheets: </a>My Expense Entries
   <div class="panel panel-default" style="height:220px;width:100%;">
     <form method="get" action="timesheet_period.php">
     <div style="margin-top: 10px;margin-left: 10px;" class="container">

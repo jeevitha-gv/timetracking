@@ -4,12 +4,10 @@ require_once "dbconnect.php";
 require_once "functions.php";
 session_start();
 ob_start();
-
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-
 	<title>Client</title>
 	<style>
 .hr
@@ -34,15 +32,13 @@ ob_start();
   <form action="" method="POST">
 <div class="panel-default">	
 <div class="container-fluid" style="margin-left:10px;">
-  <h4 style="color: gray;">Dashboard:Clients</h4>
+  <h4 style="color: gray;"><a href="dashboard.php">Dashboard</a> : Clients</h4>
   <div class="panel panel-default">
     <div class="panel-body" style="color:#4C8EBA "><h5>CLIENTS</h5>
     	<div style="margin-top: -40px;margin-left: 1155px;">
 
 <button type="button" class="btn btn-danger" disabled="">Delete Selected</button>
-<a href="#" class="btn btn-success">
-          <span id="mymodal" data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-plus">Add Client 
-        </a></span>
+<a href="#" class="btn btn-success"><span id="mymodal" data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-plus">Add Client</a></span>
         <hr class="hr">
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -59,7 +55,6 @@ ob_start();
     <div class="container">
   <ul style="width: 50%;" class="nav nav-tabs" style="width: 100px;">
     <li class="active"><a data-toggle="tab" href="#basic">Basic</a></li>
-    <!-- <li><a data-toggle="tab" href="#details">Details</a></li> -->
 
     <li><a data-toggle="tab" href="#billing">Billing</a></li>
         <li><a data-toggle="tab" href="#notes">Notes</a></li>
@@ -88,55 +83,6 @@ ob_start();
   </div>
 </div>
 
-
-<!-- <div id="details" class="tab-pane fade">
-    	<div class="form-group row">
-      <div class="col-xs-3">
-        <label for="ex1" style="color: black;"><h6>Address1</h6></label>
-        <input class="form-control" id="ex1" type="text" name="address1">
-      </div>
-      <div class="col-xs-3">
-        <label for="ex2" style="color: black;"><h6>Address2</h6></label>
-        <input class="form-control" id="ex2" type="text" name="address2">
-      </div>
-  </div>
-  <div class="form-group row">
-      <div class="col-xs-3">
-        <label for="ex1" style="color: black;"><h6>Country</h6></label>
-        <input class="form-control" id="ex1" type="text" name="country">
-      </div>
-      <div class="col-xs-3">
-        <label for="ex2" style="color: black;"><h6>City</h6></label>
-        <input class="form-control" id="ex2" type="text" name="city">
-      </div>
-  </div>
-  <div class="form-group row">
-      <div class="col-xs-3">
-        <label for="ex1" style="color: black;"><h6>State</h6></label>
-        <input class="form-control" id="ex1" type="text" name="state">
-      </div>
-      <div class="col-xs-3">
-        <label for="ex2" style="color: black;"><h6>Zip code</h6></label>
-        <input class="form-control" id="ex2" type="text" name="zipcode">
-      </div>
-  </div>
-  <div class="form-group row">
-      <div class="col-xs-3">
-        <label for="ex1" style="color: black;"><h6>Telephone1</h6></label>
-        <input class="form-control" id="ex1" type="text" name="phone1">
-      </div>
-      <div class="col-xs-3">
-        <label for="ex2" style="color: black;"><h6>Telephone2</h6></label>
-        <input class="form-control" id="ex2" type="text" name="phone2">
-      </div>
-  </div>
-  <div class="form-group row">
-      <div class="col-xs-3">
-        <label for="ex1" style="color: black;"><h6>Fax</h6></label>
-        <input class="form-control" id="ex1" type="text" name="fax">
-      </div>
-  </div>
-</div> -->
 <div id="notes" class="tab-pane fade">
 	<div class="form-group">
       <label style="color: gray;" for="comment">Notes</label>
@@ -203,7 +149,7 @@ ob_start();
         <th>Client_Name</th>
         <th>Email_Address</th>
         <th>Website</th>
-        <th style="width: 100px;">Action</th>
+        <th>Action</th>
       </tr>
     </thead>
                            <?php
@@ -226,40 +172,117 @@ if (mysqli_num_rows($result) > 0) {
         <td><?php echo $row['clientname'];?></td>
         <td><?php echo $row['email'];?></td>
         <td><?php echo $row['website'];?></td>
-        <td> <a href="client.php?c_id=<?php echo $row['c_id']; ?>" title="delete"><span class="glyphicon glyphicon-trash"></span></a></td>
-        <!-- <td><a href="projects.php?eno=<?php echo $row['eno']; ?>"><insert type="submit" class="btn btn-default">Create Project</button></a></td>  --> 
-      </tr>
-      
-    </tbody>
-         <?php
+        <td> <div class="btn-group" role="group" area-label="...">
+        <a href="#view<?php echo $row['c_id'];?>" data-toggle="modal"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open" area-hidden="true"></span></button></a>
+        <a href="#edit<?php echo $row['c_id'];?>" data-toggle="modal"><button type="button" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-edit" area-hidden="true"></span></button></a>
+        <a href="#delete<?php echo $row['c_id'];?>" data-toggle="modal"><button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" area-hidden="true"></span></button></a>
+      </div></td>
 
-}
-  }else {
-    echo "0 results";
-}
+<!-- View -->
 
+      <div id="view<?php echo $row['c_id'];?>" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">View</h4>
+            </div>
+            <div class="modal-body">
+             ID : <input type="text" value="<?php echo $row['c_id'];?>" class="form-control" disabled>
+              Name : <input type="text" value="<?php echo $row['clientname'];?>" class="form-control" disabled>
+              Client NickName : <input type="text" value="<?php echo $row['clientnick'];?>" class="form-control" disabled>
+              Email : <input type="text" value="<?php echo $row['email'];?>" class="form-control" disabled>
+              Website : <input type="text" value="<?php echo $row['website'];?>" class="form-control" disabled>
+              Billing Rate : <input type="text" value="<?php echo $row['billingrate'];?>" class="form-control" disabled>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- Edit -->
+<?php
+if($_POST['edit']){
+  $id  = $_POST['id'];
+  $name = $_POST['name'];
+  $clientnick = $_POST['clientnick'];
+  $email = $_POST['email'];
+  $website = $_POST['website'];
+  $billingrate = $_POST['billingrate'];
+
+$sql = "UPDATE client SET clientname = '$name',clientnick = '$clientnick',email='$email',website = '$website',billingrate = '$billingrate' WHERE c_id = ".$id;
+   
+   if (mysqli_query($con, $sql)) {
+      header("Location: client.php");
+   } else {
+      // echo "Error deleting record: " . mysqli_error($con);
+   }
+}
 ?>
+      <div id="edit<?php echo $row['c_id'];?>" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Edit</h4>
+            </div>
+            <div class="modal-body">
+              <form action="" method="post">
+                Name : <input type="text" name="name" class="form-control" value="<?php echo $row['clientname'];?>" placeholder="Name" required>
+                Client NickName : <input type="text" name="clientnick" class="form-control" value="<?php echo $row['clientnick'];?>" placeholder="Client NickName" required>
+                Email : <input type="text" name="email" class="form-control" value="<?php echo $row['email'];?>" placeholder="Email" required>
+                Website : <input type="text" name="website" class="form-control" value="<?php echo $row['website'];?>" placeholder="Email" required>
+                Billing Rate : <input type="text" name="billingrate" class="form-control" value="<?php echo $row['billingrate'];?>" placeholder="Billing Rate" required>
+                <input type="submit" name="edit" class="btn btn-primary" value="Edit">
+              </form>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- Delete -->
+
+      <div id="delete<?php echo $row['c_id'];?>" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Delete</h4>
+            </div>
+            <div class="modal-body">
+              <form action="" method="post">
+                Are You Sure You Want to Delete this Client <b><?php echo $row['clientname'];?></b><br><br>
+                <input type="submit" name="delete" class="btn btn-primary" value="Delete">
+              </form>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </tr>  
+<?php } } else { echo "0 results"; } ?>
+</tbody>
   </table>
 </div>
   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </form>
 </body>
 </html>
 
-<?php
-$c_id=$_GET['c_id'];
-$sql = "DELETE FROM project WHERE c_id=". $c_id;
-if(mysqli_query($con,$sql))
-{
-  header("Location:client.php");
-}
-else
-{
-  // echo "Error deleting record:" .mysqli_error($con);
-}
-?>
 <script>
-	$(function() {
+  $(function() {
     $('#row_dim').hide(); 
     $('#type').change(function(){
         if($('#type').val() == 'Fixed Bid Client') {
@@ -270,3 +293,15 @@ else
     });
 });
 </script>
+
+<?php
+ if($_POST['delete']){
+     $id=$_POST['id'];
+     $sql = "DELETE FROM client WHERE c_id=".$id;   
+    if (mysqli_query($con, $sql)) {
+       header("Location: client.php");
+    } else {
+       // echo "Error deleting record: " . mysqli_error($con);
+    } 
+  }
+?>

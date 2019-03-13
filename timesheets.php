@@ -8,7 +8,7 @@ ob_start();
 ?>
 <html>
 <head>
-    <title></title>
+    <title>TimeSheet</title>
   <style>
   body {
   background-color: #ECF0F2;
@@ -26,12 +26,14 @@ ob_start();
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css">
 </head>
-<body id="printableArea">
+<body>
 
  <div >
+  <h4 style="color: gray;"><a href="dashboard.php">Dashboard</a> : Timesheet</h4>
 <div class="panel-default"> 
-<div class="container" style="width:1500px;margin-left:10px;">
- <div class="panel panel-default" style="width:100%;">
+<div class="container-fluid" >
+ <div class="panel panel-default">
+
     <form method="get" action="timesheet_period.php">
     <div style="margin-top: 10px;margin-left: 10px;" class="container">
    <h4 style="color: #81AFE7;">Time Entry Period View </h4>
@@ -43,84 +45,15 @@ ob_start();
 
 </div>
 </form>
-<div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div style="width: 115%;" class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel" style="color: gray;">Search Parameter</h4>
-      </div>
-      <div class="modal-body">
-    
-    <div class="container">
-  
-  <div class="tab-content">
 
-    <div class="form-group row">
-      <div class="col-xs-3">
-        <label for="ex1" style="color: black;"><h6>Start Date</h6></label>
-         <div class='input-group date' id='datetimepicker'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-      </div>
-    </div>
-    
-      <div class="form-group row">
-      <div class="col-xs-3">
-        <label for="ex1" style="color: black;"><h6>Project</h6></label>
-        <select class="selectpicker" disabled="" data-show-subtext="true" data-live-search="true" id="type">
-      <option value="">Select Project</option>
-    </select>
-      </div>
-      <div class="col-xs-3">
-        <label for="ex2" style="color: black;"><h6>Project Task</h6></label>
-        <select class="selectpicker" disabled="" data-show-subtext="true" data-live-search="true" id="type">
-      <option value="">Select Task</option>
-        </select>
-      </div>
-  </div>
-  <div class="form-group row">
-      <div class="col-xs-3">
-        <label for="ex1" style="color: black;"><h6>Start Time</h6></label>
-         <input class="form-control" id="ex2" type="text">
-      </div>
-      <div class="col-xs-3">
-        <label for="ex2" style="color: black;"><h6>End Time</h6></label>
-         <input class="form-control" id="ex2" type="text">
-      </div>
-  </div>
-  <div class="form-group row">
-      <div class="col-xs-3">
-        <label for="ex1" style="color: black;"><h6>End Time</h6></label>
-         <input class="form-control" id="ex2" type="text">
-      </div>
-    </div>
-</div>
-      </div>
-
-      <div class="modal-footer" style="margin-top: 25px;">
-        <button type="button" class="btn btn-success">Start Timer</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-<hr class="hr">
 <div class="container">
   <div class="form-group row">
       <div style="margin-left: -150px;" class="col-md-3">
-        <i class="fa fa-user"></i><label for="ex1" style="color: black;"><h4>Employee</h4></label>
+        <i class="fa fa-user"></i><label style="color: black;"><h4>Employee</h4></label>
         <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="employee">
-              <?php
-
+<?php
     $sql = "SELECT * from employee";
 $result = mysqli_query($con, $sql);
-
 if (mysqli_num_rows($result) > 0) {
   while($row = mysqli_fetch_array($result))
 {
@@ -131,7 +64,6 @@ if (mysqli_num_rows($result) > 0) {
   }else {
     echo "0 results";
 }
-
 ?>
     </select>
       </div>
@@ -142,18 +74,6 @@ if (mysqli_num_rows($result) > 0) {
         <br /> <label>Week :</label><span id="startDate" name="startdate"></span> - <span id="endDate" name="enddate"></span>
   </div>
 </div>
-
-      <div class="col-md-3" style="margin-left: 70px;">
-        <i class="fa fa-plus-circle"></i><label for="ex1" style="color: black;"><h4>Timesheet Total</h4></label>
-        <input name="timettl" id="timeSum" style="border:0px;">
-                 
-      </div>
-      <div class="col-md-3" style="margin-left: 20px;">
-        <i class="fa fa-th"></i><label for="ex1" style="color: black;"><h4>Timesheet Status</h4></label>
-          <h4 style="background-color: #d8f435; width:130px;">Not Submitted</h4>
-
-      </div>
-
 <script>
   function myFunction()
   {
@@ -169,19 +89,24 @@ if (mysqli_num_rows($result) > 0) {
   }
 </script>
 
+      <div class="col-md-3" style="margin-left: 70px;">
+        <i class="fa fa-plus-circle"></i><label style="color: black;"><h4>Timesheet Total</h4></label>
+        <h3><input name="timettl" id="timeSum" placeholder="--:--" style="border:0px;"></h3>
+                 
+      </div>
   </div>
 </div>
 </div>
 </div>
 </div>
-
+</div>
 
   <div>
-    <div class="panel-default"> 
-<div class="container" style="width:1500px;margin-left:10px;">
-  <div class="panel panel-default" style="height:350px;width:100%;">
+    <div class="panel-default" id="printableArea"> 
+<div class="container-fluid" >
+  <div class="panel panel-default">
     <h5 style="color: #81AFE7;margin-left: 20px;"><b>TIME ENTRY WEEK VIEW</b></h5>
-    <hr class="hr">
+    <hr>
     <div style="margin-left: 10px;" class="container">
   <button data-toggle="modal" data-target="#Modal" type="button" class="btn"><i class="fa fa-plus">Add Time Item Row</i></button>
   </div><br>
@@ -192,7 +117,6 @@ if (mysqli_num_rows($result) > 0) {
     }
     ?>
   <form action="" method="POST">
-
           <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div style="width: 115%;" class="modal-content">
@@ -265,11 +189,9 @@ if (mysqli_num_rows($result) > 0) {
   </div>
 </div>
       </div>
-
       <div class="modal-footer" style="margin-top: 25px;">
         <button type="submit" name="submit" class="btn btn-success">Update</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-        
       </div>
     </div>
   </div>
@@ -304,7 +226,7 @@ if (mysqli_num_rows($result) > 0) {
   ?>
     <tbody>
       <tr>
-        <td style="text-align: center;"><a href="timesheets.php?id=<?php echo $row['id']; ?>" title="delete"><span class="glyphicon glyphicon-trash"></a></td>
+        <td style="text-align: center;"><a href="timesheets.php?id=<?php echo $row['id']; ?>" title="delete"><span class="glyphicon glyphicon-trash"></span></a></td>
         <td><?php echo $row['projectname']; ?> : <?php echo $row['taskname'];?></td>
         <td><input type="time" name="usr_time" id="time1"></td>
         <td><input type="time" name="usr_time" id="time2"></td>
@@ -332,19 +254,22 @@ function timeSummation() {
   </table>
   
 </div>
+</div>
+</div>
+</div>
+</div>
 
-<div class="panel-default"> 
-<div class="container" style="width:1500px;margin-left:-21px;margin-top: 180px;">
-  <div class="panel panel-default" style="width:100%;">
+<div class="container-fluid">
+  <div class="panel panel-default">
 
-    <div style="margin-left: 15px;margin-top: 10px; ;width: 98%" class="form-group">
+    <div style="margin-left: 15px;margin-top: 10px; ;" class="form-group">
   <label for="comment">Description:</label>
   <textarea class="form-control" rows="3" name="comment"></textarea>
 </div>
 
 <div style="margin-top: 10px;margin-left: 10px;" class="container">
 <button type="button" class="btn btn-success"><i class="fa fa-pencil">Save</i></button>
-  <button type="button" class="btn btn-info" name="submit" onclick="timesheet();">Submit</button>
+  <button type="submit" class="btn btn-info" name="submit">Submit</button>
 </div><br>
     <script type="text/javascript">
     function exportTableToCSV(filename) {
@@ -372,47 +297,9 @@ function timeSummation() {
     downloadLink.click();
 }
 </script>
-  <!--<button style="width: 250px;height: 40px;" type="button" class="btn"><i class="fa fa-upload">Import Offline Timesheet</i></button>
-
-   <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" name="attachment">
-</div>
-
 </div>
 </div>
-
-<div style="margin-top: -150px;margin-left: 40px;" class="container">
-  <div class='col-sm-2'>
-          <label  for="ex2" style="color: black;margin-left: -50px;"><h6>Copy from</h6></label>
-            <div style="margin-top:-40px;margin-left: 50px;width: 150px;" >
-                    <input type='date' class="form-control" />
-                    
-                </div>
-          </div>
-
-  <button style="width: 150px;height: 40px;margin-left: 90px;" type="button" class="btn"><i class="fa fa-copy">Cpoy Timesheet</i></button>
-  <button style="width: 150px;height: 40px;margin-left: 10px;" type="button" class="btn"><i class="fa fa-newspaper-o">Copy Activities</i></button>
 </div>
-
- <div class="container" style="margin-top: 20px;margin-left: 10px;">
-  <button type="button" class="btn">Status Legend</button>
-  <button type="button" class="btn btn-warning">Not Submitted</button>
-  <button type="button" class="btn btn-primary">Submitted</button>
-  <button type="button" class="btn btn-success">Approved</button>
-  <button type="button" class="btn btn-danger">Rejected</button>
-  
-</div> -->
-
-
-</div>
-</div>
-    </div>
-
-
-
-  </div>
-  </div>
-</div>
-
 </div>
 </form>
 </div>
@@ -476,9 +363,6 @@ if (mm6 < 10) {
 }
 
 endDate = mm6 + '/' + dd6 + '/' + yyyy6;
-
-
-
 
 var nwdate1 =  new Date(startDate);
 nwdate1.setDate(nwdate1.getDate()+1);
@@ -562,8 +446,6 @@ textbox3.value = nwdate3;
 textbox4.value = nwdate4;
 textbox5.value = nwdate5;
 
-
-            
             console.log(nwdate1);
             console.log(nwdate2);
             var dateFormat = inst.settings.dateFormat || $.datepicker._defaults.dateFormat;
@@ -599,4 +481,3 @@ function printDiv(divName) {
      document.body.innerHTML = originalContents;
 }
 </script>
-

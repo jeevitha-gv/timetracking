@@ -31,10 +31,6 @@ ob_start();
                 document.getElementById('3').value = hoteltax;
                 document.getElementById('4').value = state;
                 document.getElementById('5').value = vat;
-
-
-
-
             }
 
             var my=document.getElementById("tam");
@@ -74,18 +70,11 @@ ob_start();
             document.getElementById("va").value = ta.options[tax.selectedIndex].value;
 
         }
-
-
-
-
-
   </script>
-
-
 
 <meta charset="utf-8">
 
-    <title>Rate History</title>
+    <title>Invoice</title>
 
 <style>
    label {
@@ -328,7 +317,6 @@ if (mysqli_num_rows($result) > 0) {
         <label for="ex2" style="color:black;margin-top: 5px;" ><h6>Tax 1</h6></label>
          <select class="selectpicker" data-show-subtext="true" name="tax1" data-live-search="true" id="type">
         <option>None Selected</option>
-       <option value="Airport_tax">Airport Tax</option>
        <option value="GST">GST</option>
        <option value="Hotel_tax">Hotel Tax</option>
        <option value="PST">PST</option>
@@ -339,7 +327,6 @@ if (mysqli_num_rows($result) > 0) {
     <label style="color: black;margin-top: 5px;" for="ex2"><h6>Tax 2</h6></label>
          <select class="selectpicker" data-show-subtext="true" name="tax2" data-live-search="true" id="type">
         <option>None Selected</option>
-       <option value="Airport_tax">Airport Tax</option>
        <option value="GST">GST</option>
        <option value="Hotel_tax">Hotel Tax</option>
        <option value="PST">PST</option>
@@ -476,7 +463,7 @@ if (mysqli_num_rows($result) > 0) {
 
   
    
-  <table width="350px" border="1">
+  <table border="1">
  <thead>
 <tr>
          <th> </th>
@@ -500,13 +487,45 @@ if (mysqli_num_rows($result) > 0) {
       <td><INPUT type="checkbox" name="chk"/></td>
        <td><i class="fa fa-trash" style="color:#4C8EBA "></i></td>
         <td> <select   class="selectpicker" data-show-subtext="true" data-live-search="true" id="type">
-        <option value="">Select </option>
-       <option>Risk</option>
+        <option>Select </option>
+       <?php
+
+    $sql = "SELECT * from project";
+$result = mysqli_query($con, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  while($row = mysqli_fetch_array($result))
+{
+  ?>
+      <option value="<?php echo $row['projectname']; ?>"><?php echo $row['projectname']; ?></option>
+       <?php
+}
+  }else {
+    echo "0 results";
+}
+
+?>
        
                  </select></td>
         <td><select   class="selectpicker" data-show-subtext="true" data-live-search="true" id="type">
-        <option value="">Select </option>
-       <option>Create UI</option>
+        <option>Select</option>
+<?php
+
+    $sql = "SELECT * from task";
+$result = mysqli_query($con, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  while($row = mysqli_fetch_array($result))
+{
+  ?>
+      <option value="<?php echo $row['taskname']; ?>"><?php echo $row['taskname']; ?></option>
+       <?php
+}
+  }else {
+    echo "0 results";
+}
+
+?>
        
                  </select></td>
         <td><textarea name="txtDescription" class="form-control input-sm" rows="1" style="width: 100%;"></textarea></td>
@@ -516,7 +535,6 @@ if (mysqli_num_rows($result) > 0) {
         <td><input name="txtBillingRate" class="form-control input-sm" value="0.00" type="float" id="t1" onkeyup="mul();" style="width: 70px;"></td>
         <td> <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="tam"  onchange="mul();">
         <option value="">Select </option>
-       <option>Airport Tax</option>
        <option id="1">GST</option>
        <option id="2">Hotel Tax</option>
        <option id="3">PST</option>
@@ -525,7 +543,6 @@ if (mysqli_num_rows($result) > 0) {
                  </select></td>
                  <td> <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="tax"  onchange="mu();">
         <option value="">Select </option>
-       <option>Airport Tax</option>
        <option id="a">GST</option>
        <option id="b">Hotel Tax</option>
        <option id="c">PST</option>
@@ -654,17 +671,42 @@ if (mysqli_num_rows($result) > 0) {
        <td><i class="fa fa-trash" style="color:#4C8EBA "></i></td>
         <td> <select   class="selectpicker" data-show-subtext="true" data-live-search="true" id="type">
         <option value="">Select </option>
-       <option>Risk</option>
+<?php
+    $sql = "SELECT * from expense";
+$result = mysqli_query($con, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  while($row = mysqli_fetch_array($result))
+{
+  ?>
+      <option value="<?php echo $row['projectname']; ?>"><?php echo $row['projectname']; ?></option>
+       <?php
+}
+  }else {
+    echo "0 results";
+}
+
+?>
        
                  </select></td>
         <td><select   class="selectpicker" data-show-subtext="true" data-live-search="true" id="type">
         <option value="">Select </option>
-       <option>Air Travel</option>
-       <option>Auto Rental</option>
-       <option>Car Mileage</option>
-       <option>Entertainment</option>
-       <option>Food</option>
-       <option>Gas</option>
+<?php
+    $sql = "SELECT * from expense";
+$result = mysqli_query($con, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  while($row = mysqli_fetch_array($result))
+{
+  ?>
+      <option value="<?php echo $row['expensename']; ?>"><?php echo $row['expensename']; ?></option>
+       <?php
+}
+  }else {
+    echo "0 results";
+}
+
+?>
                  </select></td>
                  <td><select   class="selectpicker" data-show-subtext="true" data-live-search="true" id="type">
         <option value="">Select </option>

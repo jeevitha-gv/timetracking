@@ -6,8 +6,7 @@ require "header.php";
 <html lang="en"> 
 <head> 
 <meta charset="utf-8">
-
-    <title>Billing</title>
+    <title>Expense</title>
 <style>
     
 body {
