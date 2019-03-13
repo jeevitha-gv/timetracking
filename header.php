@@ -360,8 +360,6 @@ body, html {
         -ms-opacity: 1;
         opacity: 1;
     }
-
-
 .overlay {
     position: fixed;
     display: none;
@@ -375,12 +373,9 @@ body, html {
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 1;
 }
-
 .hamb-bottom, .hamb-middle, .hamb-top {
     background-color: black;
 }
-  
-
 .iconbar 
 {
   width: 25px;
