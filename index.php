@@ -120,8 +120,10 @@ if(isset($_POST['login'])){
     $result2=mysqli_fetch_array($result);
     $_SESSION['userid'] = $result2['id'];
     $_SESSION['emailid']=$result2['email'];
+
     $_SESSION['fname'] = $result2['fname'];
     $_SESSION['user_role'] = $result2['user_role'];
+
     header("Location:dashboard.php");
   } else{
   
