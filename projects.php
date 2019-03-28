@@ -1,11 +1,9 @@
-<!DOCTYPE html>
 <?php 
 include "header.php";
 include "dbconnect.php";
 include "functions.php";
-session_start();
-ob_start();
 ?>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Projects</title>
@@ -14,8 +12,8 @@ ob_start();
 .hr
 {
   border: 1px solid black;
-  width: 1468px;
-  margin-left: -1068px;
+  width: 1480px;
+  margin-left: -1050px;
   
   opacity: 0.1;
 }
@@ -23,24 +21,27 @@ ob_start();
 </style>
 <body>
 <?php
-if($_POST)
+if(isset($_POST['submit']))
 {
   project();
 }
+elseif(isset($_POST['add'])) {
+  projectteam();
+}
 ?>
 
-<form action="" method="post">
+<form action="" method="POST">
   <div class="container-fluid">
   <h4 style="color: gray;"><a href="dashboard.php">Dashboard</a> : Projects</h4>
-  <div class="panel panel-default" style="width:100%;">
-    <div class="panel-body" style="color:#4C8EBA "><h5 style="margin-top: 3px;"><strong>PROJECTS</strong></h5>
+  <div class="panel panel-default">
+    <div class="panel-body" style="color:#4C8EBA;"><h5 style="margin-top: 3px;"><strong>PROJECTS</strong></h5>
       <div style="margin-top: -40px;margin-left: 1039px;">
 
 
-        <button style="background-color: lightgray;" type="button" class="btn btn-default btn-sm">
+        <!-- <button style="background-color: lightgray;" type="button" class="btn btn-default btn-sm">
           <span  data-toggle="modal" data-target="#Modal" class="glyphicon glyphicon-search"></span> Search
         </button>
-
+ -->
           <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div style="width: 115%;" class="modal-content">
@@ -99,7 +100,6 @@ if($_POST)
 </div>
 </div>
            
-
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div style="width: 115%;" class="modal-content">
@@ -109,19 +109,21 @@ if($_POST)
       </div>
       <div class="modal-body">
         <div class="form-group">
-      <span class="required" style="color: red;">*</span> <label for="usr" style="color: gray;">Project Name:</label>
-      <input type="hidden" name="c_id" class="form-control" value="<?php echo $row['c_id'];?>">
+      <span class="required" style="color: red;">*</span> <label for="usr" style="color: gray;">Project Name</label>
+      <!-- <input type="hidden" name="c_id" class="form-control" value="<?php echo $row['c_id'];?>"> -->
       <input type="text" class="form-control" id="usr" name="projectname">
     </div>
     <div class="container">
   <ul style="width: 57%;" class="nav nav-tabs" style="width: 100px;">
     <li class="active"><a data-toggle="tab" href="#basic">Basic</a></li>
-    <li><a data-toggle="tab" href="#team">Team</a></li>
+
     <li><a data-toggle="tab" href="#approval">Approval</a></li>
-    <li><a data-toggle="tab" href="#billing">Billing</a></li>
+<!--     <li><a data-toggle="tab" href="#billing">Billing</a></li> -->
     <li><a data-toggle="tab" href="#advanced">Advanced</a></li>
-    <li><a data-toggle="tab" href="#others">Others</a></li>
-    <li><a data-toggle="tab" href="#attachment">Attachment</a></li>
+    <li><a data-toggle="tab" href="#legal">Legal</a></li>
+    <li><a data-toggle="tab" href="#team">Team</a></li>
+
+<!--     <li><a data-toggle="tab" href="#attachment">Attachment</a></li> -->
 </ul>
   <div class="tab-content">
     <div id="basic" class="tab-pane fade in active">
@@ -133,33 +135,15 @@ if($_POST)
         <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="name" name="clientname">
           <option></option>
           <?php
-
-    
-
-    $sql = "SELECT * from client";
+$sql = "SELECT * from client";
 $result = mysqli_query($con, $sql);
-
-
 if (mysqli_num_rows($result) > 0) {
   while($row = mysqli_fetch_array($result))
-{
-
-  
-  ?> 
-      <option value="<?php echo $row['clientname']; ?>"><?php echo $row['clientname']; ?></option>
-          <?php
-}
-  }else {
-    echo "0 results";
-}
-?>
-  
-
+    {  ?> 
+    <option value="<?php echo $row['clientname']; ?>"><?php echo $row['clientname']; ?></option>
+<?php } } else { echo "0 results"; } ?>
         </select>
       </div>
-                 
-             
-
       <div class="col-xs-3">
         <label for="ex2" style="color: black;"><h6>Project Code</h6></label>
         <input class="form-control" id="ex2" type="text" name="projectcode">
@@ -167,81 +151,55 @@ if (mysqli_num_rows($result) > 0) {
   </div>
   <div class="form-group row">
    <div class="col-xs-3">
-        <label style="color: black;"><h6>Team Lead</h6></label>
-        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="teamlead">
+        <label style="color: black;"><h6>Client Manager</h6></label>
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="clientmanager">
           <option></option>
              <?php
-    $sql = "SELECT eno,firstname from employee";
+    $sql = "SELECT clientname from client";
 $result = mysqli_query($con, $sql);
 if (mysqli_num_rows($result) > 0) {
   while($row1 = mysqli_fetch_array($result))
 {
-  ?>
-      
-      <option value="<?php echo $row1['firstname']; ?>"><?php echo $row1['firstname']; ?></option>
-            <?php
-}
-  }else {
-    echo "0 results";
-}
-?>
+  ?>      
+      <option value="<?php echo $row1['clientname']?>"><?php echo $row1['clientname']; ?></option>
+            <?php } } else { echo "0 results"; } ?>
         </select>
-      </div>    <div class="col-xs-3">
+      </div>  
+      <div class="col-xs-3">
         <label style="color: black;"><h6>Project Manager</h6></label>
         <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="projectmanager">
           <option></option>
                      <?php
-    $sql = "SELECT eno,firstname from employee";
+    $sql = "SELECT * from employee";
 $result = mysqli_query($con, $sql);
 if (mysqli_num_rows($result) > 0) {
   while($row1 = mysqli_fetch_array($result))
 {
   ?>
-  
-      <option value="<?php echo $row1['eno']; ?>"><?php echo $row1['firstname']; ?></option>
-                   <?php
-}
-  }else {
-    echo "0 results";
-}
-?>
+      <option value="<?php echo $row1['firstname']; ?>"><?php echo $row1['firstname']; ?></option>
+                   <?php } } else { echo "0 results"; } ?>
         </select>
                     </div>
- 
-  </div>
+   </div>
+   <div class="form-group row">
+        <div class='col-xs-3'>
+          <label for="ex2" style="color: black;"><h6>Start Date</h6></label>
+                    <input type='date' class="form-control"  name="startdate">
+          </div>
+          <div class='col-xs-3'>
+            <label for="ex2" style="color: black;"><h6>End Date</h6></label>
+                    <input type='date' class="form-control" name="enddate">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xs-3">
+            <label style="color: black;"><h6>Client Team</h6></label>
+            <textarea type="text" class="form-control" style="width:200%;" placeholder="Enter client1,client2,client3....." name="clientteam"></textarea>
+          </div>
+        </div>
 
 </div>
 
-
-<div id="team" class="tab-pane fade">
-  <div style="margin-top: 10px;" class="container" class="col-xs-2">
-        <label for="ex2" style="color: black;"><h6><b>Total Members :</b></h6></label>
-        <div style="margin-left: 500px;margin-top: -35px;" class="checkbox">
-      <label style="color: black;">
-      <input type="checkbox" value="">Select All</label>
-    </div>
-
-         <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="projectmanager">
-          <option></option>
-                     <?php
-    $sql = "SELECT eno,firstname from employee";
-$result = mysqli_query($con, $sql);
-if (mysqli_num_rows($result) > 0) {
-  while($row1 = mysqli_fetch_array($result))
-{
-  ?>
-  
-      <option value="<?php echo $row1['firstname']; ?>"><?php echo $row1['firstname']; ?></option>
-                   <?php
-}
-  }else {
-    echo "0 results";
-}
-?>
-        </select>
-      
-    </div>
- </div>
 <div id="approval" class="tab-pane fade">
 
   <div class="form-group row">
@@ -249,8 +207,7 @@ if (mysqli_num_rows($result) > 0) {
   <label style="color: black;margin-top: 5px;" for="ex2"><h6>Timesheet Approval Type</h6>
       <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="timesheet_approval">
       <option value="Approval Not Required">Approval Not Required</option>
-      <!-- <option value="Team Lead-->Project Manager">Team Lead-->Project Manager</option> -->
-       <option value="Team Lead">Team Lead</option>
+       <option value="Client Manager">Client Manager</option>
         <option value="Project Manager">Project Manager</option>
         <option value="Employee Manager">Employee Manager</option>
       </select>
@@ -260,8 +217,7 @@ if (mysqli_num_rows($result) > 0) {
   <label style="color: black;margin-top: 5px;" for="ex2"><h6>Expense Approval Type</h6></label><br />
       <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="expense_approval">
       <option value="Approval Not Required">Approval Not Required</option>
-      <!-- <option value="Team Lead-->Project Manager">Team Lead-->Project Manager</option> -->
-        <option value="Team Lead">Team Lead</option>
+        <option value="Client Manager">Client Manager</option>
         <option value="Project Manager">Project Manager</option>
         <option value="Employee Manager">Employee Manager</option>
       </select>
@@ -269,7 +225,7 @@ if (mysqli_num_rows($result) > 0) {
 </div>
   
 </div>
-
+<!-- 
 <div id="billing" class="tab-pane fade">
   <div class="form-group row">
       <div class="col-xs-3">
@@ -287,22 +243,9 @@ if (mysqli_num_rows($result) > 0) {
       </select>
       </div>
   </div>
-  <div class="form-group row">
-      <div class="col-sm-3">
-        <label for="ex1" style="color: black;"><h6>Billing Rate Type</h6></label>
-        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="billing_ratetype">
-        <option value=""></option>
-      <option value="Per Hour">Per Hour</option>
-      <option value="Fixrd Bid">Fixrd Bid</option>
-      </select>
-      </div>
-      <div class="col-sm-3">
-        <label for="ex2" style="color: black;"><h6>Fixed Cost</h6></label>
-        <input class="form-control" id="ex2" type="text" name="fixedcost">
-      </div>
-  </div>
+  
 
-</div>
+</div> -->
 
 <div id="advanced" class="tab-pane fade">
   <div class="form-group">
@@ -314,14 +257,7 @@ if (mysqli_num_rows($result) > 0) {
         <label for="ex1" style="color: black;"><h6>Duration (Hours) </h6></label>
         <input class="form-control" id="ex1" type="text" name="duration">
       </div>
-      <div class="col-xs-3">
-        <label for="ex2" style="color: black;"><h6>Project Estimated Cost</h6></label>
-        <input class="form-control" id="ex2" type="text" name="project_estimatecost">
-      </div>
-  </div>
-
-  <div class="form-group row">
-    <div class="col-xs-3">
+       <div class="col-xs-3">
   <label style="color: black;margin-top: 5px;" for="ex2"><h6>Project Status</h6></label>
       <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="project_status">
       <option value=""></option>
@@ -331,7 +267,9 @@ if (mysqli_num_rows($result) > 0) {
         <option value="completed">Completed</option>
       </select>
     </div>
+      </div>
 
+  <div class="form-group row">
     <div class="col-xs-3">
   <label style="color: black;margin-top: 5px;" for="ex2"><h6>Project Type</h6></label>
       <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="projecttype">
@@ -341,45 +279,128 @@ if (mysqli_num_rows($result) > 0) {
         <option value="Training">Training</option>
       </select>
     </div>
+    <div class="col-xs-3">
+      <label style="color: black;margin-top: 5px;"><h6>Purchase Order</h6></label>
+      <input type="text" class="form-control" name="purchase_order">
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-xs-3">
+  <label style="color: black;margin-top: 5px;"><h6>Account Info</h6></label>
+     <input type="text" class="form-control" name="account_info">
+    </div>
+    <div class="col-xs-3">
+        <label style="color: black;"><h6>Billing Rate Type</h6></label>
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="billingratetype">
+          <option value=""></option>
+          <option value="Fixed Bid">Fixed Bid</option>
+          <option value="Time Only">Time Only</option>
+          <option value="Time & Expense">Time & Expense</option>
+        </select>
+    </div>
 </div>
 </div>
 
-<div id="others" class="tab-pane fade">
- <div class="container">
-      <div class="form-group row">
-        <div class='col-sm-2'>
-          <label for="ex2" style="color: black;"><h6>Start Date</h6></label>
-            
-                    <input type='date' class="form-control"  name="startdate">
-               
-          </div>
-          <div style="margin-left: 150px;" class='col-sm-2'>
-            <label for="ex2" style="color: black;"><h6>Due Date</h6></label>
-           
-                    <input type='date' class="form-control" name="enddate">
-                  
-          </div>
-        </div>
-   </div>
+<div id="legal" class="tab-pane fade">
+<div class="form-group row">
+  <div class="col-xs-3">
+  <label style="color: black;"><h6>NDA</h6></label><br>
+      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="nda">
+        <option value=""></option>
+      <option value="Not Started">Not Started</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Fully Executed">Fully Executed</option>
+      </select>
+    </div>
+     <div class="file-upload-wrapper col-xs-3">
+      <label style="color: black;"><h6>Attachment</h6></label>
+  <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" name="attachment">
+</div>
+</div>
 
 <div class="form-group row">
   <div class="col-xs-3">
-  <label style="color: black;margin-top: 5px;" for="ex2"><h6>Project Template</h6></label>
-      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="project_template">
-      <option value="">Select</option>
-   
+  <label style="color: black;"><h6>MSA</h6></label><br>
+      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="msa">
+        <option value=""></option>
+      <option value="Not Started">Not Started</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Fully Executed">Fully Executed</option>
+      </select>
+    </div>
+    <div class="file-upload-wrapper col-xs-3">
+      <label style="color: black;"><h6>Attachment</h6></label>
+  <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" name="attachment">
+</div>
+</div>
+<div class="form-group row">
+  <div class="col-xs-3">
+  <label style="color: black;"><h6>SOW</h6></label><br>
+      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="sow">
+        <option value=""></option>
+      <option value="Not Started">Not Started</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Fully Executed">Fully Executed</option>
+      </select>
+    </div>
+    <div class="file-upload-wrapper col-xs-3">
+      <label style="color: black;"><h6>Attachment</h6></label>
+  <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" name="attachment">
+</div>
+</div>
+
+</div>
+<div id="team" class="tab-pane fade">
+<div class="form-group row">
+  <div class="col-xs-3">
+  <label style="color: black;"><h6>Team Members</h6></label><br>
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="teammembers">
+          <option></option>
+                     <?php
+    $sql = "SELECT * from employee";
+$result = mysqli_query($con, $sql);
+if (mysqli_num_rows($result) > 0) {
+  while($row1 = mysqli_fetch_array($result))
+{
+  ?>
+      <option value="<?php echo $row1['firstname']; ?>"><?php echo $row1['firstname']; ?></option>
+                   <?php } } else { echo "0 results"; } ?>
+        </select>
+    </div>
+     <div class="col-xs-3">
+      <label style="color: black;"><h6>User Role</h6></label>
+       <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="userrole">
+          <option></option>
+          <option value="employees">Employees</option>
+          <option value="clientmanager">Client Manager</option>
+          <option value="projectmanager">Project Manager</option>
+          <option value="superadmin">Super Admin</option>
+        </select>
+  
+</div>
+
+</div>
+
+<div class="form-group row">
+    <div class="col-xs-3">
+      <label style="color: black;"><h6>Billing Rate</h6></label>
+  <input type="text" class="form-control" name="billingrate">
+</div>
+<div class="col-xs-3">
+  <label style="color: black;"><h6>Billing Currency</h6></label><br>
+      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="billingcurrency">
+        <option value=""></option>
+      <option value="AUD">AUD</option>
+      <option value="CAD">CAD</option>
+      <option value="CHF">CHF</option>
+      <option value="EUR">EUR</option>
+      <option value="INR">INR</option>
+      <option valUE="GBP">GBP</option>
+      <option value="JPY">JPY</option>
+  <option value="US$">US$</option>
       </select>
     </div>
 </div>
-
-</div>
-
-<div id="attachment" class="tab-pane fade">
-
-<div style="margin-top: 30px;" class="file-upload-wrapper">
-  <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" name="attachment">
-</div>
-
 </div>
 </div>
       </div>
@@ -394,195 +415,51 @@ if (mysqli_num_rows($result) > 0) {
 </div>
 
 
-<a href="#" class="btn btn-success">
-  <span  data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-plus">Add Project 
+<a href="#" class="btn btn-success" style="margin-left: 110px;">
+  <span  data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-plus" style="">Add-Project 
         </span></a>
 <hr class="hr">
-
-<p style="margin-left: -1050px;color: black;">Show</p>
-  <select style="width: 85px;margin-left: -1005px;margin-top: -40px;" class="form-control" id="sel1">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-      </select>
-      <p style="margin-left: -915px;margin-top: -30px;color: black;">entries</p>
-      <div class="form-group">
-        <div style="margin-top: -29px;">
-        <label style="margin-left: 60px;color: black;" for="search">Search</label>
-      </div>
-        <div class="col-sm-3">
-          <input type="text" class="form-control" name="search" style="margin-left: 104px;width: 200px;margin-top: -30px;">
         </div>
-      </div>
-         <div style="margin-top: 60px;margin-left: -1050px;color: #363636;">
+         <div class="container-fluid" style="color: #363636;">
       <table class="table table-bordered">
     <thead>
       <tr>
-        <th><input type="checkbox" name="cbox"></th>
-        <th></th>
-        <th>Code</th>
+        <th>ID</th>
         <th>Project Name</th>
         <th>Client Name</th>
-        <th>Status</th>
-        <th>Team</th>
-        <th>Action</th>
+        <th>Project Status</th>
+        <th>Project Manager</th>
+        <th>Client Manager</th>
       </tr>
     </thead>
-                               <?php
-
-    $sql = "SELECT * from project";
+<?php
+$sql = "SELECT p_id,projectname , clientname , project_status , clientmanager , projectmanager , projecttype , startdate , enddate FROM `project` order by p_id desc";
 $result = mysqli_query($con, $sql);
-
-
 if (mysqli_num_rows($result) > 0) {
   while($row = mysqli_fetch_array($result))
-{
-
-  
-  ?>
+{ ?>
     <tbody>
       <tr>
-        <td><input type="checkbox" name="cbox"></td>
-        <td> <button type="button" class="btn btn-success" data-toggle="modal" style="background-color:#00C084">Active</button></td>
-        <td><?php echo $row['projectcode'];?></td>
+        <td><?php echo $row['p_id'];?></td>
         <td><?php echo $row['projectname'];?></td>
         <td><?php echo $row['clientname'];?></td>
         <td><?php echo $row['project_status'];?></td>
-        <td><?php echo $row['teamlead'];?></td>
-        <td><div class="btn-group" role="group" area-label="...">
-        <a href="#view<?php echo $row['p_id'];?>" data-toggle="modal"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open" area-hidden="true"></span></button></a>
-        <a href="#edit<?php echo $row['p_id'];?>" data-toggle="modal"><button type="button" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-edit" area-hidden="true"></span></button></a>
-        <a href="#delete<?php echo $row['p_id'];?>" data-toggle="modal"><button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" area-hidden="true"></span></button></a>
-      </div></td>
-       
-<!-- View -->
-
-      <div id="view<?php echo $row['p_id'];?>" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">View</h4>
-            </div>
-            <div class="modal-body">
-             Project Code : <input type="text" value="<?php echo $row['projectcode'];?>" class="form-control" disabled>
-              Project Name : <input type="text" value="<?php echo $row['projectname'];?>" class="form-control" disabled>
-              Client Name : <input type="text" value="<?php echo $row['clientname'];?>" class="form-control" disabled>
-              Project Status : <input type="text" value="<?php echo $row['project_status'];?>" class="form-control" disabled>
-              Team Leader : <input type="text" value="<?php echo $row['teamlead'];?>" class="form-control" disabled>
-              Project Manager : <input type="text" value="<?php echo $row['projectmanager'];?>" class="form-control" disabled>
-              Project Type : <input type="text" value="<?php echo $row['projecttype'];?>" class="form-control" disabled>
-              Start-End Date : <input type="text" value="<?php echo $row['startdate'];?>  -  <?php echo $row['enddate'];?>" class="form-control" disabled>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-<!-- Edit -->
-<?php
-if($_POST['edit']){
-  $id = $_POST['p_id'];
-  $code  = $_POST['code'];
-  $projectname = $_POST['projectname'];
-  $clientname = $_POST['clientname'];
-  $projectstatus = $_POST['projectstatus'];
-  $teamlead = $_POST['teamlead'];
-  $projectmanager = $_POST['projectmanager'];
-  $projecttype = $_POST['projecttype'];
-  $startdate = $_POST['startdate'];
-  $enddate = $_POST['enddate'];
-
-$sql = "UPDATE project SET projectcode = '$code',projectname = '$projectname',clientname='$clientname',project_status = '$projectstatus',teamlead = '$teamlead',projectmanager = '$projectmanager',projecttype = '$projecttype', startdate = '$startdate', enddate ='$enddate' WHERE p_id = ".$id;
-   
-   if (mysqli_query($con, $sql)) {
-      header("Location: project.php");
-   } else {
-      // echo "Error deleting record: " . mysqli_error($con);
-   }
-}
-?>
-      <div id="edit<?php echo $row['p_id'];?>" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Edit</h4>
-            </div>
-            <div class="modal-body">
-              <form action="" method="post">
-                <input type="hidden" name="p_id" class="form-control" value="<?php echo $row['p_id'];?>">
-                Project Code : <input type="text" name="code" class="form-control" value="<?php echo $row['projectcode'];?>" placeholder="Project Code" required>
-                Project Name : <input type="text" name="projectname" class="form-control" value="<?php echo $row['projectname'];?>" placeholder="Project Name" required>
-                Client Name : <input type="text" name="clientname" class="form-control" value="<?php echo $row['clientname'];?>" placeholder="Client Name" required>
-                Project Status : <input type="text" name="projectstatus" class="form-control" value="<?php echo $row['project_status'];?>" placeholder="Project Status" required>
-                Team Leader : <input type="text" name="teamlead" class="form-control" value="<?php echo $row['teamlead'];?>" placeholder="Team Leader" required>
-                Project Manager : <input type="text" name="projectmanager" class="form-control" value="<?php echo $row['projectmanager'];?>" placeholder="Project Manager" required>
-                Project Type : <input type="text" name="projecttype" class="form-control" value="<?php echo $row['projecttype'];?>" placeholder="Project Type" required>
-                Start Date : <input type="text" name="startdate" class="form-control" value="<?php echo $row['startdate'];?>" placeholder="Start Date" required>
-                End Date : <input type="text" name="enddate" class="form-control" value="<?php echo $row['enddate'];?>" placeholder="End Date" required>
-                <input type="submit" name="edit" class="btn btn-primary" value="Edit">
-              </form>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-<!-- Delete -->
-
-      <div id="delete<?php echo $row['p_id'];?>" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Delete</h4>
-            </div>
-            <div class="modal-body">
-              <form action="" method="post">
-                <input type="hidden" name="p_id" value="<?php echo $row['p_id'];?>">
-               Are You Sure You Want to Delete this Project <b><?php echo $row['projectname'];?></b><br><br>
-                <input type="submit" name="delete" class="btn btn-primary" value="Delete">
-              </form>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        <td><?php echo $row['projectmanager'];?></td>
+        <td><?php echo $row['clientmanager'];?></td>
     </tr>  
 <?php } } else { echo "0 results"; } ?>
     </tbody>
   </table>
 </div>
-</div>
-</div>
-</div>
-</div>
 
+</div>
+</div>
+</div>
+</div>
 </form>
  
 </body>
 </html>
-
-<?php
-$p_id=$_POST['p_id'];
-$sql = "DELETE FROM project WHERE p_id=". $p_id;
-if(mysqli_query($con,$sql))
-{
-  header("Location:projects.php");
-}
-else
-{
-  // echo "Error deleting record:" .mysqli_error($con);
-}
-?>
 
 <script type="text/javascript">
             $(function () {
@@ -595,4 +472,16 @@ else
 
  <script type="text/javascript">
   $('.file_upload').file_upload();
- </script>
+</script>
+
+<?php
+ if($_POST['delete']){
+     $id=$_POST['p_id'];
+     $sql = "DELETE FROM project WHERE p_id=".$id;   
+    if (mysqli_query($con, $sql)) {
+       header("Location: projects.php");
+    } else {
+       // echo "Error deleting record: " . mysqli_error($con);
+    } 
+  }
+?>

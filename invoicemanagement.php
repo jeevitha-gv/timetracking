@@ -3,14 +3,13 @@
 include "header.php";
 include "dbconnect.php";
 include "functions.php";
-session_start();
-ob_start();
+
 ?>
 <html lang="en"> 
 <head> 
 <meta charset="utf-8">
 
-    <title>Rate History</title>
+    <title>Invoice History</title>
 
 
 <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">   
@@ -57,90 +56,180 @@ body {
   
     <div class="col-md-12">
     <div>
-<div class="container" style="width:1500px;margin-left:10px;">
-  <h4 style="color:#a3a19b;">Dashboard : Billing : Time Expense Billing </h4>
+<div class="container-fluid">
+  <h4 style="color:#a3a19b;"><a href="dashboard.php">Dashboard</a> :<a href="billing.php"> Billing</a> : Time & Expense Billing </h4>
   
-  <div class="panel panel-default" style="width:100%;">
+  <div class="panel panel-default">
   <div class="panel panel-default"> 
-    <div class="panel-body" style="color:#4C8EBA "><h5><B>TIME EXPENSE INVOICE LIST</B></h5></div>
-  <div style="margin-top: -50px; margin-left: 280px;">
-        <a type="button" href="editinvoice.php"  data-toggle="tooltip" title="Edit" class="btn btn-info btn-lg"  >
-         <i class="fa fa-edit"></i>
-     </a>
-      <a type="button" data-toggle="modal"  data-toggle="tooltip" title="Print" data-target="#EditModal" class="btn btn-default btn-lg"  >
-         <i class="fa fa-print"></i>
-     </a>
-       <a type="button" data-toggle="tooltip" title="Delete" class="btn btn-danger btn-lg">
-           <i  class='fa fa-trash'></i>
-        </a>
-        </div>
+    <div class="panel-body" style="color:#4C8EBA "><h5><B>TIME & EXPENSE INVOICE LIST</B></h5></div>
+  
+<?php if($_POST) { invoice(); } ?>
+
    <div style="float: right;margin-top: -50px;">
-   <button type="button" class="btn btn-success" data-toggle="modal" style="background-color:#00C084" data-target="#myModal" disabled>Update</button>
-    <a href="invoiceform.php" type="button" class="btn btn-success"  style="background-color:#00C084" ><span class="glyphicon glyphicon-plus"></span>Add Invoice List</a>
+    <button type="button" class="btn btn-success" data-toggle="modal" style="background-color:#00C084" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span>Add Invoice List</button>
+ <form action="" method="post"> 
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+   <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" >&times;</button>
+          <h4 class="modal-title">Invoice Information</h4>
+        </div>
+        <div class="modal-body">
+        <div class="form-group row">
+      <div class="col-xs-4">
+        <label for="ex2" style="color:black;margin-top: 5px;" ><h6>PO Number</h6></label>
+        <input class="form-control" type="text" name="ponumber">
+      </div>
+       <div class="col-xs-4">
+    <label style="color: black;margin-top: 5px;" for="ex2"><h6>Billable</h6></label>
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="billable">
+          <option></option>
+          <option value="Both">Both </option>
+          <option value="Billable">Billable</option>
+          <option value="NonBillable">NonBillable</option>
+        </select>
+      </div>
+      <div class="col-xs-4">
+        <label for="ex2" style="color:black;margin-top: 5px;" ><h6>Client Name</h6></label>
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="clientname">
+          <option></option>
+            <?php
+            $sql = "SELECT * from client";
+            $result = mysqli_query($con, $sql);
+            if (mysqli_num_rows($result) > 0) {
+            while($row = mysqli_fetch_array($result))
+            { ?>
+          <option value="<?php echo $row['clientname']; ?>"><?php echo $row['clientname']; ?></option>
+            <?php } } ?>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-xs-4">
+        <label for="ex2" style="color:black;margin-top: 5px;" ><h6>Project Name</h6></label>
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="projectname">
+          <option></option>
+               <?php
+                $sql = "SELECT * from project";
+                $result = mysqli_query($con, $sql);
+                if (mysqli_num_rows($result) > 0) {
+                while($row = mysqli_fetch_array($result))
+                { ?>
+          <option value="<?php echo $row['projectname']; ?>"><?php echo $row['projectname']; ?></option>
+              <?php } } ?>
+        </select>
+      </div>
+      <div class='col-sm-4'>
+        <label for="ex2" style="color: black;"><h6>Invoice Date</h6></label>
+          <input type='date' class="form-control" name="invoicedate">
+      </div>
+      <div class='col-sm-4'>
+        <label for="ex2" style="color: black;"><h6>Billing Cycle Start Date</h6></label>
+          <input type='date' class="form-control" name="billing_startdate" />
+      </div>
+    </div>
+    <div class="form-group row">
+        <div class='col-sm-4'>
+            <label for="ex2" style="color: black;"><h6>Billing Cycle End Date</h6></label>
+              <input type='date' class="form-control" name="billing_enddate" />                    
+        </div>
+        <div class="col-xs-4">
+          <label for="ex2" style="color:black;margin-top: 5px;" ><h6>Currency</h6></label>
+            <select class="selectpicker" data-show-subtext="true" name="currency" data-live-search="true" id="type">
+              <option></option>
+              <option value="AUD">AUD </option>
+              <option value="CAD">CAD</option>
+              <option value="CHF">CHF</option>
+              <option value="EUR">EUR</option>
+              <option value="INR">INR</option>
+              <option value="GBP">GBP</option>
+              <option value="JPY">JPY</option>
+              <option value="US$">US$</option>
+            </select>
+        </div>
+        <div class="col-xs-4">
+        <label for="ex2" style="color:black;margin-top: 5px;" ><h6>Tax 1</h6></label>
+         <select class="selectpicker" data-show-subtext="true" name="tax1" data-live-search="true" id="type">
+            <option></option>
+            <option value="GST">GST</option>
+            <option value="Hotel_tax">Hotel Tax</option>
+            <option value="PST">PST</option>
+            <option value="Sales_tax">State Sales Tax</option>
+            <option value="VAT">VAT</option>
+         </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-xs-4">
+        <label for="ex2" style="color:black;margin-top: 5px;" ><h6>Group Timesheet Billing List By</h6></label>
+        <select class="selectpicker" data-show-subtext="true" name="group_timesheet" data-live-search="true" id="type">
+          <option></option>
+          <option value="Task">Task </option>
+          <option value="Time Entry">Time Entry</option>
+          <option value="Parent Task">Parent Task</option>
+        </select>
+      </div>
+      <div class="col-xs-4">
+      <label for="ex2" style="color:black;margin-top: 5px;" ><h6>Group Expense Billing List By</h6></label>
+      <select class="selectpicker" data-show-subtext="true" name="group_expense" data-live-search="true" id="type">
+        <option></option>
+        <option value="Expense Name">Expense Name </option>
+        <option value="Expense Entry">Expense Entry</option>
+      </select>
+      </div>
+      <div class="col-xs-4">
+        <label style="color: black;margin-top: 5px;" for="ex2"><h6>Discount Calculation By</h6></label>
+          <select class="selectpicker" data-show-subtext="true" name="discount_calculation" data-live-search="true" id="type">
+            <option></option>
+            <option value="Percentage">Percentage </option>
+            <option value="Fixed Amount">Fixed Amount</option>
+          </select>
+      </div>
+    </div>
+        <div class="modal-footer">
+            <button type="submit" name="submit" class="btn btn-info" data-toggle="modal" data-target="#myModal">Populate Un-Billed Records</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+     </div>
+     </div>
+     </div>
+     </div>
+   </form>
     </div>
 </div>
- 
-  <div style="margin-top: 40px;">
- <p style="margin-left: 5px;">Show</p>
-  <select style="width: 85px;margin-left: 50px;margin-top: -40px;" class="form-control" id="sel1">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-      </select>
-      <p style="margin-left: 135px;margin-top: -30px;">entries</p>
-      <div style="margin-left: 1150px;margin-top: -40px;" class="form-group">
-      <label class="control-label col-sm-9" for="pwd">Search</label>
-      <div class="col-sm-3">          
-        <input style="margin-left: -175px;width: 230px;" type="text" class="form-control" data-live-search="true" id="pwd" name="pwd">
-      </div>
-          </div>
-          </div>
           <div style="margin-top: 60px;width: 98%;margin-left: 20px;">
       <table class="table table-bordered">
     <thead>
       <tr>
-         <th><input type="checkbox" name="checkbox"></th>
-        <th>Client Name </th>
         <th>Invoice No</th>
+        <th>PO Number</th>
+        <th>Client Name</th>
+        <th>Project Name</th>
         <th>Invoice Date</th>
-        <th>Description</th>
-        <th>Amount</th>
-        
+        <th>Action</th>
       </tr>
     </thead>
             <?php
-
- $sql = "SELECT inv.clientname as client,exp.projectname as eproject,inv.projectname as inproject,exp.description as des,exp.amount as amt,inv.invoiceno as voice, inv.invoicedate as indate from expense as exp, invoice as inv WHERE exp.projectname = inv.projectname";
+$sql = "SELECT * FROM invoice";
 $result = mysqli_query($con, $sql);
-
-
 if (mysqli_num_rows($result) > 0) {
   while($row = mysqli_fetch_array($result))
 {
-
-  
-  ?> 
-    
+  ?>
     <tbody>
       <tr>
-        <td></td>
-      <td><?php echo $row['client']; ?></td>
-       <td><?php echo $row['voice']; ?></td>
-        <td><?php echo $row['indate']; ?></td>
-         <td><?php echo $row['des']; ?></td>
-          <td><?php echo $row['amt']; ?></td>
+      <td><?php echo $row['invoiceno']; ?></td>
+       <td><?php echo $row['ponumber']; ?></td>
+        <td><?php echo $row['clientname']; ?></td>
+         <td><?php echo $row['projectname']; ?></td>
+          <td><?php echo $row['invoicedate']; ?></td>
+          <td><a href='invoiceform.php?userid=<?php echo $row['projectname'];?>'><button type="submit" class="btn btn-info">Billing</button></a></td>
       </tr>
-      
     </tbody>
-       <?php
-
-}
-  }else {
-    echo "0 results";
-}
-
-?>
+       <?php } } ?>
    
   </table>
 </div>
