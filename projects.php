@@ -71,7 +71,7 @@ elseif(isset($_POST['add'])) {
       <div class="col-xs-3">
         <label for="ex1" style="color: black;"><h6>Completed Status</h6></label>
         <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type">
-      <option value="">All</option>
+      <option value="All">All</option>
       <option>Completed Projects</option>
       <option>Incomplete Projects</option>
         </select>
@@ -111,7 +111,7 @@ elseif(isset($_POST['add'])) {
         <div class="form-group">
       <span class="required" style="color: red;">*</span> <label for="usr" style="color: gray;">Project Name</label>
       <!-- <input type="hidden" name="c_id" class="form-control" value="<?php echo $row['c_id'];?>"> -->
-      <input type="text" class="form-control" id="usr" name="projectname">
+      <input type="text" class="form-control" id="usr" name="projectname" required>
     </div>
     <div class="container">
   <ul style="width: 57%;" class="nav nav-tabs" style="width: 100px;">
@@ -132,7 +132,7 @@ elseif(isset($_POST['add'])) {
       <div class="col-xs-3">
 
         <label for="ex1" style="color: black;"><h6>Client Name</h6></label>
-        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="name" name="clientname">
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="name" name="clientname" required>
           <option></option>
           <?php
 $sql = "SELECT * from client";
@@ -152,7 +152,7 @@ if (mysqli_num_rows($result) > 0) {
   <div class="form-group row">
    <div class="col-xs-3">
         <label style="color: black;"><h6>Client Manager</h6></label>
-        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="clientmanager">
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="clientmanager" required>
           <option></option>
              <?php
     $sql = "SELECT clientname from client";
@@ -167,7 +167,7 @@ if (mysqli_num_rows($result) > 0) {
       </div>  
       <div class="col-xs-3">
         <label style="color: black;"><h6>Project Manager</h6></label>
-        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="projectmanager">
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="projectmanager" required>
           <option></option>
                      <?php
     $sql = "SELECT * from employee";
@@ -205,7 +205,7 @@ if (mysqli_num_rows($result) > 0) {
   <div class="form-group row">
     <div class="col-xs-3">
   <label style="color: black;margin-top: 5px;" for="ex2"><h6>Timesheet Approval Type</h6>
-      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="timesheet_approval">
+      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="timesheet_approval" required>
       <option value="Approval Not Required">Approval Not Required</option>
        <option value="Client Manager">Client Manager</option>
         <option value="Project Manager">Project Manager</option>
@@ -215,7 +215,7 @@ if (mysqli_num_rows($result) > 0) {
 
     <div class="col-xs-4">
   <label style="color: black;margin-top: 5px;" for="ex2"><h6>Expense Approval Type</h6></label><br />
-      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="expense_approval">
+      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="expense_approval" required>
       <option value="Approval Not Required">Approval Not Required</option>
         <option value="Client Manager">Client Manager</option>
         <option value="Project Manager">Project Manager</option>
@@ -250,16 +250,16 @@ if (mysqli_num_rows($result) > 0) {
 <div id="advanced" class="tab-pane fade">
   <div class="form-group">
       <label style="color: gray;margin-top: 20px;" for="comment">Project Description</label>
-      <textarea style="width: 630px;" class="form-control" rows="3" id="comment" name="project_description"></textarea>
+      <textarea style="width: 630px;" class="form-control" rows="3" id="comment" name="project_description" required></textarea>
     </div>
     <div class="form-group row">
       <div class="col-xs-3">
         <label for="ex1" style="color: black;"><h6>Duration (Hours) </h6></label>
-        <input class="form-control" id="ex1" type="text" name="duration">
+        <input class="form-control" id="ex1" type="text" name="duration" required>
       </div>
        <div class="col-xs-3">
   <label style="color: black;margin-top: 5px;" for="ex2"><h6>Project Status</h6></label>
-      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="project_status">
+      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="project_status" required>
       <option value=""></option>
       <option value="Onhold">Onhold</option>
         <option value="In progress">In Progress</option>
@@ -272,7 +272,7 @@ if (mysqli_num_rows($result) > 0) {
   <div class="form-group row">
     <div class="col-xs-3">
   <label style="color: black;margin-top: 5px;" for="ex2"><h6>Project Type</h6></label>
-      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="projecttype">
+      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="projecttype" required>
       <option value=""></option>
       <option value="Marketing">Marketing</option>
         <option value="Technology">Technology</option>
@@ -281,17 +281,17 @@ if (mysqli_num_rows($result) > 0) {
     </div>
     <div class="col-xs-3">
       <label style="color: black;margin-top: 5px;"><h6>Purchase Order</h6></label>
-      <input type="text" class="form-control" name="purchase_order">
+      <input type="text" class="form-control" name="purchase_order" required>
     </div>
 </div>
 <div class="form-group row">
     <div class="col-xs-3">
   <label style="color: black;margin-top: 5px;"><h6>Account Info</h6></label>
-     <input type="text" class="form-control" name="account_info">
+     <input type="text" class="form-control" name="account_info" required>
     </div>
     <div class="col-xs-3">
         <label style="color: black;"><h6>Billing Rate Type</h6></label>
-        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="billingratetype">
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="billingratetype" required>
           <option value=""></option>
           <option value="Fixed Bid">Fixed Bid</option>
           <option value="Time Only">Time Only</option>
@@ -305,7 +305,7 @@ if (mysqli_num_rows($result) > 0) {
 <div class="form-group row">
   <div class="col-xs-3">
   <label style="color: black;"><h6>NDA</h6></label><br>
-      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="nda">
+      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="nda" required>
         <option value=""></option>
       <option value="Not Started">Not Started</option>
       <option value="In Progress">In Progress</option>
@@ -314,14 +314,14 @@ if (mysqli_num_rows($result) > 0) {
     </div>
      <div class="file-upload-wrapper col-xs-3">
       <label style="color: black;"><h6>Attachment</h6></label>
-  <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" name="attachment">
+  <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" name="attachment" required>
 </div>
 </div>
 
 <div class="form-group row">
   <div class="col-xs-3">
   <label style="color: black;"><h6>MSA</h6></label><br>
-      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="msa">
+      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="msa" required>
         <option value=""></option>
       <option value="Not Started">Not Started</option>
       <option value="In Progress">In Progress</option>
@@ -330,13 +330,13 @@ if (mysqli_num_rows($result) > 0) {
     </div>
     <div class="file-upload-wrapper col-xs-3">
       <label style="color: black;"><h6>Attachment</h6></label>
-  <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" name="attachment">
+  <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" name="attachment" required> 
 </div>
 </div>
 <div class="form-group row">
   <div class="col-xs-3">
   <label style="color: black;"><h6>SOW</h6></label><br>
-      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="sow">
+      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="sow" required>
         <option value=""></option>
       <option value="Not Started">Not Started</option>
       <option value="In Progress">In Progress</option>
@@ -345,7 +345,7 @@ if (mysqli_num_rows($result) > 0) {
     </div>
     <div class="file-upload-wrapper col-xs-3">
       <label style="color: black;"><h6>Attachment</h6></label>
-  <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" name="attachment">
+  <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" name="attachment" required>
 </div>
 </div>
 
@@ -354,7 +354,7 @@ if (mysqli_num_rows($result) > 0) {
 <div class="form-group row">
   <div class="col-xs-3">
   <label style="color: black;"><h6>Team Members</h6></label><br>
-        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="teammembers">
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="teammembers" required>
           <option></option>
                      <?php
     $sql = "SELECT * from employee";
@@ -369,7 +369,7 @@ if (mysqli_num_rows($result) > 0) {
     </div>
      <div class="col-xs-3">
       <label style="color: black;"><h6>User Role</h6></label>
-       <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="userrole">
+       <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="userrole" required>
           <option></option>
           <option value="employees">Employees</option>
           <option value="clientmanager">Client Manager</option>
@@ -384,11 +384,11 @@ if (mysqli_num_rows($result) > 0) {
 <div class="form-group row">
     <div class="col-xs-3">
       <label style="color: black;"><h6>Billing Rate</h6></label>
-  <input type="text" class="form-control" name="billingrate">
+  <input type="text" class="form-control" name="billingrate" required>
 </div>
 <div class="col-xs-3">
   <label style="color: black;"><h6>Billing Currency</h6></label><br>
-      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="billingcurrency">
+      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="billingcurrency" required>
         <option value=""></option>
       <option value="AUD">AUD</option>
       <option value="CAD">CAD</option>

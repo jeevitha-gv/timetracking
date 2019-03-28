@@ -81,11 +81,11 @@ body {
         <div class="form-group row">
       <div class="col-xs-4">
         <label for="ex2" style="color:black;margin-top: 5px;" ><h6>PO Number</h6></label>
-        <input class="form-control" type="text" name="ponumber">
+        <input class="form-control" type="text" name="ponumber" required>
       </div>
        <div class="col-xs-4">
     <label style="color: black;margin-top: 5px;" for="ex2"><h6>Billable</h6></label>
-        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="billable">
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="billable" required>
           <option></option>
           <option value="Both">Both </option>
           <option value="Billable">Billable</option>
@@ -94,7 +94,7 @@ body {
       </div>
       <div class="col-xs-4">
         <label for="ex2" style="color:black;margin-top: 5px;" ><h6>Client Name</h6></label>
-        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="clientname">
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="clientname" required>
           <option></option>
             <?php
             $sql = "SELECT * from client";
@@ -110,7 +110,7 @@ body {
     <div class="form-group row">
       <div class="col-xs-4">
         <label for="ex2" style="color:black;margin-top: 5px;" ><h6>Project Name</h6></label>
-        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="projectname">
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="projectname" required>
           <option></option>
                <?php
                 $sql = "SELECT * from project";
@@ -124,21 +124,21 @@ body {
       </div>
       <div class='col-sm-4'>
         <label for="ex2" style="color: black;"><h6>Invoice Date</h6></label>
-          <input type='date' class="form-control" name="invoicedate">
+          <input type='date' class="form-control" name="invoicedate" required>
       </div>
       <div class='col-sm-4'>
         <label for="ex2" style="color: black;"><h6>Billing Cycle Start Date</h6></label>
-          <input type='date' class="form-control" name="billing_startdate" />
+          <input type='date' class="form-control" name="billing_startdate" required>
       </div>
     </div>
     <div class="form-group row">
         <div class='col-sm-4'>
             <label for="ex2" style="color: black;"><h6>Billing Cycle End Date</h6></label>
-              <input type='date' class="form-control" name="billing_enddate" />                    
+              <input type='date' class="form-control" name="billing_enddate" required>                    
         </div>
         <div class="col-xs-4">
           <label for="ex2" style="color:black;margin-top: 5px;" ><h6>Currency</h6></label>
-            <select class="selectpicker" data-show-subtext="true" name="currency" data-live-search="true" id="type">
+            <select class="selectpicker" data-show-subtext="true" name="currency" data-live-search="true" id="type" required>
               <option></option>
               <option value="AUD">AUD </option>
               <option value="CAD">CAD</option>
@@ -152,7 +152,7 @@ body {
         </div>
         <div class="col-xs-4">
         <label for="ex2" style="color:black;margin-top: 5px;" ><h6>Tax 1</h6></label>
-         <select class="selectpicker" data-show-subtext="true" name="tax1" data-live-search="true" id="type">
+         <select class="selectpicker" data-show-subtext="true" name="tax1" data-live-search="true" id="type" required>
             <option></option>
             <option value="GST">GST</option>
             <option value="Hotel_tax">Hotel Tax</option>
@@ -165,7 +165,7 @@ body {
     <div class="form-group row">
       <div class="col-xs-4">
         <label for="ex2" style="color:black;margin-top: 5px;" ><h6>Group Timesheet Billing List By</h6></label>
-        <select class="selectpicker" data-show-subtext="true" name="group_timesheet" data-live-search="true" id="type">
+        <select class="selectpicker" data-show-subtext="true" name="group_timesheet" data-live-search="true" id="type" required>
           <option></option>
           <option value="Task">Task </option>
           <option value="Time Entry">Time Entry</option>
@@ -174,7 +174,7 @@ body {
       </div>
       <div class="col-xs-4">
       <label for="ex2" style="color:black;margin-top: 5px;" ><h6>Group Expense Billing List By</h6></label>
-      <select class="selectpicker" data-show-subtext="true" name="group_expense" data-live-search="true" id="type">
+      <select class="selectpicker" data-show-subtext="true" name="group_expense" data-live-search="true" id="type" required>
         <option></option>
         <option value="Expense Name">Expense Name </option>
         <option value="Expense Entry">Expense Entry</option>
@@ -182,7 +182,7 @@ body {
       </div>
       <div class="col-xs-4">
         <label style="color: black;margin-top: 5px;" for="ex2"><h6>Discount Calculation By</h6></label>
-          <select class="selectpicker" data-show-subtext="true" name="discount_calculation" data-live-search="true" id="type">
+          <select class="selectpicker" data-show-subtext="true" name="discount_calculation" data-live-search="true" id="type" required>
             <option></option>
             <option value="Percentage">Percentage </option>
             <option value="Fixed Amount">Fixed Amount</option>

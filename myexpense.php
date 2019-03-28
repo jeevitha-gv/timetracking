@@ -117,7 +117,7 @@ if (isset($_POST['submit'])) {
       <div class="form-group" style="width: 556px;">
       <span class="required" style="color: red;"> <label  for="usr" style="color: gray;">Client Name:</label></span>
       <br>
-      <select  class="selectpicker form-control" data-show-subtext="true" data-live-search="true" id="type" name="clientname">
+      <select  class="selectpicker form-control" data-show-subtext="true" data-live-search="true" id="type" name="clientname" required>
                            <?php
     $sql = "SELECT * from client";
 $result = mysqli_query($con, $sql);
@@ -184,7 +184,7 @@ if (mysqli_num_rows($result) > 0) {
       </div>
       <div class="col-xs-2">
          <label><h5>Patment Method</h5></label>
-        <select class="selectpicker form-control" data-show-subtext="true" data-live-search="true" id="type" name="paymentmethod">
+        <select class="selectpicker form-control" data-show-subtext="true" data-live-search="true" id="type" name="paymentmethod" required>
       <option value="American Express">American Express</option>
       <option value="Cash">Cash</option>
       <option value="Master Card">Master Card</option>
@@ -193,7 +193,7 @@ if (mysqli_num_rows($result) > 0) {
       </div>
       <div class="col-xs-2">
          <label><h5>Currency</h5></label>
-        <select class="selectpicker form-control" data-show-subtext="true" data-live-search="true" data-size="5" name="currency">
+        <select class="selectpicker form-control" data-show-subtext="true" data-live-search="true" data-size="5" name="currency" required>
           <option value="INR">INR</option>
       <option value="AUD">AUD</option>
       <option value="CAD">CAD</option>
@@ -208,13 +208,13 @@ if (mysqli_num_rows($result) > 0) {
   <div class="form-group row">
       <div class="col-xs-2">
        <label for="ex1" style="color: black;"><h6>Expense Entry Date</h6></label> 
-                    <input type='date' class="form-control" name="expenseentrydate" >
+                    <input type='date' class="form-control" name="expenseentrydate" required>
 
       </div>
       <div class="col-xs-2">
         <label for="ex1" style="color: black;"><h6>Billable</h6></label><br>
         <label class="switch">
-  <input type="checkbox" name="billable">
+  <input type="checkbox" name="billable" required>
   <span class="slider"></span>
 </label>
 </div>
@@ -233,7 +233,7 @@ if (mysqli_num_rows($result) > 0) {
       </div>
       <div class="col-xs-3">
         <label for="ex2" style="color: black;"><h6>Tax Zone</h6></label>
-         <select class="selectpicker form-control" data-show-subtext="true" data-live-search="true" name="taxzone">
+         <select class="selectpicker form-control" data-show-subtext="true" data-live-search="true" name="taxzone" required>
           <option value="default">Default</option>
          </select>
       </div>
@@ -241,11 +241,11 @@ if (mysqli_num_rows($result) > 0) {
   <div class="form-group row">
       <div class="col-xs-3">
         <label for="ex1" style="color: black;"><h6>Tax</h6></label>
-        <input class="form-control" id="ex1" type="text" name="tax">
+        <input class="form-control" id="ex1" type="text" name="tax" required>
       </div>
       <div class="col-xs-3">
         <label for="ex2" style="color: black;"><h6>Amount</h6></label>
-        <input class="form-control" id="ex1" type="text" name="amount">
+        <input class="form-control" id="ex1" type="text" name="amount" required>
     </div>
   </div>
 
@@ -256,13 +256,13 @@ if (mysqli_num_rows($result) > 0) {
      
 <div style="margin-top: 5px;" class="form-group">
       <label style="color: gray;" for="comment">Description</label>
-      <textarea style="width: 550px;" class="form-control" rows="5" name="description"></textarea>
+      <textarea style="width: 550px;" class="form-control" rows="5" name="description" required></textarea>
     </div>
 
 </div>
 <div id="Attachment" class="tab-pane fade">
   <div style="margin-top: 30px;" class="file-upload-wrapper">
-  <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" name="attachment">
+  <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" name="attachment" required>
 </div>
 </div>
 

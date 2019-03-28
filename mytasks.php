@@ -112,7 +112,7 @@ if($_POST)
       <span style="width: 900px;"  class="required" style="color: red;"> <label  for="usr" style="color: gray;">Project Name:</label></span>
       <br>
         
-      <select  class="selectpicker form-control" data-show-subtext="true" data-live-search="true" name="projectname">
+      <select  class="selectpicker form-control" data-show-subtext="true" data-live-search="true" name="projectname" required>
         <option></option>
         <?php
  $sql = "SELECT * from project";
@@ -127,7 +127,7 @@ if (mysqli_num_rows($result) > 0) {
     </div>
     <div class="form-group">
       <span class="required" style="color: red;"></span> <label for="usr" style="color: gray;">Task Name:</label>
-      <input type="text" class="form-control" name="taskname">
+      <input type="text" class="form-control" name="taskname" required>
     </div>
     <div class="container">
   <ul style="width: 57%;" class="nav nav-tabs" style="width: 100px;">
@@ -144,7 +144,7 @@ if (mysqli_num_rows($result) > 0) {
       <div class="form-group row">
       <div class="col-xs-3">
         <label for="ex1" style="color: black;"><h6>Task Type</h6></label>
-        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="tasktype">
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="tasktype" required>
       <option value="Task">Task</option>
       <option value="Bug">Bug</option>
       <option value="Issue">Issue</option>
@@ -158,7 +158,7 @@ if (mysqli_num_rows($result) > 0) {
   <div class="form-group row">
       <div class="col-xs-3">
         <label for="ex1" style="color: black;"><h6>Priority</h6></label><br>
-        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="priority">
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="priority" required>
       <option value="Urgent">Urgent</option>
       <option value="High">High</option>
       <option value="Medium">Medium</option>
@@ -167,7 +167,7 @@ if (mysqli_num_rows($result) > 0) {
       </div>
       <div class="col-xs-3">
         <label for="ex2" style="color: black;"><h6>Task Status</h6></label>
-        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="taskstatus">
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="taskstatus" required>
       <option value="Started">Started</option>
       <option value="OnHold">OnHold</option>
       <option value="In Progress">In Progress</option>
@@ -183,7 +183,7 @@ if (mysqli_num_rows($result) > 0) {
         <label for="ex2" style="color: black;"><h6><b>Total Members</b></h6></label><br><br>
       <div class="col-xs-5">
       
-      <select  class="selectpicker form-control" data-show-subtext="true" data-live-search="true" multiple="" name="totalmembers[]">
+      <select  class="selectpicker form-control" data-show-subtext="true" data-live-search="true" multiple="" name="totalmembers[]" required>
         <option></option>
 <?php
 $sql = "SELECT * from employee";
@@ -205,12 +205,12 @@ while($row = mysqli_fetch_array($result))
       <div class="form-group row">
         <div class='col-sm-2'>
           <label for="ex2" style="color: black;"><h6>Start Date</h6></label>
-                    <input type='date' class="form-control" name="startdate">
+                    <input type='date' class="form-control" name="startdate" required>
           </div>
           <div style="margin-left: 150px;" class='col-sm-2'>
             <label for="ex2" style="color: black;"><h6>End Date</h6></label>
             
-                    <input type='date' class="form-control" name="enddate">
+                    <input type='date' class="form-control" name="enddate" required>
                    
               
           </div>
@@ -223,7 +223,7 @@ while($row = mysqli_fetch_array($result))
   <div class="form-group row">
       <div class="col-xs-3">
        <label for="ex2" style="color: black;"><h6>Work Type</h6></label>
-        <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="worktype">
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="worktype" required>
       <option value="Standaerd">Standaerd</option>
        <option value="Overtime">Overtime</option>
         <option value="Travel">Travel</option>
@@ -234,7 +234,7 @@ while($row = mysqli_fetch_array($result))
 <label for="ex2" style="color: black;"><h6>Billable</h6></label>
 <br>
   <label style="margin-top: 0px;" class="switch">
-  <input type="checkbox" check name="billable">
+  <input type="checkbox" check name="billable" required>
   <span class="slider"></span>
 </label>
       </div>
@@ -244,13 +244,13 @@ while($row = mysqli_fetch_array($result))
       <div class="col-sm-3">
         <label for="ex2" style="color: black;"><h6>Billing start Date</h6></label>
            
-                    <input type='date' class="form-control" name="billingdate">
+                    <input type='date' class="form-control" name="billingdate" required>
                     
                
             </div>
       <div class="col-sm-3">
         <label for="ex2" style="color: black;"><h6>Billing end Date</h6></label>
-            <input type='date' class="form-control" name="billingenddate">
+            <input type='date' class="form-control" name="billingenddate" required>
         
       </div>
   </div>
@@ -258,7 +258,7 @@ while($row = mysqli_fetch_array($result))
   <div class="form-group row">
       <div class="col-sm-3">
         <label style="color: black;margin-top: 5px;" for="ex2"><h6>Developers Rate Currency</h6></label>
-     <select class="selectpicker" data-show-subtext="true" name="developerscurrency">
+     <select class="selectpicker" data-show-subtext="true" name="developerscurrency" required>
            <option value="AUD">AUD</option>
       <option value="CAD">CAD</option>
       <option value="CHF">CHF</option>
@@ -273,7 +273,7 @@ while($row = mysqli_fetch_array($result))
       <div class="col-sm-3">
         
         <label for="ex1" style="color: black;"><h6>Developers Rate</h6></label>
-        <input class="form-control" id="ex1" type="text" name="developersrate">
+        <input class="form-control" id="ex1" type="text" name="developersrate" required>
 
       </div>
   </div>
@@ -281,7 +281,7 @@ while($row = mysqli_fetch_array($result))
       <div class="col-sm-3">
         
         <label style="color: black;margin-top: 5px;" for="ex2"><h6>Billing Rate Currency</h6></label>
-      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="fixedbidbillingmode" name="billingratecurrency">
+      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="fixedbidbillingmode" name="billingratecurrency" required>
        <option value="AUD">AUD</option>
       <option value="CAD">CAD</option>
       <option value="CHF">CHF</option>
@@ -296,7 +296,7 @@ while($row = mysqli_fetch_array($result))
       </div>
       <div class="col-sm-3">
          <label for="ex1" style="color: black;"><h6>Billing Rate</h6></label>
-        <input class="form-control" id="ex1" type="text" name="billingrate">
+        <input class="form-control" id="ex1" type="text" name="billingrate" required>
       </div>
   </div>
 
@@ -306,7 +306,7 @@ while($row = mysqli_fetch_array($result))
     <div class="form-group row">
       <div class="col-xs-3">
         <label for="ex1" style="color: black;"><h6>Parent Task</h6></label>
-         <input class="form-control" id="ex1" type="text" name="parenttask">
+         <input class="form-control" id="ex1" type="text" name="parenttask" required>
          
       </div>
      <!--  <div class="col-xs-3">
@@ -320,7 +320,7 @@ while($row = mysqli_fetch_array($result))
   <div class="form-group row">
     <div class="col-xs-3">
   <label style="color: black;margin-top: 5px;" for="ex2"><h6>Estimated Cost Currency</h6></label>
-      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="fixedbidbillingmode" name="estimatedcurrency">
+      <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="fixedbidbillingmode" name="estimatedcurrency" required>
        <option value="AUD">AUD</option>
       <option value="CAD">CAD</option>
       <option value="CHF">CHF</option>
@@ -335,18 +335,18 @@ while($row = mysqli_fetch_array($result))
 
     <div class="col-xs-3">
      <label for="ex1" style="color: black;"><h6>Estimated Cost</h6></label>
-        <input class="form-control" id="ex1" type="text" name="estimatedcost">
+        <input class="form-control" id="ex1" type="text" name="estimatedcost" required>
     </div>
 </div>
 
 <div class="form-group row">
 <div class="col-sm-3">
          <label for="ex1" style="color: black;"><h6>Estimated Time(Hours)</h6></label>
-        <input class="form-control" id="ex1" type="text" name="estimatedtime">
+        <input class="form-control" id="ex1" type="text" name="estimatedtime" required>
       </div>
       <div class="col-sm-3">
          <label for="ex1" style="color: black;"><h6>Duration Hours</h6></label>
-        <input class="form-control" id="ex1" type="text" name="durationhour">
+        <input class="form-control" id="ex1" type="text" name="durationhour" required>
       </div>
 
 </div>
@@ -366,13 +366,13 @@ while($row = mysqli_fetch_array($result))
 <div class="form-group row">
   <div class="form-group">
       <label for="comment">Comment:</label>
-      <textarea class="form-control" rows="3" id="comment" style="width: 650px;" name="comment"></textarea>
+      <textarea class="form-control" rows="3" id="comment" style="width: 650px;" name="comment" required></textarea>
     </div>
 </div>
 <div class="form-group row">
 	<div class="col-sm-3">
          <label for="ex1" style="color: black;"><h6>Completed(%)</h6></label>
-         <input class="form-control" id="ex1" type="text" name="completed">
+         <input class="form-control" id="ex1" type="text" name="completed" required>
     </div>
     <div class="col-xs-3">
         <label for="ex2" style="color: black;"><h6>Completed</h6></label>
@@ -399,7 +399,7 @@ while($row = mysqli_fetch_array($result))
 <div id="attachment" class="tab-pane fade">
 
 <div style="margin-top: 30px;" class="file-upload-wrapper">
-  <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" name="attachment">
+  <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" name="attachment" required>
 </div>
 
 </div>
