@@ -46,7 +46,7 @@ require_once "functions.php";
       <div class="modal-body">
         <div class="form-group">
       <span class="required" style="color: red;">*</span> <label for="usr" style="color: gray;">Client Name:</label>
-      <input type="text" class="form-control" id="usr" name="clientname">
+      <input type="text" class="form-control" id="usr" name="clientname" required>
     </div>
     <div class="container">
   <ul style="width: 50%;" class="nav nav-tabs" style="width: 100px;">
@@ -59,21 +59,21 @@ require_once "functions.php";
       <div class="form-group row">
       <div class="col-xs-3">
         <label for="ex1" style="color: black;"><h6>Client Nick</h6></label>
-        <input class="form-control" id="ex1" type="text" name="clientnick">
+        <input class="form-control" id="ex1" type="text" name="clientnick" required>
       </div>
       <div class="col-xs-3">
         <label for="ex2" style="color: black;"><h6>Email Address</h6></label>
-        <input class="form-control" id="ex2" type="email" name="email">
+        <input class="form-control" id="ex2" type="email" name="email" required>
       </div>
   </div>
   <div class="form-group row">
       <div class="col-xs-3">
         <label for="ex1" style="color: black;"><h6>Website</h6></label>
-        <input class="form-control" id="ex1" type="text" name="website">
+        <input class="form-control" id="ex1" type="text" name="website" required>
       </div>
       <div class="col-xs-3">
         <label for="ex2" style="color: black;"><h6>Client Manager</h6></label>
-        <input class="form-control" id="ex2" type="text" name="clientmanager">
+        <input class="form-control" id="ex2" type="text" name="clientmanager" required>
       </div>
   </div>
 </div>
@@ -81,7 +81,7 @@ require_once "functions.php";
 <div id="notes" class="tab-pane fade">
   <div class="form-group">
       <label style="color: gray;" for="comment">Notes</label>
-      <textarea style="width: 550px;" class="form-control" rows="5" id="comment" name="notes"></textarea>
+      <textarea style="width: 550px;" class="form-control" rows="5" id="comment" name="notes" required></textarea>
     </div>
 </div>
 
@@ -89,11 +89,11 @@ require_once "functions.php";
       <div class="form-group row">
       <div class="col-xs-3">
         <label for="ex1" style="color: black;"><h6>Client Manager Name</h6></label>
-        <input class="form-control" type="text" name="clientmanagername">
+        <input class="form-control" type="text" name="clientmanagername" required>
       </div>
       <div class="col-xs-3">
         <label for="ex2" style="color: black;"><h6>Client Manager Email</h6></label>
-        <input class="form-control" type="email" name="clientmanageremail">
+        <input class="form-control" type="email" name="clientmanageremail" required>
       </div>
   </div>
   <div class="form-group row">
@@ -103,17 +103,17 @@ require_once "functions.php";
       </div>
       <div class="col-xs-3">
         <label for="ex2" style="color: black;"><h6>Client Manager Department</h6></label>
-        <input class="form-control" type="text" name="clientmanagerdept">
+        <input class="form-control" type="text" name="clientmanagerdept" required>
       </div>
   </div>
   <div class="form-group row">
       <div class="col-xs-3">
         <label for="ex1" style="color: black;"><h6>Client Manger Role</h6></label>
-        <input class="form-control" type="text" name="clientmanagerrole">
+        <input class="form-control" type="text" name="clientmanagerrole" required>
       </div>
       <div class="col-xs-3">
         <label for="ex2" style="color: black;"><h6>Comments</h6></label>
-        <input class="form-control" type="text" name="comments">
+        <input class="form-control" type="text" name="comments" required>
       </div>
   </div>
 </div>

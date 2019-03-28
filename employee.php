@@ -98,7 +98,7 @@ body {
         <div class="modal-body">
        <div class="form-group" style="width: 85%">
       <label for="email">Email Address</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
     </div>
         <div class="container">
   <ul style="width: 50%;" class="nav nav-tabs" style="width: 100px;">
@@ -117,32 +117,32 @@ body {
       </div>
       <div class="col-xs-4">
         <label for="ex2" style="color: black;"><h6>Firstname</h6></label>
-        <input class="form-control" id="ex2" type="text" name="firstname">
+        <input class="form-control" id="ex2" type="text" name="firstname" required>
       </div>
       <div class="col-xs-4">
         <label for="ex1" style="color: black;"><h6>Middlename</h6></label>
-        <input class="form-control" id="ex3" type="text" name="middlename">
+        <input class="form-control" id="ex3" type="text" name="middlename" required>
       </div>
   </div>
   <div class="form-group row">
       <div class="col-xs-4">
         <label for="ex1" style="color: black;"><h6>Lastname</h6></label>
-        <input class="form-control" id="lname" type="text" name="lastname">
+        <input class="form-control" id="lname" type="text" name="lastname" required>
       </div>
       <div class="col-xs-4">
         <label for="ex2" style="color: black;"><h6>Password</h6></label>
-        <input class="form-control" id="pwd" type="password" name="password">
+        <input class="form-control" id="pwd" type="password" name="password" required>
       </div>
       <div class="col-xs-4">
         <label for="ex2" style="color: black;"><h6>VerifyPassword</h6></label>
-        <input class="form-control" id="vpwd" type="password" name="vpassword">
+        <input class="form-control" id="vpwd" type="password" name="vpassword" required>
       </div>
   </div>
 
  <div class="form-group row">
         <div class="col-xs-4">
     <label style="color: black;margin-top: 5px;" for="ex2"><h6>Role</h6></label>
-        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="role">
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="role" required>
         <option value="Employees">Employees</option>
         <option vallue="Project Manager">Project Manager</option>
         <option vallue="Client Manager">Client Manager</option>
@@ -151,7 +151,7 @@ body {
     </div>
     <div class="col-xs-4">
     <label style="color: black;margin-top: 5px;" for="ex2"><h6>Department</h6></label>
-        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="department">
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="department" required>
         <option>Default Department</option>
         <option value="Marketing">Marketing</option>
         <option value="Sales">Sales</option>
@@ -164,7 +164,7 @@ body {
     </div>
     <div class="col-xs-2">
     <label style="color: black;margin-top: 5px;" for="ex2"><h6>Location</h6></label>
-        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="location">
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="location" required>
         <option>Default Location</option>
         <option value="Delhi">Delhi</option>
         <option value="Chennai">Chennai</option>
@@ -185,26 +185,26 @@ body {
         <div class="form-group row">
       <div class="col-xs-4">
         <label for="ex1" style="color: black;"><h6>Address1</h6></label>
-        <input class="form-control" id="ex1" type="text" name="address1">
+        <input class="form-control" id="ex1" type="text" name="address1" required>
       </div>
       <div class="col-xs-4">
         <label for="ex2" style="color: black;"><h6>Address2</h6></label>
-        <input class="form-control" id="ex2" type="text" name="address2">
+        <input class="form-control" id="ex2" type="text" name="address2" required>
       </div>
 
       <div class="col-xs-4">
         <label for="ex2" style="color: black;"><h6>City</h6></label>
-        <input class="form-control" id="ex2" type="text" name="city">
+        <input class="form-control" id="ex2" type="text" name="city" required>
       </div>
   </div>
    <div class="form-group row">
       <div class="col-xs-4">
         <label for="ex1" style="color: black;"><h6>State</h6></label>
-        <input class="form-control" id="ex1" type="text" name="state">
+        <input class="form-control" id="ex1" type="text" name="state" required>
       </div>
        <div class="col-xs-4">
     <label style="color: black;margin-top: 5px;" for="ex2"><h6>Country</h6></label>
-  <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="counrty">
+  <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="counrty" required>
     <option value="AF">Afghanistan</option>
     <option value="AL">Albania</option>
     <option value="DZ">Algeria</option>
@@ -287,21 +287,21 @@ body {
     </div>
       <div class="col-xs-4">
         <label for="ex2" style="color: black;"><h6>Zip code</h6></label>
-        <input class="form-control" id="ex2" type="text" name="zipcode">
+        <input class="form-control" id="ex2" type="text" name="zipcode" required>
       </div>
   </div>
   <div class="form-group row">
       <div class="col-xs-4">
         <label for="ex1" style="color: black;"><h6>Phone No.1</h6></label>
-        <input class="form-control" id="ex1" type="text" name="phone1">
+        <input class="form-control" id="ex1" type="text" name="phone1" required>
       </div>
       <div class="col-xs-4">
         <label for="ex2" style="color: black;"><h6>Phone No.2</h6></label>
-        <input class="form-control" id="ex2" type="text" name="phone2">
+        <input class="form-control" id="ex2" type="text" name="phone2" required>
       </div>
       <div class="col-xs-4">
         <label for="ex2" style="color: black;"><h6>Fax</h6></label>
-        <input class="form-control" id="ex2" type="text" name="fax">
+        <input class="form-control" id="ex2" type="text" name="fax" required>
       </div>
   </div>
   <div class="form-group row">
@@ -315,7 +315,7 @@ body {
 
     <div class="col-xs-4">
     <label style="color: black;margin-top: 5px;" for="ex2"><h6>Employee Manager</h6></label>
-        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="manager">
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="manager" required>
           <option></option>
            <?php
     $sql = "SELECT * from employee";
