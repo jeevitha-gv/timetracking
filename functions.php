@@ -380,8 +380,12 @@ function final_invoice()
     GLOBAL $con;
     if(isset($_POST['submit'])){
         $userid = $_POST['userid'];
+        $projectname = $_POST['projectname'];
+        $clientname = $_POST['clientname'];
+        $invoicedate = $_POST['invoicedate'];
         $sub_total = $_POST['sub_total'];
         $discount = $_POST['discount'];
+        $total = $_POST['total'];
         $tax = $_POST['tax'];
         $grand_total = $_POST['grand_total'];
         $t_description = $_POST['t_description'];
@@ -393,10 +397,10 @@ function final_invoice()
         $e_billed_amount = $_POST['e_billed_amount'];
         $description = $_POST['description'];
 
-        $sql = "INSERT INTO `final_invoice`(`userid`, `sub_total`, `discount`, `tax`, `grand_total`, `t_description`, `t_bill_rate`, `t_bill_hours`, `t_total`, `e_employeename`, `e_expensename`, `e_billed_amount`, `description`) VALUES ('$userid','$sub_total','$discount','$tax','$grand_total','$t_description','$t_bill_rate','$t_bill_hours','$t_total','$e_employeename','$e_expensename','$e_billed_amount','$description')";
+        $sql = "INSERT INTO `final_invoice`(`userid`, `projectname`, `clientname`, `invoicedate`, `sub_total`, `discount`, `total`, `tax`, `grand_total`, `t_description`, `t_bill_rate`, `t_bill_hours`, `t_total`, `e_employeename`, `e_expensename`, `e_billed_amount`, `description`) VALUES ('$userid','$projectname', '$clientname', '$invoicedate' ,'$sub_total','$discount','$total','$tax','$grand_total','$t_description','$t_bill_rate','$t_bill_hours','$t_total','$e_employeename','$e_expensename','$e_billed_amount','$description')";
 
         if(mysqli_query($con,$sql)){
-            header("Location: final.php");
+            header("Location: final_invoice.php");
         }
         else{
             echo "Error : ".$sql."<br>" . mysqli_error($con);

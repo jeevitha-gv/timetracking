@@ -104,6 +104,13 @@ th
 </head>
 <body style="">
   
+  <?php
+  if($_POST)
+  {
+    final_invoice();
+  }
+  ?>
+  
   <form action="" method="post">
     <div class="col-md-12">
     <?php
@@ -114,6 +121,9 @@ if (mysqli_num_rows($result) > 0) {
   while($row = mysqli_fetch_array($result))
 {  ?>     
     <input type="hidden" name="userid" value="<?php echo $row['invoiceno'];?>">
+    <input type="hidden" name="projectname" value="<?php echo $row['projectname'];?>">
+    <input type="hidden" name="clientname" value="<?php echo $row['clientname'];?>">
+    <input type="hidden" name="invoicedate" value="<?php echo $row['invoicedate'];?>">
     <?php } }else { echo "0 results"; } ?>
 <div class="container-fluid">
   <h4 style="color:#a3a19b;"><a href="dashboard.php">Dashboard</a> : <a href="billing.php">Billing</a> : <a href="invoicemanagement.php">Time & Expense Billing</a> : Account Invoice Form</h4>
@@ -133,7 +143,7 @@ if (mysqli_num_rows($result) > 0) {
      </div>
       <div class="col-xs-2">
         <label style="color:black;margin-top: 65px;margin-left: 40px;" ><h4> <i class="fa fa-money"></i> Discount Amount</h4>
-         <input type="float" class="form-control" id="total" onkeyup="getPrice();"></label>
+         <input type="float" class="form-control" id="total" name="total" onkeyup="getPrice();"></label>
       </div>
       <div class="col-xs-2">
         <label style="color:black;margin-top: 65px;margin-left: 40px;"><h4><i class="fa fa-calendar"></i> Tax</h4>
