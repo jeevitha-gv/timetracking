@@ -40,19 +40,58 @@ include "functions.php";
 <div class="container" id="element-to-print"><br><br>
 	<h2>TNE Trackers</h2><br><br>
 	<div class="col-md-3" style="margin-left: 50%;">
-		<label>Invoice</label>
-		<input type="text" class="form-control" style="border: 0px;">
+		<label>Invoice Number</label>
+		<?php
+		$var = $_GET['userid'];
+		 $sql = "SELECT id,CONCAT('I',LPAD(userid,5,'0')) as userid FROM final_invoice WHERE id = $var";
+			$result = mysqli_query($con, $sql);
+			if (mysqli_num_rows($result) > 0) {
+			  while($row = mysqli_fetch_array($result))
+			{  ?>
+		<b><input type="text" class="form-control" value="<?php echo $row['userid'];?>" style="border: 0px;"></b>
+		<?php } }else { echo "0 results"; } ?>
+
+
 		<label>Invoice Date</label>
-		<input type="text" class="form-control" style="border: 0px;">
+		<?php
+		$var = $_GET['userid'];
+		 $sql = "SELECT * FROM final_invoice WHERE id = $var";
+			$result = mysqli_query($con, $sql);
+			if (mysqli_num_rows($result) > 0) {
+			  while($row = mysqli_fetch_array($result))
+			{  ?>
+		<b><input type="text" class="form-control" value="<?php echo $row['invoicedate'];?>" style="border: 0px;"></b>
+		<?php } }else { echo "0 results"; } ?>
+
+
+		
 	</div><br><br>
 	<div class="col-md-12">
 	<div class="col-md-3" style="margin-top: -100px;">
 		<label>Client Name</label>
-		<input type="text" class="form-control" style="border: 0px;">
+		<?php
+		$var = $_GET['userid'];
+		 $sql = "SELECT * FROM final_invoice WHERE id = $var";
+			$result = mysqli_query($con, $sql);
+			if (mysqli_num_rows($result) > 0) {
+			  while($row = mysqli_fetch_array($result))
+			{  ?>
+		<b><input type="text" class="form-control" value="<?php echo $row['clientname'];?>" style="border: 0px;"></b>
+		<?php } }else { echo "0 results"; } ?>
+
 	</div>
 	<div class="col-md-3">
 		<label>Project Name</label>
-		<input type="text" class="form-control" style="border: 0px;">
+		<?php
+		$var = $_GET['userid'];
+		 $sql = "SELECT * FROM final_invoice WHERE id = $var";
+			$result = mysqli_query($con, $sql);
+			if (mysqli_num_rows($result) > 0) {
+			  while($row = mysqli_fetch_array($result))
+			{  ?>
+		<b><input type="text" class="form-control" value="<?php echo $row['projectname'];?>" style="border: 0px;"></b>
+		<?php } }else { echo "0 results"; } ?>
+
 	</div>
 	</div>
 	<div class="col-md-6" style="margin-top: 150px;">
