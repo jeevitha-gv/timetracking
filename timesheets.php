@@ -118,8 +118,8 @@ if (mysqli_num_rows($result) > 0) {
       </div>
 
       <div style="margin-left: 80%;">
-        <input type="button" value="Add Row" onclick="addRow('dataTable')"/>
-        <input type="button" value="Delete Row" onclick="deleteRow('dataTable')">
+        <input type="button" value="Add Row" onclick="addRow('dataTable')" class="btn btn-success">
+        <input type="button" value="Delete Row" onclick="deleteRow('dataTable')" class="btn btn-danger">
       </div>
 
       <div class="container" style="margin-left: -190px;width: 132%;"><br>

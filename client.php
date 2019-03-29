@@ -156,18 +156,9 @@ if (mysqli_num_rows($result) > 0) {
         <td><?php echo $row['clientname'];?></td>
         <td><?php echo $row['email'];?></td>
         <td><?php echo $row['website'];?></td>
-        <td> <div class="btn-group" role="group" area-label="...">
-        <a href="#view<?php echo $row['c_id'];?>" data-toggle="modal"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open" area-hidden="true"></span></button></a>
-        <a href="#edit<?php echo $row['c_id'];?>" data-toggle="modal"><button type="button" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-edit" area-hidden="true"></span></button></a>
-        <a href="#delete<?php echo $row['c_id'];?>" data-toggle="modal"><button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" area-hidden="true"></span></button></a>
-      </div></td>
-
-<!-- View -->
-
-  
-<!-- Edit -->
-
-<!-- Delete -->
+       <td>   
+    <?php echo "<a class='btn btn-danger' onclick=\"return confirm('Delete this record?')\" href=\"client.php?c_id=".$row['c_id']."\"><span class='glyphicon glyphicon-trash'></span></a>" ?>
+     </td>
 
     </tr>  
 <?php } } else { echo "0 results"; } ?>
@@ -198,13 +189,21 @@ if (mysqli_num_rows($result) > 0) {
 </script>
 
 <?php
- if($_POST['delete']){
-     $id=$_POST['id'];
-     $sql = "DELETE FROM client WHERE c_id=".$id;   
+     $c_id=$_GET['c_id'];
+     $sql = "DELETE FROM client WHERE c_id=".$c_id;   
     if (mysqli_query($con, $sql)) {
        header("Location: client.php");
     } else {
        // echo "Error deleting record: " . mysqli_error($con);
     } 
-  }
+
 ?>
+<script>
+    $('a.delete').on('click', function() {
+    var choice = confirm('Do you really want to delete this record?');
+    if(choice === true) {
+        return true;
+    }
+    return false;
+});
+</script>

@@ -446,6 +446,10 @@ if (mysqli_num_rows($result) > 0) {
         <td><?php echo $row['project_status'];?></td>
         <td><?php echo $row['projectmanager'];?></td>
         <td><?php echo $row['clientmanager'];?></td>
+          <td>   
+    <?php echo "<a class='btn btn-danger' onclick=\"return confirm('Delete this record?')\" href=\"projects.php?p_id=".$row['p_id']."\"><span class='glyphicon glyphicon-trash'></span></a>" ?>
+     </td>
+
     </tr>  
 <?php } } else { echo "0 results"; } ?>
     </tbody>
@@ -474,14 +478,23 @@ if (mysqli_num_rows($result) > 0) {
   $('.file_upload').file_upload();
 </script>
 
+
 <?php
- if($_POST['delete']){
-     $id=$_POST['p_id'];
-     $sql = "DELETE FROM project WHERE p_id=".$id;   
+     $p_id=$_GET['p_id'];
+     $sql = "DELETE FROM project WHERE p_id=".$p_id;   
     if (mysqli_query($con, $sql)) {
        header("Location: projects.php");
     } else {
        // echo "Error deleting record: " . mysqli_error($con);
     } 
-  }
+
 ?>
+<script>
+    $('a.delete').on('click', function() {
+    var choice = confirm('Do you really want to delete this record?');
+    if(choice === true) {
+        return true;
+    }
+    return false;
+});
+</script>
