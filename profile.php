@@ -102,9 +102,10 @@ if (mysqli_num_rows($result) > 0) {
         <td><?php echo $row['lname'];?></td>
         <td><?php echo $row['email'];?></td>
         <td><?php echo $row['user_role'];?></td>
-        <td><div class="btn-group" role="group" area-label="...">
-        <a href="profile.php?userid=<?php echo $row['id'];?>" name="delete" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" area-hidden="true" title="Delete"></span></a>
-      </div></td>
+     <td>   
+    <?php echo "<a class='btn btn-danger' onclick=\"return confirm('Delete this record?')\" href=\"profile.php?id=".$row['id']."\"><span class='glyphicon glyphicon-trash'></span></a>" ?>
+     </td>
+
     </tr>  
 <?php } } else { echo "0 results"; } ?>
        </tbody>
@@ -118,13 +119,20 @@ if (mysqli_num_rows($result) > 0) {
 </body>
 </html>
 <?php
-  if($_POST['delete']){
      $id=$_GET['id'];
      $sql = "DELETE FROM signup WHERE id=".$id;   
     if (mysqli_query($con, $sql)) {
        header("Location: profile.php");
     } else {
-       echo "Error deleting record: " . mysqli_error($con);
+       // echo "Error deleting record: " . mysqli_error($con);
     }
-  }
 ?>
+<script>
+    $('a.delete').on('click', function() {
+    var choice = confirm('Do you really want to delete this record?');
+    if(choice === true) {
+        return true;
+    }
+    return false;
+});
+</script>

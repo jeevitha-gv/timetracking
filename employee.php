@@ -371,6 +371,10 @@ if (mysqli_num_rows($result) > 0) {
         <td><?php echo $row['email'];?></td>
         <td><?php echo $row['location'];?></td>
         <td><?php echo $row['department'];?></td>
+         <td>   
+    <?php echo "<a class='btn btn-danger' onclick=\"return confirm('Delete this record?')\" href=\"employee.php?eno=".$row['eno']."\"><span class='glyphicon glyphicon-trash'></span></a>" ?>
+     </td>
+
       </tr>  
 <?php } } else { echo "0 results"; } ?>
     </tbody>
@@ -386,35 +390,21 @@ if (mysqli_num_rows($result) > 0) {
 </html>
 
 <?php
- if($_POST['delete']){
-     $id=$_POST['eno'];
-     $sql = "DELETE FROM employee WHERE eno=".$id;   
+     $eno=$_GET['eno'];
+     $sql = "DELETE FROM employee WHERE eno=".$eno;   
     if (mysqli_query($con, $sql)) {
        header("Location: employee.php");
     } else {
        // echo "Error deleting record: " . mysqli_error($con);
     } 
-  }
+  
 ?>
-
-<!-- 
 <script>
-function myFunction() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }       
-  }
-}
-</script> -->
+    $('a.delete').on('click', function() {
+    var choice = confirm('Do you really want to delete this record?');
+    if(choice === true) {
+        return true;
+    }
+    return false;
+});
+</script>
