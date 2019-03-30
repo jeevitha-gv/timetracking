@@ -355,6 +355,7 @@ if (mysqli_num_rows($result) > 0) {
         <th>Email</th>
         <th>Location</th>
         <th>Department</th>
+        <th>Action</th>
       </tr>
     </thead>
 <?php
