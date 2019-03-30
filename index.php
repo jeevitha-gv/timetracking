@@ -34,7 +34,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 .icon {
   padding: 10px;
-  background: dodgerblue;
+  background: #FF4500;
   color: white;
   min-width: 50px;
   text-align: center;
@@ -66,7 +66,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 </style>
 </head>
-<body  style="background-color: #C9C7C6;">
+<body style="background: -webkit-gradient(linear, left top, left bottom, from(#8BDFFA), to(#334CFC)) fixed;">
 
   <h1 style="margin-left: 40%;">TNE Tracker</h1><br><br>
 <form action ="" method="post">
@@ -85,8 +85,8 @@ body {font-family: Arial, Helvetica, sans-serif;}
         </div>
 
         <label>
-        <input type="checkbox" checked="checked" name="remember" style="width: 40px; height: 20px;">Remember me
-      </label>
+          <input type="checkbox" name="remember" style="width: 40px; height: 20px;">Remember me
+        </label>
 
 <button type="submit" name="login" class="btn btn-success" style="background-color:#6DAA03;  width:50%; margin-left: 70px; margin-top: 10px;">Log In</button>      
 
@@ -96,7 +96,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 </div>
 </form>
 <div style="margin-left: 625px;">
-<p style="margin-top: 10px;">Don't have an account? <a href="signup.php">Sign Up</a> </p>
+<p style="margin-top: 10px;">Don't have an account? <a href="signup.php" style="color:black;"><b>Sign Up</b></a> </p>
 </div>
 </body>
 </html>
