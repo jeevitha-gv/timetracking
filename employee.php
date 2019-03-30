@@ -113,7 +113,7 @@ body {
         <div class="form-group row">
       <div class="col-xs-4">
         <label for="ex1" style="color: black;"><h6>Employeecode</h6></label>
-        <input class="form-control" id="ex1" type="text" name="employeecode" disabled>
+        <input class="form-control" id="ex1" type="text" name="employeecode">
       </div>
       <div class="col-xs-4">
         <label for="ex2" style="color: black;"><h6>Firstname</h6></label>

@@ -32,7 +32,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 .icon {
   padding: 10px;
-  background: dodgerblue;
+  background: #FF4500;
   color: white;
   min-width: 50px;
   text-align: center;
@@ -54,7 +54,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 </style>
 </head>
-<body style="background-color: #C9C7C6;">
+<body style="background: -webkit-gradient(linear, left top, left bottom, from(#8BDFFA), to(#334CFC)) fixed;">
   <h1 style="margin-left: 43%;">TNE Tracker</h1><br>
 <?php
 if($_POST) {
@@ -110,7 +110,7 @@ if($_POST) {
   <button type="submit" name="submit" class="btn btn-success" style="margin-left: 130px;">Signup</button>
   <button type="reset" class="btn btn-danger" style="margin-left: 100px;">Cancel</button><br><br>
 
-              <center>Already have an account <a href="index.php"><h4>Sign In</h4></a></center>
+              <center>Already have an account <a href="index.php" style="color: black;"><h4>Sign In</h4></a></center>
 
 </div>
 </form>

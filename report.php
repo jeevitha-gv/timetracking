@@ -4,7 +4,7 @@ require "header.php";
 ?>
 <html>
 <head>
-  <title>Report Design</title>
+  <title>Add Report</title>
   <style>
 .hr
 {
@@ -17,59 +17,71 @@ require "header.php";
 </style>
 </head>
 <body>
-  
-<div class="panel-default"> 
-<div class="container" style="width:1500px;margin-left:10px;">
-  <h4 style="color: gray;"><a href="dashboard.php">Dashboard</a> : <a href="myreports.php">My Reports</a> : Report Design</h4>
-   <div class="panel panel-default" style="width:100%;height: 900px;">
-    <div class="panel-body" style="color:#4C8EBA "><h5><b>REPORT DEFINITION INFORMATION</b> </h5></div>
-<div style="background-color:#d3d3d3;height:40px;width: 100%;">Report Definition</div>
-    <div class="col-xs-3" style=" margin-left: 400px;"">
-      Report Name<input class="form-control" id="ex1" type="text">
-      </div><br>
-       <div class="col-xs-3" style=" margin-left: 400px;"">
-      Report Description<input class="form-control" id="ex1" type="text">
-      </div><br><br><br><br><br>
-       
-       <div class="col-xs-4" style=" margin-left: 400px;"">
-         Report Category   <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type">
-        <option value="">Administor</option>
-        <option>Approval</option>
-        <option>Attendance</option>
-        <option>Audit Trail</option>
-        <option>Billing</option>
-        <option>Costing</option>
-        <option>Expense Tracking</option>
-      </select>
-      </div><br><br><br>
-      <div class="col-xs-3" style=" margin-left: 400px;">
-      Upload Report Icon <input id="ex1" type="file">
-      </div><br><br><br>
-      <div class="col-xs-3" style=" margin-left: 400px;">
-       <input id="ex1" type="radio">Detailed
-        <input id="ex1" type="radio">Consolidated
-      
-      </div><br><br>
-       <div class="col-xs-3" style=" margin-left: 400px;">
-     Show Company Logo
- <input id="ex1" type="checkbox">
-      </div><br><br>
-  <div class="col-xs-3" style=" margin-left: 400px;"">
-      Report Title<input class="form-control" id="ex1" type="text">
-      </div><br><br><br><br>
-    <div class="col-xs-3" style=" margin-left: 400px;">
-      Report Header<textarea rows="4" cols="50"></textarea>
-      </div><br><br><br><br>
-      <div class="col-xs-3" style=" margin-left: 400px;">
-      Report Footer<textarea rows="4" cols="50"></textarea>
+ <div class="container-fluid">
+   <h4 style="color: gray;"><a href="dashboard.php">Dashboard</a> : <a href="myreports.php">My Reports</a> : Report Design</h4><br>
+   <div class="container-fluid" style="border-style: ridge;"><br>
+     <b style="color: #4C8EBA;">Report Definition Information</b><br><br>
+     <div style="background-color: #d3d3d3;">
+      <b>Report Definition</b><br>
+     </div><br><br>
+     <div class="row">
+     <div class="col-xs-3">
+       <label>Report Name</label>
+       <input type="text" name="report_name" class="form-control">
+     </div>
+     <div class="col-xs-3">
+       <label>Report Description</label>
+       <input type="text" name="report_desc" class="form-control">
+     </div>
+     <div class="col-xs-3">
+       <label>Report Category</label><br>
+       <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="category">
+         <option></option>
+         <option value="Administrator">Administrator</option>
+         <option value="Approval">Approval</option>
+         <option value="Attendance">Attendance</option>
+         <option value="Audit Trail">Audit Trail</option>
+         <option value="Billing">Billing</option>
+         <option value="Costing">Costing</option>
+         <option value="Expense Tracking">Expense Tracking</option>
+       </select>
+     </div>
+     <div class="col-xs-3">
+       <label>Upload Report Icon</label><br>
+       <input type="file" name="upload" class="form-control">
+     </div>
+     </div><br><br>
+     <div class="row">
+       <div class="col-xs-4">
+         <input type="radio" name="report" value="Detailed" checked><label>Detailed</label>
+         <input type="radio" name="report" value="Consolidated"><label>Consolidated</label><br>
+       </div>
+       <div class="col-xs-4">
+         <label>Show Company Logo</label>
+         <input type="checkbox" class="form-check-input" name="logo">
+       </div>
+       <div class="col-xs-4">
+        <label>Report Title</label>
+        <input type="text" name="title" class="form-control">
       </div>
-     
-          </div>
-   </div>       
-</div>
-  </div>
-</div>
- <a  href="reportdesign.php" type="button"class="btn btn-success"   style="background-color:#00C084;float:right;">Next</a>
+     </div><br><br>
+     <div class="row">
+       <div class="col-xs-6">
+         <label>Report Header</label>
+         <textarea class="form-control" name="header"></textarea>
+       </div>
+       <div class="col-xs-6">
+         <label>Report Footer</label>
+         <textarea class="form-control" name="footer"></textarea>
+       </div>
+     </div><br><br>
+     <div class="row" style="float: right;">
+       <div class="col-xs-3">
+          <a href="reportdesign.php"><input type="submit" class="btn btn-success" name="next" value="Next"></a>
+        </div><br><br>
+     </div>
+   </div>
+ </div>
 </body>
 </html>
 
