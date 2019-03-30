@@ -430,6 +430,7 @@ if (mysqli_num_rows($result) > 0) {
         <th>Project Status</th>
         <th>Project Manager</th>
         <th>Client Manager</th>
+        <th>Action</th>
       </tr>
     </thead>
 <?php
