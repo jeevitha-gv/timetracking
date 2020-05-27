@@ -1,3 +1,7 @@
+<?php
+session_start();
+ob_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -395,27 +399,24 @@ a{
          
          <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
             <ul class="nav sidebar-nav">
-               <li class="sidebar-brand">
-                  <a href=""> Fixnix </a>
-               </li>
-               <li>
-                  <a href="dashboard.php"><i class="glyphicon glyphicon-home"></i> Dashboard</a>
-               </li>
-               <li>
-                  <a href="mytasks.php"><i class="fa fa-list"> My Task</i></a>
-               </li>
-               <li>
-                  <a href="timesheets.php"><i class="glyphicon glyphicon-time"></i> My Timesheet</a>
-               </li>
-               <li>
-                  <a href="myexpense.php"><i class="glyphicon glyphicon-usd"></i> My Expenses</a>
-               </li>
-               <li>
-                  <a href="myreports.php"><i class="fa fa-bar-chart"></i> My Reports</a>
-               </li>
-               <li>
-                  <a href="approval.php"><i class="fa fa-list"> My Approvals</i></a>
-               </li>
+                <?php if($_SESSION['user_role'] == "employee" || $_SESSION['user_role'] == "admin" || $_SESSION['user_role'] =="client" || $_SESSION['user_role']=="project"){ ?>
+               <li class="sidebar-brand"><a href=""> Fixnix </a></li>
+           <?php } ?>
+           <?php if($_SESSION['user_role'] == "employee" || $_SESSION['user_role'] == "admin" || $_SESSION['user_role'] =="client" || $_SESSION['user_role']=="project"){ ?>
+               <li><a href="dashboard.php"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
+           <?php }?>
+           <?php if($_SESSION['user_role'] == "employee" || $_SESSION['user_role'] == "admin" || $_SESSION['user_role']=="project"){ ?>
+               <li><a href="timesheets.php"><i class="glyphicon glyphicon-time"></i> My Timesheet</a></li>
+           <?php } ?>
+           <?php if($_SESSION['user_role'] == "employee" || $_SESSION['user_role'] == "admin" || $_SESSION['user_role']=="project"){ ?>
+               <li><a href="myexpense.php"><i class="glyphicon glyphicon-usd"></i> My Expenses</a></li>
+           <?php }?>
+           <?php if($_SESSION['user_role'] == "admin"){ ?>
+               <li><a href="approval.php"><i class="fa fa-bar-chart"></i> My Approvals</a></li>
+           <?php }?>
+           <?php if($_SESSION['user_role'] == "employee" || $_SESSION['user_role'] == "admin" || $_SESSION['user_role'] == "client" || $_SESSION['user_role'] == "project"){ ?>
+               <li><a href="myreports.php"><i class="fa fa-list"> My Reports</i></a></li>
+           <?php } ?>
             </ul>
          </nav>
          <div id="page-content-wrapper">
@@ -428,12 +429,27 @@ a{
   <div class="container-fluid">
     <div class="navbar-header">
     </div>
-    <ul class="nav navbar-nav" style="margin-top: 0px;margin-left: 20px;  ">
-      <li><a href="client.php">Client</a></li>
-      <li><a href="projects.php">Projects</a></li>
+    <ul class="nav navbar-nav" style="margin-top: 0px;margin-left: 20px;">
+        <?php if($_SESSION['user_role'] == "admin"){ ?>
       <li><a href="employee.php">Employees</a></li>
+<?php } ?>
+<?php if($_SESSION['user_role'] == "client" || $_SESSION['user_role'] == "admin"){ ?>
+      <li><a href="client.php"> Client</a></li>
+<?php } ?>
+<?php if($_SESSION['user_role'] == "project" || $_SESSION['user_role'] == "admin"){ ?>
+      <li><a href="projects.php">Projects</a></li>
+      <li><a href="mytasks.php">Tasks</a></li>
+<?php } ?>
+<?php if($_SESSION['user_role'] == "admin") { ?>
       <li><a href="billing.php">Billing</a></li>
+      <li><a href="profile.php"><span class="glyphicon glyphicon-user" title="Profile"></span></a></li>
+<?php } ?>
     </ul>
+
+    <h4 style="color: #dddddd; margin-left: 80%;">
+    <?php echo $_SESSION['fname'];?>
+    <a href="logout.php"> LogOut</a>
+    </h4>
  </div>
 </nav>
   </div>

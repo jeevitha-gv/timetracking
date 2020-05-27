@@ -34,7 +34,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 .icon {
   padding: 10px;
-  background: dodgerblue;
+  background: #FF4500;
   color: white;
   min-width: 50px;
   text-align: center;
@@ -66,16 +66,13 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 </style>
 </head>
-<body  style="background-color: #C9C7C6;">
+<body style="background: -webkit-gradient(linear, left top, left bottom, from(#8BDFFA), to(#334CFC)) fixed;">
 
-  <img src="001.png" style="width: 250px; margin-left: 600px;"><br><br>
+  <h1 style="margin-left: 40%;">TNE Tracker</h1><br><br>
 <form action ="" method="post">
 <div class="container" style="width: 20%; margin-left: 575px;">
   
-<!-- 
-<?php
-echo $_SESSION['userid'];
-?> -->
+
 
       <div class="input-container">
     <i class="fa fa-user icon fa-2x"></i>
@@ -88,8 +85,8 @@ echo $_SESSION['userid'];
         </div>
 
         <label>
-        <input type="checkbox" checked="checked" name="remember" style="width: 40px; height: 20px;">Remember me
-      </label>
+          <input type="checkbox" name="remember" style="width: 40px; height: 20px;">Remember me
+        </label>
 
 <button type="submit" name="login" class="btn btn-success" style="background-color:#6DAA03;  width:50%; margin-left: 70px; margin-top: 10px;">Log In</button>      
 
@@ -99,7 +96,7 @@ echo $_SESSION['userid'];
 </div>
 </form>
 <div style="margin-left: 625px;">
-<p style="margin-top: 10px;">Don't have an account? <a href="signup.php">Sign Up</a> </p>
+<p style="margin-top: 10px;">Don't have an account? <a href="signup.php" style="color:black;"><b>Sign Up</b></a> </p>
 </div>
 </body>
 </html>
@@ -123,7 +120,11 @@ if(isset($_POST['login'])){
     $result2=mysqli_fetch_array($result);
     $_SESSION['userid'] = $result2['id'];
     $_SESSION['emailid']=$result2['email'];
-    header("Location:header.php");
+
+    $_SESSION['fname'] = $result2['fname'];
+    $_SESSION['user_role'] = $result2['user_role'];
+
+    header("Location:dashboard.php");
   } else{
   
 echo "<script>alert('Email and password does not match');location.href='index.php'</script>";

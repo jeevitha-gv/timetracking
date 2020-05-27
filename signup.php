@@ -32,7 +32,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 .icon {
   padding: 10px;
-  background: dodgerblue;
+  background: #FF4500;
   color: white;
   min-width: 50px;
   text-align: center;
@@ -54,8 +54,8 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 </style>
 </head>
-<body style="background-color: #C9C7C6;">
-  <img src="001.png" style="width: 250px; height: 75px; margin-left: 600px;">
+<body style="background: -webkit-gradient(linear, left top, left bottom, from(#8BDFFA), to(#334CFC)) fixed;">
+  <h1 style="margin-left: 43%;">TNE Tracker</h1><br>
 <?php
 if($_POST) {
   signup();
@@ -94,11 +94,23 @@ if($_POST) {
     <i class="fa fa-lock icon fa-2x"></i>
     <input class="input-field" type="password" placeholder="Confirm-Password" name="cnfpass" class="form-control" id="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
   </div>
+
+  <div class="input-container">
+    <i class="fa fa-user icon fa-2x"></i>
+    <select  class="selectpicker form-control" data-show-subtext="true" data-live-search="true" name="role" style="height: 47px;">
+      <option>--> Select User Role <--</option>
+      <option value="employee">Employee</option>
+      <option value="client">Client</option>
+      <option value="project">Project Manager</option>
+      <option value="admin">Admin</option>
+    </select>
+  </div>
+
   <div style="margin-top: 30px;">
   <button type="submit" name="submit" class="btn btn-success" style="margin-left: 130px;">Signup</button>
   <button type="reset" class="btn btn-danger" style="margin-left: 100px;">Cancel</button><br><br>
 
-              <center>Already have an account <a href="index.php"><h4>Sign In</h4></a></center>
+              <center>Already have an account <a href="index.php" style="color: black;"><h4>Sign In</h4></a></center>
 
 </div>
 </form>

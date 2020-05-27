@@ -1,6 +1,9 @@
 <?php
 
 function signup(){
+require("PHPMailerAutoload.php");
+
+
 GLOBAL $con;
 if(isset($_POST['submit']))
 {
@@ -11,15 +14,17 @@ $number=$_POST['number'];
 $email=$_POST['email'];
 $password=$_POST['password'];
 $cnfpass=$_POST['cnfpass'];
+$user_role=$_POST['role'];
 
 
 if ($_POST["password"]==$_POST["cnfpass"])
 {
     $mdpassword=md5($password);
 
-$sql="INSERT INTO `signup`(`fname`,`lname`,`C_name`,`number`,`email`,`password`) VALUES ('$fname','$lname','$C_name',$number,'$email','$mdpassword')";
+$sql="INSERT INTO `signup`(`fname`,`lname`,`C_name`,`number`,`email`,`password`,`user_role`) VALUES ('$fname','$lname','$C_name',$number,'$email','$mdpassword','$user_role')";
 if(mysqli_query($con,$sql)){
-
+        $str="Welcome to TimeLive";
+        sendwelcomemail($email, $lname, $str);
         header("Location: index.php");
     
     }
@@ -36,6 +41,40 @@ else
 }
 }
 
+function sendwelcomemail($email, $username, $str){
+
+$mail = new PHPMailer();
+$mail->IsSMTP();
+$mail->Mailer = "smtp";
+// $mail->Host = "mail.smtp2go.com";
+$mail->Host = "smtp.sendgrid.net";
+$mail->Port = "2525"; // 8025, 587 and 25 can also be used. Use Port 465 for SSL.
+$mail->SMTPAuth = true;
+$mail->SMTPSecure = 'tls';
+// $mail->Username = "manish@fixnix.co";
+$mail->Username = "apikey";
+// $mail->Password = "SSmON8dCf8Yq";
+$mail->Password = "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";
+$mail->isHTML(true);
+$mail->From = "shan@fixnix.co";
+$mail->FromName = "Chief Nixer";
+$mail->AddAddress($email, $username);
+$mail->AddReplyTo("sales@fixnix.co", "Sales Fixnix");
+
+$mail->Subject = "Email from FixNix";
+$mail->Body = $str;
+$mail->WordWrap = 50; 
+
+if(!$mail->Send()) {
+echo 'Message was not sent.';
+echo 'Mailer error: ' . $mail->ErrorInfo;
+exit;
+} 
+// else 
+// {
+// echo 'Message has been sent.';
+// }
+}
 
 function employee(){
 GLOBAL $con;
@@ -50,18 +89,19 @@ GLOBAL $con;
     $role = $_POST['role'];
     $department = $_POST['department'];
     $location = $_POST['location'];
-    $worktype = $_POST['worktype'];
-    $billingtype = $_POST['billingtype'];
-    $employeerate = $_POST['employeerate'];
-    $employee_currency = $_POST['employee_currency'];
-    $billing_currency = $_POST['billing_currency'];
-     $billingrate = $_POST['billingrate'];
-    $startdate = $_POST['startdate'];
-    $enddate = $_POST['enddate'];
-    
+    $address1 = $_POST['address1'];
+    $address2 = $_POST['address2'];
+    $city = $_POST['city'];
+    $state = $_POST['state'];
+    $country = $_POST['country'];
+    $zipcode = $_POST['zipcode'];
+    $phone1 = $_POST['phone1'];
+    $phone2 = $_POST['phone2'];
+    $fax = $_POST['fax'];
+    $employeemanager = $_POST['manager'];
 
     // $date = date('Y-m-d H:i:s');
-    $sql="INSERT INTO `employee`(`email`,`employeecode`,`firstname`,`lastname`,`password`,`role`,`department`,`location`,`worktype`,`billingtype`,`employeerate`,`employee_currency`,`billing_currency`,`billingrate`,`startdate`,`enddate`) VALUES ('$email','$employeecode','$firstname','$lastname','$password','$role','$department','$location','$worktype','$billingtype','$employeerate','$employee_currency','$billing_currency','$billingrate','$startdate','$enddate')";
+    $sql="INSERT INTO `employee`(`email`,`employeecode`,`firstname`,`lastname`,`password`,`role`,`department`,`location`,`address1`,`address2`,`city`,`state`,`country`,`zipcode`,`phone1`,`phone2`,`fax`,`employeemanager`) VALUES ('$email','$employeecode','$firstname','$lastname','$password','$role','$department','$location','$address1','$address2','$city','$state','$country','$zipcode','$phone1','$phone2','$fax','$employeemanager')";
     if(mysqli_query($con,$sql)){
         header("Location: employee.php");
     }
@@ -75,60 +115,64 @@ GLOBAL $con;
 function client(){
     GLOBAL $con;
     if(isset($_POST['submit'])){
-        // print_r($_POST);
+        print_r($_POST);
     $clientname = $_POST['clientname'];
     $clientnick = $_POST['clientnick'];
     $email = $_POST['email'];
     $website = $_POST['website'];
-    $billingrate = $_POST['billingrate'];
+    $clientmanager = $_POST['clientmanager'];
+    $clientmanagername = $_POST['clientmanagername'];
+    $clientmanageremail = $_POST['clientmanageremail'];
+    $clientmanagerphone = $_POST['clientmanagerphone'];
+    $clientmanagerdept = $_POST['clientmanagerdept'];
+    $clientmanagerrole = $_POST['clientmanagerrole'];
+    $comments = $_POST['comments'];
     $notes = $_POST['notes'];
-    $billingmode = $_POST['billingmode'];
-    $fixedbillcost = $_POST['fixedbillcost'];
     
-    
-
-    // $date = date('Y-m-d H:i:s');
-    $sql="INSERT INTO `client`(`clientname`,`clientnick`,`email`,`website`,`billingrate`,`notes`,`billingmode`,`fixedbillcost`) VALUES ('$clientname','$clientnick','$email','$website','$billingrate','$notes','$billingmode','$fixedbillcost')";
+    $sql="INSERT INTO `client`(`clientname`,`clientnick`,`email`,`website`,`clientmanager`,`clientmanagername`,`clientmanageremail`,`clientmanagerphone`,`clientmanagerdept`,`clientmanagerrole`,`comments`,`notes`) VALUES ('$clientname','$clientnick','$email','$website','$clientmanager','$clientmanagername','$clientmanageremail','$clientmanagerphone','$clientmanagerdept','$clientmanagerrole','$comments','$notes')";
     if(mysqli_query($con,$sql)){
         header("Location: client.php");
     }
     else{
         echo "Error:".$sql."<br>" . mysqli_error($con);
     }
-    }
-
+}
 }
 
 function project(){
     GLOBAL $con;
     if(isset($_POST['submit'])){
-        // print_r($_POST);
+        print_r($_POST);
        
     $projectname = $_POST['projectname'];
     $clientname = $_POST['clientname'];
     $projectcode = $_POST['projectcode'];
-    $teamlead = $_POST['teamlead'];
+    $clientmanager = $_POST['clientmanager'];
     $projectmanager = $_POST['projectmanager'];
+    $clientteam = $_POST['clientteam'];
     $timesheet_approval = $_POST['timesheet_approval'];
     $expense_approval = $_POST['expense_approval'];
-    $billing_rate = $_POST['billing_rate'];
-    $billing_type = $_POST['billing_type'];
-    $billing_ratetype = $_POST['billing_ratetype'];
-    $fixedcost = $_POST['fixedcost'];
     $project_description = $_POST['project_description'];
     $duration = $_POST['duration'];
-    $project_estimatecost = $_POST['project_estimatecost'];
     $project_status = $_POST['project_status'];
     $projecttype = $_POST['projecttype'];
+    $billingratetype = $_POST['billingratetype'];
+    $purchase_order = $_POST['purchase_order'];
+    $account_info = $_POST['account_info'];
+    $nda = $_POST['nda'];
+    $msa = $_POST['msa'];
+    $sow = $_POST['sow'];
     $startdate = $_POST['startdate'];
     $enddate = $_POST['enddate'];
-    $project_template = $_POST['project_template'];
-    $attachment = $_POST['attachment'];
+    $teammembers = $_POST['teammembers'];
+    $userrole = $_POST['userrole'];
+    $billingrate = $_POST['billingrate'];
+    $billingcurrency = $_POST['billingcurrency'];
     
     
 
     // $date = date('Y-m-d H:i:s');
-    $sql="INSERT INTO `project`(`projectname`,`clientname`,`projectcode`,`teamlead`,`projectmanager`,`timesheet_approval`,`expense_approval`,`billing_rate`,`billing_type`,`billing_ratetype`,`fixedcost`,`project_description`,`duration`,`project_estimatecost`,`project_status`,`projecttype`,`startdate`,`enddate`,`attachment`) VALUES ('$projectname','$clientname','$projectcode','$teamlead','$projectmanager','$timesheet_approval','$expense_approval','$billing_rate','$billing_type','$billing_ratetype','$fixedcost','$project_description','$duration','$project_estimatecost','$project_status','$projecttype','$startdate','$enddate','$attachment')";
+    $sql="INSERT INTO `project`(`projectname`,`clientname`,`projectcode`,`clientmanager`,`projectmanager`,`clientteam`,`timesheet_approval`,`expense_approval`,`project_description`,`duration`,`project_status`,`projecttype`,`billingratetype`,`purchase_order`,`account_info`,`nda`,`msa`,`sow`,`startdate`,`enddate`,`teammembers`,`userrole`,`billingrate`,`billingcurrency`) VALUES ('$projectname','$clientname','$projectcode','$clientmanager','$projectmanager','$clientteam','$timesheet_approval','$expense_approval','$project_description','$duration','$project_status','$projecttype','$billingratetype','$purchase_order','$account_info','$nda','$msa','$sow','$startdate','$enddate','$teammembers','$userrole','$billingrate','$billingcurrency')";
     if(mysqli_query($con,$sql)){
         header("Location: projects.php");
     }
@@ -147,24 +191,14 @@ function task(){
     $projectname = $_POST['projectname'];
     $tasktype = $_POST['tasktype'];
     $priority = $_POST['priority'];
-    $taskcode = $_POST['taskcode'];
+    $taskdetails = $_POST['taskdetails'];
     $taskstatus = $_POST['taskstatus'];
-    $developerstask = $_POST['developerstask'];
-    $allprojecttask = $_POST['allprojecttask'];
     $totalmembers = $_POST['totalmembers'];
+    $members = implode(',',$totalmembers);
     $startdate = $_POST['startdate'];
-    $duedate = $_POST['duedate'];
-    $worktype = $_POST['worktype'];
-    $billingdate = $_POST['billingdate'];
-    $developerscurrency = $_POST['developerscurrency'];
-    $billingratecurrency = $_POST['billingratecurrency'];
-    $billable = $_POST['billable'];
-    $billingenddate = $_POST['billingenddate'];
-    $developersrate = $_POST['developersrate'];
-    $billingrate = $_POST['billingrate'];
-
+    $enddate = $_POST['enddate'];
     // $date = date('Y-m-d H:i:s');
-    $sql="INSERT INTO `task`(`taskname`, `projectname`, `tasktype`, `priority`, `taskcode`, `taskstatus`, `developerstask`, `allprojecttask`, `totalmembers`, `startdate`, `duedate`, `worktype`, `billingdate`, `developerscurrency`, `billingratecurrency`, `billable`, `billingenddate`, `developersrate`, `billingrate`) VALUES ('$taskname', '$projectname', '$tasktype', '$priority', '$taskcode', '$taskstatus', '$developerstask', '$allprojecttask', '$totalmembers', '$startdate', '$duedate', '$worktype', '$billingdate', '$developerscurrency', '$billingratecurrency', '$billable', '$billingenddate', '$developersrate', '$billingrate')";
+    $sql="INSERT INTO `task`(`taskname`, `projectname`, `tasktype`, `priority`, `taskdetails`, `taskstatus`, `totalmembers`, `startdate`, `enddate`) VALUES ('$taskname', '$projectname', '$tasktype', '$priority', '$taskdetails', '$taskstatus','$members', '$startdate', '$enddate')";
     if(mysqli_query($con,$sql)){
         header("Location: mytasks.php");
     }
@@ -180,26 +214,23 @@ function invoice(){
     GLOBAL $con;
     if(isset($_POST['submit'])){
         // print_r($_POST);
-    $invoiceno = $_POST['invoiceno'];
     $ponumber = $_POST['ponumber'];
     $billable = $_POST['billable'];
     $clientname = $_POST['clientname'];
     $projectname = $_POST['projectname'];
-    $parenttask = $_POST['parenttask'];
     $invoicedate = $_POST['invoicedate'];
     $billing_startdate = $_POST['billing_startdate'];
     $billing_enddate = $_POST['billing_enddate'];
     $currency = $_POST['currency'];
     $tax1 = $_POST['tax1'];
-    $tax2 = $_POST['tax2'];
     $group_timesheet = $_POST['group_timesheet'];
     $group_expense = $_POST['group_expense'];
     $discount_calculation = $_POST['discount_calculation'];
 
     // $date = date('Y-m-d H:i:s');
-    $sql="INSERT INTO `invoice`(`invoiceno`,`ponumber`, `billable`, `clientname`, `projectname`,`parenttask`, `invoicedate`, `billing_startdate`, `billing_enddate`, `currency`, `tax1`, `tax2`, `group_timesheet`, `group_expense`, `discount_calculation`) VALUES ('$invoiceno','$ponumber','$billable','$clientname','$projectname','$parenttask','$invoicedate','$billing_startdate','$billing_enddate','$currency','$tax1','$tax2','$group_timesheet','$group_expense','$discount_calculation')";
+    $sql="INSERT INTO `invoice`(`ponumber`, `billable`, `clientname`, `projectname`,`invoicedate`, `billing_startdate`, `billing_enddate`, `currency`, `tax1`,`group_timesheet`, `group_expense`, `discount_calculation`) VALUES ('$ponumber','$billable','$clientname','$projectname','$invoicedate','$billing_startdate','$billing_enddate','$currency','$tax1','$group_timesheet','$group_expense','$discount_calculation')";
     if(mysqli_query($con,$sql)){
-        header("Location: invoiceform.php");
+        header("Location: invoicemanagement.php");
     }
     else{
         echo "Error:".$sql."<br>" . mysqli_error($con);
@@ -212,7 +243,10 @@ function expense(){
     GLOBAL $con;
     if(isset($_POST['submit'])){
         // print_r($_POST);
+        $task_id = $_POST['task_id'];
+    $clientname = $_POST['clientname'];
     $projectname = $_POST['projectname'];
+    $employeename = $_POST['employeename'];
     $expensename = $_POST['expensename'];
     $paymentmethod = $_POST['paymentmethod'];
     $currency = $_POST['currency'];
@@ -228,9 +262,9 @@ function expense(){
     
 
     // $date = date('Y-m-d H:i:s');
-    $sql="INSERT INTO `expense`(`projectname`, `expensename`, `paymentmethod`, `currency`, `expenseentrydate`,`billable`, `reimburse`, `netamount`, `taxzone`, `tax`, `amount`, `description`, `attachment`) VALUES ('$projectname','$expensename','$paymentmethod','$currency','$expenseentrydate','$billable','$reimburse','$netamount','$taxzone','$tax','$amount','$description','$attachment')";
+    $sql="INSERT INTO `expense`(`task_id`,`clientname`,`projectname`,`employeename`, `expensename`, `paymentmethod`, `currency`, `expenseentrydate`,`billable`, `reimburse`, `netamount`, `taxzone`, `tax`, `amount`, `description`, `attachment`) VALUES ('$task_id','$clientname','$projectname','$employeename','$expensename','$paymentmethod','$currency','$expenseentrydate','$billable','$reimburse','$netamount','$taxzone','$tax','$amount','$description','$attachment')";
     if(mysqli_query($con,$sql)){
-        header("Location: addexpense.php");
+        header("Location: myexpense.php");
     }
     else{
         echo "Error:".$sql."<br>" . mysqli_error($con);
@@ -239,44 +273,137 @@ function expense(){
 
 }
 
-function addtime()
-{
-    GLOBAL $con;
-    if(isset($_POST['submit'])){
-        // print_r($_POST);
-    $projectname = $_POST['projectname'];
-    $taskname = $_POST['taskname'];
-$sql="INSERT INTO `addtimesheet`(`projectname`,`taskname`) VALUES ('$projectname','$taskname')";
-
-if(mysqli_query($con,$sql))
-{
-    header("Location: timesheets.php");
-}
-else
-{
-    echo "Error:".$sql."<br>" . mysqli_error($con);
-}
-  
-}
-}
 
 
 function timesheet(){
     GLOBAL $con;
-    if (isset($_POST['submit'])) {
+    if (isset($_POST['save'])) {
+        print_r($_POST);
+        $task_id = $_POST['task_id'];
         $employee = $_POST['employee'];
-        $startdate = $_POST['startdate'];
-        $enddate = $_POST['enddate'];
-        $timettl = $_POST['timettl'];
-        $comment = $_POST['comment'];
+        $timesheettotal = $_POST['timesheettotal'];
+        $projectname = $_POST['project_name'];
+        $taskname = $_POST['task_name'];
+        $date1 = $_POST['date1'];
+        $date2 = $_POST['date2'];
+        $date3 = $_POST['date3'];
+        $date4 = $_POST['date4'];
+        $date5 = $_POST['date5'];
+        $description = $_POST['description'];
 
-        $sql = "INSERT INTO `timesheet`(`employee`, `startdate`, `enddate`, `timettl`, `comment`) VALUES ($employee,$startdate,$enddate,$timettl,$comment)";
+        $sql = "INSERT INTO `timesheet`(`task_id`, `employee`, `timesheettotal`, `project_name`, `task_name`, `date1`, `date2`, `date3`, `date4`, `date5`, `description`) VALUES ('$task_id','$employee','$timesheettotal','$projectname','$taskname','$date1','$date2','$date3','$date4','$date5','$description')";
+        }
+
     if(mysqli_query($con,$sql)){
-        header("Location: timesheets.php");
+        header("Location: timesheettable.php");
     }
     else{
         echo "Error:".$sql."<br>" . mysqli_error($con);
     }
     }
     
+function projectteam()
+{
+  GLOBAL $con;
+  if (isset($_POST['add'])) {
+        $pname = $_POST['pname'];
+        $member = $_POST['member'];
+        $userrole = $_POST['userrole'];
+        $employee = $_POST['employee'];
+        $client = $_POST['client'];
+         $billing_rate = $_POST['billing_rate'];
+         $bill_currency = $_POST['bill_currency'];
+
+        $sql = "INSERT INTO `projectteam`(`projectname`,`totalmembers`,`userrole`,`employee`,`client`,`billing_rate`,`bill_currency`) VALUES ('$pname','$member','$userrole','$employee','$client','$billing_rate','$bill_currency')";
+    if(mysqli_query($con,$sql)){
+        header("Location: projects.php");
+    }
+    else{
+        echo "Error:".$sql."<br>" . mysqli_error($con);
+    }
+    }  
+}
+
+function ts_approve()
+{
+    GLOBAL $con;
+    if(isset($_POST['submit'])){
+        $ts_id = $_POST['t_id'];
+        $ts_employee = $_POST['ts_employee'];
+        $ts_timesheettotal = $_POST['ts_timesheettotal'];
+        $ts_projectname = $_POST['ts_projectname'];
+        $ts_taskname = $_POST['ts_taskname'];
+        $ts_date = $_POST['ts_date'];
+        $ts_desc = $_POST['ts_desc'];
+        $ts_status = 'Approved';
+
+        $sql = "INSERT INTO `timesheetapproved`(`t_id`,`employee`, `timesheettotal`, `projectname`, `taskname`, `timesheetdate`, `description`,`status`) VALUES ('$ts_id','$ts_employee','$ts_timesheettotal','$ts_projectname','$ts_taskname','$ts_date','$ts_desc','$ts_status')";
+
+        if(mysqli_query($con,$sql)){
+            header("Location: approved.php");
+        }
+        else{
+            echo "Error : ".$sql."<br>" . mysqli_error($con);
+        }
+    }
+}
+
+
+function ex_approve()
+{
+    GLOBAL $con;
+    if(isset($_POST['submit'])){
+        $ex_id = $_POST['e_id'];
+        $ex_clientname = $_POST['ex_clientname'];
+        $ex_projectname = $_POST['ex_projectname'];
+        $ex_employeename = $_POST['ex_employeename'];
+        $ex_expensename = $_POST['ex_expensename'];
+        $ex_paymentmethod = $_POST['ex_paymentmethod'];
+        $ex_entrydate = $_POST['ex_entrydate'];
+        $ex_netamount = $_POST['ex_netamount'];
+        $ex_amount = $_POST['ex_amount'];
+
+        $sql = "INSERT INTO `expenseapproved`(`e_id`, `clientname`, `projectname`, `employeename`, `expensename`, `paymentmethod`, `expensedate`, `netamount`, `amount`) VALUES ('$ex_id','$ex_clientname','$ex_projectname','$ex_employeename','$ex_expensename','$ex_paymentmethod','$ex_entrydate','$ex_netamount','$ex_amount')";
+
+        if(mysqli_query($con,$sql)){
+            header("Location: approved.php");
+        }
+        else{
+            echo "Error : ".$sql."<br>" . mysqli_error($con);
+        }
+    }
+}
+
+
+function final_invoice()
+{
+    GLOBAL $con;
+    if(isset($_POST['submit'])){
+        $userid = $_POST['userid'];
+        $projectname = $_POST['projectname'];
+        $clientname = $_POST['clientname'];
+        $invoicedate = $_POST['invoicedate'];
+        $sub_total = $_POST['sub_total'];
+        $discount = $_POST['discount'];
+        $total = $_POST['total'];
+        $tax = $_POST['tax'];
+        $grand_total = $_POST['grand_total'];
+        $t_description = $_POST['t_description'];
+        $t_bill_rate = $_POST['t_bill_rate'];
+        $t_bill_hours = $_POST['t_bill_hours'];
+        $t_total = $_POST['t_total'];
+        $e_employeename = $_POST['e_employeename'];
+        $e_expensename = $_POST['e_expensename'];
+        $e_billed_amount = $_POST['e_billed_amount'];
+        $description = $_POST['description'];
+
+        $sql = "INSERT INTO `final_invoice`(`userid`, `projectname`, `clientname`, `invoicedate`, `sub_total`, `discount`, `total`, `tax`, `grand_total`, `t_description`, `t_bill_rate`, `t_bill_hours`, `t_total`, `e_employeename`, `e_expensename`, `e_billed_amount`, `description`) VALUES ('$userid','$projectname', '$clientname', '$invoicedate' ,'$sub_total','$discount','$total','$tax','$grand_total','$t_description','$t_bill_rate','$t_bill_hours','$t_total','$e_employeename','$e_expensename','$e_billed_amount','$description')";
+
+        if(mysqli_query($con,$sql)){
+            header("Location: final_invoice.php");
+        }
+        else{
+            echo "Error : ".$sql."<br>" . mysqli_error($con);
+        }
+    }
 }
