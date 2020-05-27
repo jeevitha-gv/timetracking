@@ -113,7 +113,7 @@ body {
         <div class="form-group row">
       <div class="col-xs-4">
         <label for="ex1" style="color: black;"><h6>Employeecode</h6></label>
-        <input class="form-control" id="ex1" type="text" name="employeecode">
+        <input class="form-control" id="ex1" type="text" name="employeecode" disabled>
       </div>
       <div class="col-xs-4">
         <label for="ex2" style="color: black;"><h6>Firstname</h6></label>
@@ -142,7 +142,9 @@ body {
  <div class="form-group row">
         <div class="col-xs-4">
     <label style="color: black;margin-top: 5px;" for="ex2"><h6>Role</h6></label>
+
         <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="role" required>
+
         <option value="Employees">Employees</option>
         <option vallue="Project Manager">Project Manager</option>
         <option vallue="Client Manager">Client Manager</option>
@@ -185,21 +187,26 @@ body {
         <div class="form-group row">
       <div class="col-xs-4">
         <label for="ex1" style="color: black;"><h6>Address1</h6></label>
+
         <input class="form-control" id="ex1" type="text" name="address1" required>
       </div>
       <div class="col-xs-4">
         <label for="ex2" style="color: black;"><h6>Address2</h6></label>
         <input class="form-control" id="ex2" type="text" name="address2" required>
+
       </div>
 
       <div class="col-xs-4">
         <label for="ex2" style="color: black;"><h6>City</h6></label>
+
         <input class="form-control" id="ex2" type="text" name="city" required>
+
       </div>
   </div>
    <div class="form-group row">
       <div class="col-xs-4">
         <label for="ex1" style="color: black;"><h6>State</h6></label>
+
         <input class="form-control" id="ex1" type="text" name="state" required>
       </div>
        <div class="col-xs-4">
@@ -231,17 +238,20 @@ body {
     <option value="GR">Greece</option>
     <option value="GL">Greenland</option>
     <option value="HK">Hong Kong</option>
+
     <option value="IS">Iceland</option>
     <option value="IN">India</option>
     <option value="ID">Indonesia</option>
     <option value="IR">Iran, Islamic Republic of</option>
     <option value="IQ">Iraq</option>
     <option value="IE">Ireland</option>
+
     <option value="IL">Israel</option>
     <option value="IT">Italy</option>
     <option value="JM">Jamaica</option>
     <option value="JP">Japan</option>
     <option value="JE">Jersey</option>
+
     <option value="KE">Kenya</option>
     <option value="KR">Korea, Republic of</option>
     <option value="KW">Kuwait</option>
@@ -274,25 +284,31 @@ body {
     <option value="SY">Syrian Arab Republic</option>
     <option value="TH">Thailand</option>
     <option value="TR">Turkey</option>
+
     <option value="UG">Uganda</option>
     <option value="UA">Ukraine</option>
     <option value="AE">United Arab Emirates</option>
     <option value="GB">United Kingdom</option>
     <option value="US">United States</option>
     <option value="UM">United States Minor Outlying Islands</option>
+
     <option value="VG">Virgin Islands, British</option>
     <option value="VI">Virgin Islands, U.S.</option>
+
     <option value="ZW">Zimbabwe</option>
       </select>
     </div>
       <div class="col-xs-4">
         <label for="ex2" style="color: black;"><h6>Zip code</h6></label>
+
         <input class="form-control" id="ex2" type="text" name="zipcode" required>
+
       </div>
   </div>
   <div class="form-group row">
       <div class="col-xs-4">
         <label for="ex1" style="color: black;"><h6>Phone No.1</h6></label>
+
         <input class="form-control" id="ex1" type="text" name="phone1" required>
       </div>
       <div class="col-xs-4">
@@ -302,6 +318,7 @@ body {
       <div class="col-xs-4">
         <label for="ex2" style="color: black;"><h6>Fax</h6></label>
         <input class="form-control" id="ex2" type="text" name="fax" required>
+
       </div>
   </div>
   <div class="form-group row">
@@ -356,10 +373,12 @@ if (mysqli_num_rows($result) > 0) {
         <th>Location</th>
         <th>Department</th>
         <th>Action</th>
+
       </tr>
     </thead>
 <?php
     $sql = "SELECT eno,firstname,email,location,department from employee ORDER BY eno DESC";
+
 $result = mysqli_query($con, $sql);
 if (mysqli_num_rows($result) > 0) {
   while($row = mysqli_fetch_array($result))
@@ -372,11 +391,13 @@ if (mysqli_num_rows($result) > 0) {
         <td><?php echo $row['email'];?></td>
         <td><?php echo $row['location'];?></td>
         <td><?php echo $row['department'];?></td>
+
          <td>   
     <?php echo "<a class='btn btn-danger' onclick=\"return confirm('Delete this record?')\" href=\"employee.php?eno=".$row['eno']."\"><span class='glyphicon glyphicon-trash'></span></a>" ?>
      </td>
 
       </tr>  
+
 <?php } } else { echo "0 results"; } ?>
     </tbody>
   </table>
@@ -408,4 +429,6 @@ if (mysqli_num_rows($result) > 0) {
     }
     return false;
 });
+
 </script>
+

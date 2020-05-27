@@ -111,7 +111,9 @@ elseif(isset($_POST['add'])) {
         <div class="form-group">
       <span class="required" style="color: red;">*</span> <label for="usr" style="color: gray;">Project Name</label>
       <!-- <input type="hidden" name="c_id" class="form-control" value="<?php echo $row['c_id'];?>"> -->
+
       <input type="text" class="form-control" id="usr" name="projectname" required>
+
     </div>
     <div class="container">
   <ul style="width: 57%;" class="nav nav-tabs" style="width: 100px;">
@@ -152,7 +154,9 @@ if (mysqli_num_rows($result) > 0) {
   <div class="form-group row">
    <div class="col-xs-3">
         <label style="color: black;"><h6>Client Manager</h6></label>
+
         <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="clientmanager" required>
+
           <option></option>
              <?php
     $sql = "SELECT clientname from client";
@@ -281,17 +285,21 @@ if (mysqli_num_rows($result) > 0) {
     </div>
     <div class="col-xs-3">
       <label style="color: black;margin-top: 5px;"><h6>Purchase Order</h6></label>
+
       <input type="text" class="form-control" name="purchase_order" required>
+
     </div>
 </div>
 <div class="form-group row">
     <div class="col-xs-3">
   <label style="color: black;margin-top: 5px;"><h6>Account Info</h6></label>
+
      <input type="text" class="form-control" name="account_info" required>
     </div>
     <div class="col-xs-3">
         <label style="color: black;"><h6>Billing Rate Type</h6></label>
         <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="billingratetype" required>
+
           <option value=""></option>
           <option value="Fixed Bid">Fixed Bid</option>
           <option value="Time Only">Time Only</option>
@@ -305,7 +313,9 @@ if (mysqli_num_rows($result) > 0) {
 <div class="form-group row">
   <div class="col-xs-3">
   <label style="color: black;"><h6>NDA</h6></label><br>
+
       <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="nda" required>
+
         <option value=""></option>
       <option value="Not Started">Not Started</option>
       <option value="In Progress">In Progress</option>
@@ -314,14 +324,18 @@ if (mysqli_num_rows($result) > 0) {
     </div>
      <div class="file-upload-wrapper col-xs-3">
       <label style="color: black;"><h6>Attachment</h6></label>
+
   <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" name="attachment" required>
+
 </div>
 </div>
 
 <div class="form-group row">
   <div class="col-xs-3">
   <label style="color: black;"><h6>MSA</h6></label><br>
+
       <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="msa" required>
+
         <option value=""></option>
       <option value="Not Started">Not Started</option>
       <option value="In Progress">In Progress</option>
@@ -330,13 +344,17 @@ if (mysqli_num_rows($result) > 0) {
     </div>
     <div class="file-upload-wrapper col-xs-3">
       <label style="color: black;"><h6>Attachment</h6></label>
+
   <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" name="attachment" required> 
+
 </div>
 </div>
 <div class="form-group row">
   <div class="col-xs-3">
   <label style="color: black;"><h6>SOW</h6></label><br>
+
       <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="sow" required>
+
         <option value=""></option>
       <option value="Not Started">Not Started</option>
       <option value="In Progress">In Progress</option>
@@ -345,7 +363,9 @@ if (mysqli_num_rows($result) > 0) {
     </div>
     <div class="file-upload-wrapper col-xs-3">
       <label style="color: black;"><h6>Attachment</h6></label>
+
   <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" name="attachment" required>
+
 </div>
 </div>
 
@@ -354,7 +374,9 @@ if (mysqli_num_rows($result) > 0) {
 <div class="form-group row">
   <div class="col-xs-3">
   <label style="color: black;"><h6>Team Members</h6></label><br>
+
         <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="teammembers" required>
+
           <option></option>
                      <?php
     $sql = "SELECT * from employee";
@@ -369,7 +391,9 @@ if (mysqli_num_rows($result) > 0) {
     </div>
      <div class="col-xs-3">
       <label style="color: black;"><h6>User Role</h6></label>
+
        <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="userrole" required>
+
           <option></option>
           <option value="employees">Employees</option>
           <option value="clientmanager">Client Manager</option>
@@ -384,11 +408,13 @@ if (mysqli_num_rows($result) > 0) {
 <div class="form-group row">
     <div class="col-xs-3">
       <label style="color: black;"><h6>Billing Rate</h6></label>
+
   <input type="text" class="form-control" name="billingrate" required>
 </div>
 <div class="col-xs-3">
   <label style="color: black;"><h6>Billing Currency</h6></label><br>
       <select class="selectpicker" data-show-subtext="true" data-live-search="true" id="type" name="billingcurrency" required>
+
         <option value=""></option>
       <option value="AUD">AUD</option>
       <option value="CAD">CAD</option>
@@ -434,7 +460,9 @@ if (mysqli_num_rows($result) > 0) {
       </tr>
     </thead>
 <?php
+
 $sql = "SELECT p_id,projectname , clientname , project_status , clientmanager , projectmanager , projecttype , startdate , enddate FROM `project` order by p_id desc";
+
 $result = mysqli_query($con, $sql);
 if (mysqli_num_rows($result) > 0) {
   while($row = mysqli_fetch_array($result))
@@ -447,9 +475,11 @@ if (mysqli_num_rows($result) > 0) {
         <td><?php echo $row['project_status'];?></td>
         <td><?php echo $row['projectmanager'];?></td>
         <td><?php echo $row['clientmanager'];?></td>
+
           <td>   
     <?php echo "<a class='btn btn-danger' onclick=\"return confirm('Delete this record?')\" href=\"projects.php?p_id=".$row['p_id']."\"><span class='glyphicon glyphicon-trash'></span></a>" ?>
      </td>
+
 
     </tr>  
 <?php } } else { echo "0 results"; } ?>
@@ -480,7 +510,9 @@ if (mysqli_num_rows($result) > 0) {
 </script>
 
 
+
 <?php
+
      $p_id=$_GET['p_id'];
      $sql = "DELETE FROM project WHERE p_id=".$p_id;   
     if (mysqli_query($con, $sql)) {
@@ -498,4 +530,6 @@ if (mysqli_num_rows($result) > 0) {
     }
     return false;
 });
+
 </script>
+

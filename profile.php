@@ -74,7 +74,9 @@ body {
   <h4 style="color:#a3a19b;"><a href="dashboard.php">Dashboard</a></h4>
   
   <div class="panel panel-default"> 
+
     <div class="panel-body" style="color:#4C8EBA "><h4>USER MANAGEMENT</h4></div>
+
     <div class="container-fluid">
   <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" id="myTable">
     <thead>
@@ -102,6 +104,7 @@ if (mysqli_num_rows($result) > 0) {
         <td><?php echo $row['lname'];?></td>
         <td><?php echo $row['email'];?></td>
         <td><?php echo $row['user_role'];?></td>
+
      <td>   
     <?php echo "<a class='btn btn-danger' onclick=\"return confirm('Delete this record?')\" href=\"profile.php?id=".$row['id']."\"><span class='glyphicon glyphicon-trash'></span></a>" ?>
      </td>
@@ -118,6 +121,7 @@ if (mysqli_num_rows($result) > 0) {
 </form>
 </body>
 </html>
+
 <?php
      $id=$_GET['id'];
      $sql = "DELETE FROM signup WHERE id=".$id;   
@@ -125,7 +129,9 @@ if (mysqli_num_rows($result) > 0) {
        header("Location: profile.php");
     } else {
        // echo "Error deleting record: " . mysqli_error($con);
+
     }
+
 ?>
 <script>
     $('a.delete').on('click', function() {
@@ -135,4 +141,6 @@ if (mysqli_num_rows($result) > 0) {
     }
     return false;
 });
+
 </script>
+
